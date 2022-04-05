@@ -2,6 +2,8 @@
 
 BESON is a native android construction market price tracking application written in Kotlin using Jetpack Compose.
 
+## Under Construction
+
 * Video 🧪
 
 |Splash, Login|
