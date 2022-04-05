@@ -1,13 +1,10 @@
 package com.example.besonapp.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.compositeOver
 import com.example.besonapp.NavigationItem
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -19,7 +16,7 @@ fun SetSystemUiColors(
 
     val systemUiController = rememberSystemUiController()
 
-    var applySystemUiPadding by remember { mutableStateOf(true)}
+    val applySystemUiPadding by remember { mutableStateOf(true)}
 
     SideEffect{
         when(currentRoute){
@@ -28,21 +25,21 @@ fun SetSystemUiColors(
                 //applySystemUiPadding = false
 
                 systemUiController.setSystemBarsColor(
-                    color = Color(0xff333333),
+                    color = logoBackground,
                     darkIcons = false)
             }
 
-            NavigationItem.SelectCustomerOrCompany.screenRoute ->{
+            NavigationItem.Login.screenRoute ->{
 
                 //applySystemUiPadding = false
 
                 systemUiController.setStatusBarColor(
-                    color = Color(0xff333333),
+                    color = logoBackground,
                     darkIcons = false
                 )
 
                 systemUiController.setNavigationBarColor(
-                    color = Color(0xff333333),
+                    color = logoBackground,
                     darkIcons = false
                 )
             }

@@ -2,13 +2,13 @@ package com.example.besonapp
 
 import androidx.compose.runtime.*
 import androidx.navigation.NavHostController
-import com.example.besonapp.presentation.LogInScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 
 @Composable
 fun NavigationGraph(
-    navController: NavHostController
+    navController: NavHostController,
+    isLogoClicked: Boolean
 ) {
 
     AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screenRoute) {
@@ -32,9 +32,9 @@ fun NavigationGraph(
             SplashScreen(navController = navController)
         }
 
-        //SELECTCUSTOMERORCOMPANY SCREEN
+        //LOGIN SCREEN
         composable(
-            NavigationItem.SelectCustomerOrCompany.screenRoute,
+            NavigationItem.Login.screenRoute,
             enterTransition = {
                 when(initialState.destination.route){
 //                    BottomNavItem.Splash.screenRoute-> slideIntoContainer(AnimatedContentScope.SlideDirection.Up, animationSpec = tween(700))
@@ -44,25 +44,11 @@ fun NavigationGraph(
             },
             exitTransition = {
                 when(targetState.destination.route){
-//                    NavItem.LogIn.screenRoute-> slideOutOfContainer(AnimatedContentScope.SlideDirection.Up, animationSpec = tween(700))
                     else -> null
                 }
             }) {
 
-            SelectCustomerOrCompanyScreen(navController)
-        }
-
-        //LOGIN SCREEN
-        composable(
-            NavigationItem.LogIn.screenRoute,
-            enterTransition = {
-                when(initialState.destination.route){
-//                    NavItem.SelectCustomerOrCompany.screenRoute-> slideIntoContainer(AnimatedContentScope.SlideDirection.Up, animationSpec = tween(700))
-                    else -> null
-                }
-            }) {
-
-            LogInScreen()
+            LogInScreen(navController, isLogoClicked)
         }
     }
 }

@@ -13,7 +13,7 @@ val onBackgroundLight = Color(0xFFF7CB1D)
 val selectCustomerOrCompanyScreenColor1 = Color(0xff333333)
 val selectCustomerOrCompanyScreenColor2 = Color(0xFF555454)
 
-val logoCircularBackGround = Color(0xFF2b2b2b)
+val logoBackground = Color(0xFF2b2b2b)
 
 val buttonBackgroundColor = Color(0xFFFFFFFF)
 val buttonBorder = Color.Gray

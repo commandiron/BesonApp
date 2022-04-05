@@ -5,9 +5,6 @@ object Constants {
     const val SPLASH_SCREEN_TITLE = "Splash"
     const val SPLASH_SCREEN_ROUTE = "splash"
 
-    const val SELECTCUSTOMERORCOMPANY_SCREEN_TITLE = "SelectCustomerOrCompany"
-    const val SELECTCUSTOMERORCOMPANY_SCREEN_ROUTE = "selectcustomerorcompany"
-
     const val LOGIN_SCREEN_TITLE = "LogIn"
     const val LOGIN_SCREEN_ROUTE = "login"
 
