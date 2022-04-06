@@ -1,15 +1,18 @@
-package com.example.besonapp.presentation.util
+package com.example.besonapp.util
 
 object Constants {
 
     const val SPLASH_SCREEN_TITLE = "Splash"
     const val SPLASH_SCREEN_ROUTE = "splash"
 
-    const val LOGIN_SCREEN_TITLE = "LogIn"
-    const val LOGIN_SCREEN_ROUTE = "login"
+    const val INTRO_SCREEN_TITLE = "Intro"
+    const val INTRO_SCREEN_ROUTE = "intro"
 
     const val SIGNUP_SCREEN_TITLE = "SignUp"
     const val SIGNUP_SCREEN_ROUTE = "signup"
+
+    const val LOGIN_SCREEN_TITLE = "LogIn"
+    const val LOGIN_SCREEN_ROUTE = "login"
 
     const val PROFILE_SCREEN_TITLE = "Profile"
     const val PROFILE_SCREEN_ROUTE = "profile"

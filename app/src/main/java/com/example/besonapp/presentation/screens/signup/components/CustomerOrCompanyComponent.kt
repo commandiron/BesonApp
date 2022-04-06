@@ -1,7 +1,6 @@
 package com.example.besonapp.presentation
 
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -13,14 +12,11 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
@@ -28,32 +24,38 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import com.example.besonapp.ui.theme.*
-import kotlinx.coroutines.launch
 
 @Composable
-fun CustomAnimatedCustomerOrCompanyLogInContent(
+fun CustomerOrCompanyComponent(
     title: String,
     details: String,
-    button: String,
+    buttonText: String,
     imageUrl: String,
     surfaceColor: Color,
     targetOffsetValue: Float,
-    closeLoginWindow: Boolean = false,
+    componentIsClosed: Boolean,
     onClick:() -> Unit,
 ){
 
     val offsetAnim = remember { Animatable(0f) }
-    val coroutineScope = rememberCoroutineScope()
 
-    LaunchedEffect(key1 = closeLoginWindow){
+    LaunchedEffect(key1 = componentIsClosed){
 
+        if(componentIsClosed){
             offsetAnim.animateTo(
                 targetValue = 0f,
                 animationSpec = tween(
                     durationMillis = 1000
                 )
             )
-
+        }else{
+            offsetAnim.animateTo(
+                targetValue = targetOffsetValue,
+                animationSpec = tween(
+                    durationMillis = 1000
+                )
+            )
+        }
     }
 
     Surface(
@@ -99,19 +101,10 @@ fun CustomAnimatedCustomerOrCompanyLogInContent(
                 Surface(
                     modifier = Modifier
                         .width(200.dp)
-                        .padding(top = 10.dp)
+                        .padding(top = 20.dp)
                         .clickable(interactionSource = interactionSource, indication = null) {
 
                             onClick()
-
-                            coroutineScope.launch {
-                                offsetAnim.animateTo(
-                                    targetValue = targetOffsetValue,
-                                    animationSpec = tween(
-                                        durationMillis = 1000
-                                    )
-                                )
-                            }
                         },
                     color = buttonBackgroundColor,
                     shape = RoundedCornerShape(16.dp),
@@ -122,8 +115,8 @@ fun CustomAnimatedCustomerOrCompanyLogInContent(
                         Text(
                             modifier = Modifier
                                 .padding(6.dp),
-                            color = selectCustomerOrCompanyScreenColor2,
-                            text = button,
+                            color = surfaceColor,
+                            text = buttonText,
                             style = MaterialTheme.typography.button)
                     }
                 }

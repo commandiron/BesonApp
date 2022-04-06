@@ -1,7 +1,6 @@
 package com.example.besonapp.presentation
 
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -14,14 +13,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.ui.theme.logoBackground
+import com.example.besonapp.ui.theme.backgroundLight
 
 @Composable
-fun CustomerOrCompanyLogoAnimation(
-    onLogoClick:() -> Unit
+fun SignUpScreenLogoAnimation(
+    onSignUpScreenLogoClick:() -> Unit
 ){
 
     val sizeAnim = remember { Animatable(100f) }
@@ -78,11 +76,11 @@ fun CustomerOrCompanyLogoAnimation(
         val interactionSource = remember { MutableInteractionSource() }
         Surface(
             modifier = Modifier.clip(CircleShape).clickable(interactionSource, null) {
-                onLogoClick()
+                onSignUpScreenLogoClick()
             },
-            color = logoBackground
+            color = backgroundLight
         ) {
-            CustomAppLogoIcon(
+            AppLogoIconView(
                 modifier = Modifier.padding(20.dp),
                 tint = MaterialTheme.colors.onBackground,
                 sizeAnimValue = Dp(sizeAnim.value),

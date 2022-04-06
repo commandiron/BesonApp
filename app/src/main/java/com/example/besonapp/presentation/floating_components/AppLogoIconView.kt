@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CustomAppLogoIcon(
+fun AppLogoIconView(
     modifier: Modifier = Modifier,
     tint: Color = MaterialTheme.colors.onBackground,
     sizeAnimValue:Dp = 100.dp,

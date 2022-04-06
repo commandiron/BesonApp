@@ -7,22 +7,21 @@ val primaryColorLight = Color(0xFFF7CB1D)
 val onPrimaryLight = Color.Black
 val primaryVariantColorLight = Color.Gray
 
-val backgroundColorLight = Color(0xff333333)
+val backgroundLight = Color(0xFF2b2b2b)
 val onBackgroundLight = Color(0xFFF7CB1D)
 
-val selectCustomerOrCompanyScreenColor1 = Color(0xff333333)
-val selectCustomerOrCompanyScreenColor2 = Color(0xFF555454)
 
-val logoBackground = Color(0xFF2b2b2b)
+//Dark
+
+val backgroundColorDark = Color(0xFF000000)
+val onBackgroundDark = Color.White
+
+
+val backgroundColorVariant1 = Color(0xff333333)
+val backgroundColorVariant2 = Color(0xFF555454)
 
 val buttonBackgroundColor = Color(0xFFFFFFFF)
 val buttonBorder = Color.Gray
 
+val textFieldErrorColor = Color(0xFFFF0000)
 
-//Dark
-val primaryColorDark = Color(0xFF171718)
-val onPrimaryDark = Color(0xFFFFFFFF)
-val primaryVariantColorDark = Color(0xFF121213)
-
-val backgroundColorDark = Color(0xFF000000)
-val onBackgroundDark = Color.White

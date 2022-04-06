@@ -18,7 +18,7 @@ private val LightColorPalette = lightColors(
     primary = primaryColorLight,
     onPrimary = onPrimaryLight,
 
-    background = backgroundColorLight,
+    background = backgroundLight,
     onBackground = onBackgroundLight
 )
 
@@ -51,7 +51,7 @@ private object BesonRippleTheme : RippleTheme {
     // Using that will override the ripple color set in DarkMode
     // or when you set light parameter to false
     @Composable
-    override fun defaultColor(): Color = MaterialTheme.colors.primary
+    override fun defaultColor(): Color = MaterialTheme.colors.background
 
     @Composable
     override fun rippleAlpha(): RippleAlpha = RippleTheme.defaultRippleAlpha(

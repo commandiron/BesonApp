@@ -31,22 +31,27 @@ val Typography = Typography(
     body1 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Medium,
-        fontSize = 12.sp
+        fontSize = 14.sp
     ),
     body2 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Medium,
-        fontSize = 8.sp
+        fontSize = 10.sp
     ),
     h1 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.ExtraBold,
-        fontSize = 32.sp
+        fontSize = 36.sp
     ),
     h2 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Bold,
         fontSize = 22.sp
+    ),
+    h3 = TextStyle(
+        fontFamily = Roboto,
+        fontWeight = FontWeight.Normal,
+        fontSize = 18.sp
     ),
     button = TextStyle(
         fontFamily = Roboto,

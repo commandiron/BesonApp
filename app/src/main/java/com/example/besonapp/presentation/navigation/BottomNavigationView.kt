@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.besonapp.NavigationItem
+import com.example.besonapp.presentation.navigation.NavigationItem
 
 @Composable
 fun BottomNavigationView(navController: NavController, currentRoute: String?) {
