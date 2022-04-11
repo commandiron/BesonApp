@@ -1,9 +1,12 @@
 package com.example.besonapp.util
 
-object StaticTexts {
+object AppStaticTexts {
 
     const val APP_NAME = "BEŞON"
     const val APP_STATEMENT = "BEŞON; İnşaat yapım fiyatları takip ve taşeron bulma uygulamasıdır."
+
+    const val INTRO_SCREEN_BOTTOM_TEXT = "HEMEN BAŞLA"
+    const val INTRO_SCREEN_BOTTOM_TEXT_LAST_PAGE = "BAŞLA"
 
     const val SIGNUP_SCREEN_CUSTOMER_TEXT_TITLE = "MÜŞTERİYİM"
     const val SIGNUP_SCREEN_CUSTOMER_TEXT_DETAILS = "Fiyat görmek ve taşeron firma bulmak istiyorum."
@@ -18,6 +21,7 @@ object StaticTexts {
     const val SIGNUP_SCREEN_COMPANY_SIGNUP_BUTTON_TEXT = "Firma Olarak Devam Et"
 
     const val SIGNUP_SCREEN_COMPANY_LOGIN_BUTTON_TEXT = "Giriş Yap"
+    const val SIGNUP_SCREEN_FORM_TITLE_TEXT = "Kayıt Ol"
     const val SIGNUP_SCREEN_EMAIL_HINT_TEXT = "Eposta"
     const val SIGNUP_SCREEN_PASSWORD_HINT_TEXT = "Şifre"
     const val SIGNUP_SCREEN_PASSWORD_AGAIN_HINT_TEXT = "Şifre (Tekrar)"

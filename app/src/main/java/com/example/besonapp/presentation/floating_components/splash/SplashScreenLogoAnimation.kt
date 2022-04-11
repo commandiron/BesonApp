@@ -11,44 +11,58 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.util.StaticTexts
+import com.example.besonapp.ui.theme.logoColor
+import com.example.besonapp.util.AnimationConstants.SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_AGAIN_DELAY
+import com.example.besonapp.util.AnimationConstants.SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_AGAIN_DURATION
+import com.example.besonapp.util.AnimationConstants.SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_DELAY
+import com.example.besonapp.util.AnimationConstants.SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_DURATION
+import com.example.besonapp.util.AnimationConstants.SPLASH_SCREEN_LOGO_ANIMATION_ROTATE_DELAY
+import com.example.besonapp.util.AnimationConstants.SPLASH_SCREEN_LOGO_ANIMATION_ROTATE_DURATION
+import com.example.besonapp.util.AppStaticTexts
 
 @Composable
-fun SplashScreenLogoAnimation(){
+fun SplashScreenLogoAnimation(
+
+){
 
     val alphaAnim = remember { Animatable(0f) }
+    val rotateAnim = remember { Animatable(0f) }
     LaunchedEffect(key1 = Unit){
         alphaAnim.animateTo(
             targetValue = 1f,
             animationSpec = tween(
-                durationMillis = 2000,
-                delayMillis = 1600
+                delayMillis = SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_DELAY,
+                durationMillis = SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_DURATION
             )
         )
-    }
-
-    val rotateAnim = remember { Animatable(0f) }
-    LaunchedEffect(key1 = Unit){
         rotateAnim.animateTo(
             targetValue = 360f,
             animationSpec = tween(
-                durationMillis = 1000,
-                delayMillis = 3600
+                delayMillis = SPLASH_SCREEN_LOGO_ANIMATION_ROTATE_DELAY,
+                durationMillis = SPLASH_SCREEN_LOGO_ANIMATION_ROTATE_DURATION,
+            )
+        )
+        alphaAnim.animateTo(
+            targetValue = 0f,
+            animationSpec = tween(
+                delayMillis = SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_AGAIN_DELAY,
+                durationMillis = SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_AGAIN_DURATION
             )
         )
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
+
+        println("1")
 
         AppLogoIconView(alphaAnimValue = alphaAnim.value, rotateAnimValue = rotateAnim.value)
 
         Text(
-            text = StaticTexts.APP_NAME,
-            color = MaterialTheme.colors.onBackground,
+            text = AppStaticTexts.APP_NAME,
+            color = logoColor,
             style = MaterialTheme.typography.h1,
             modifier = Modifier
                 .alpha(alpha = alphaAnim.value)

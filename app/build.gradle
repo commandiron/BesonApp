@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+//    id 'kotlin-kapt'
+//    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -109,4 +111,15 @@ dependencies {
     implementation "io.coil-kt:coil-compose:$coil_version"
     implementation "io.coil-kt:coil-compose-base:$coil_version"
 
+    //Hilt - ekranlar bitirildikten sonra import edilecek.
+//    implementation "com.google.dagger:hilt-android:$hilt_version"
+//    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+//    kapt "androidx.hilt:hilt-compiler:1.0.0"
+//    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
+    // Preferences DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 }
+//kapt {
+//    correctErrorTypes = true
+//}

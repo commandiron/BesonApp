@@ -1,22 +1,33 @@
 package com.example.besonapp.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
+    primary = primaryDark,
+    onPrimary = onPrimaryDark,
 
+    primaryVariant = primaryVariantDark,
+
+    background = backgroundDark,
+    onBackground = onBackgroundDark
 )
 
 private val LightColorPalette = lightColors(
-    primary = primaryColorLight,
+    primary = primaryLight,
     onPrimary = onPrimaryLight,
+
+    primaryVariant = primaryVariantLight,
 
     background = backgroundLight,
     onBackground = onBackgroundLight

@@ -1,6 +1,6 @@
 package com.example.besonapp.util
 
-object Constants {
+object NavigationConstants {
 
     const val SPLASH_SCREEN_TITLE = "Splash"
     const val SPLASH_SCREEN_ROUTE = "splash"

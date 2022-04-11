@@ -2,28 +2,24 @@ package com.example.besonapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.besonapp.presentation.FloatingComponentsGraph
 import com.example.besonapp.ui.theme.BesonAppTheme
-import com.example.besonapp.ui.theme.SetSystemUiColors
+import com.example.besonapp.ui.theme.SetSystemUiColorsAndPadding
 import com.example.chatapp_by_command.view.BottomNavigationView
 import com.google.accompanist.insets.*
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
+//@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +54,10 @@ fun MainContent(){
     //Notify floating components clicks
     var isSignUpScreenLogoClick by remember { mutableStateOf(false)}
 
+
     BesonAppTheme() {
 
-        SetSystemUiColors(currentRoute){
+        SetSystemUiColorsAndPadding(currentRoute){
 
             Scaffold(
                 modifier = Modifier
@@ -72,25 +69,38 @@ fun MainContent(){
                             applyBottom = it,
                         )
                     )
-                    .clickable(interactionSource = interactionSource, indication = null) {
+                    .clickable(
+                        interactionSource = interactionSource,
+                        indication = null
+                    ) {
                         keyboardController?.hide()
                     },
 
                 scaffoldState = scaffoldState,
 
                 bottomBar = {
-                    BottomNavigationView(navController = navController, currentRoute = currentRoute)
+                    BottomNavigationView(
+                        navController = navController,
+                        currentRoute = currentRoute)
                 }
 
             ) {
 
-                FloatingComponentsGraph(
-                    currentRoute = currentRoute,
-                    onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}){
+                //Background Surface
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background) {
 
-                    NavigationGraph(
-                        navController = navController,
-                        isSignUpScreenLogoClick = isSignUpScreenLogoClick)
+                    //Floating Components Logo, explaining strip etc.
+                    FloatingComponentsGraph(
+                        currentRoute = currentRoute,
+                        onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
+                    ){
+
+                        NavigationGraph(
+                            navController = navController,
+                            isSignUpScreenLogoClick = isSignUpScreenLogoClick)
+                    }
                 }
             }
         }

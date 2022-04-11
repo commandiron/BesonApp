@@ -7,13 +7,15 @@ import androidx.navigation.NavHostController
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.LogInScreen
 import com.example.besonapp.presentation.screens.intro.IntroScreen
+import com.example.besonapp.util.AnimationConstants.INTRO_SCREEN_ENTER_TRANSITION_ANIMATION_DURATION
+import com.example.besonapp.util.AnimationConstants.INTRO_SCREEN_EXIT_TRANSITION_ANIMATION_DURATION
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 
 @Composable
 fun NavigationGraph(
     navController: NavHostController,
-    isSignUpScreenLogoClick: Boolean
+    isSignUpScreenLogoClick: Boolean,
 ) {
 
     AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screenRoute) {
@@ -29,7 +31,6 @@ fun NavigationGraph(
             }, exitTransition = {
 
                 when (targetState.destination.route) {
-                    NavigationItem.Intro.screenRoute -> fadeOut(animationSpec = tween(2000))
                     else -> null
                 }
             }) {
@@ -42,13 +43,13 @@ fun NavigationGraph(
             NavigationItem.Intro.screenRoute,
             enterTransition = {
                 when(initialState.destination.route){
-                    NavigationItem.Splash.screenRoute-> fadeIn(animationSpec = tween(2000))
+                    NavigationItem.Splash.screenRoute -> fadeIn(animationSpec = tween(INTRO_SCREEN_ENTER_TRANSITION_ANIMATION_DURATION))
                     else -> null
                 }
 
             }, exitTransition = {
                 when (targetState.destination.route) {
-                    NavigationItem.SignUp.screenRoute -> scaleOut(animationSpec = tween(2000))
+                    NavigationItem.SignUp.screenRoute -> fadeOut(animationSpec = tween(INTRO_SCREEN_EXIT_TRANSITION_ANIMATION_DURATION))
                     else -> null
                 }
             }) {
@@ -73,7 +74,7 @@ fun NavigationGraph(
                 }
             }) {
 
-            SignUpScreen(navController, isSignUpScreenLogoClick)
+            SignUpScreen(navController = navController, isSignUpScreenLogoClick = isSignUpScreenLogoClick)
         }
 
         //LOGIN SCREEN

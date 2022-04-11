@@ -1,20 +1,20 @@
 package com.example.besonapp.presentation.navigation
 
 import com.example.besonapp.R
-import com.example.besonapp.util.Constants.CATAGORIES_SCREEN_ROUTE
-import com.example.besonapp.util.Constants.CATAGORIES_SCREEN_TITLE
-import com.example.besonapp.util.Constants.INTRO_SCREEN_ROUTE
-import com.example.besonapp.util.Constants.INTRO_SCREEN_TITLE
-import com.example.besonapp.util.Constants.LOGIN_SCREEN_ROUTE
-import com.example.besonapp.util.Constants.LOGIN_SCREEN_TITLE
-import com.example.besonapp.util.Constants.PROFILE_SCREEN_ROUTE
-import com.example.besonapp.util.Constants.PROFILE_SCREEN_TITLE
-import com.example.besonapp.util.Constants.SETTINGS_SCREEN_ROUTE
-import com.example.besonapp.util.Constants.SETTINGS_SCREEN_TITLE
-import com.example.besonapp.util.Constants.SIGNUP_SCREEN_ROUTE
-import com.example.besonapp.util.Constants.SIGNUP_SCREEN_TITLE
-import com.example.besonapp.util.Constants.SPLASH_SCREEN_ROUTE
-import com.example.besonapp.util.Constants.SPLASH_SCREEN_TITLE
+import com.example.besonapp.util.NavigationConstants.CATAGORIES_SCREEN_ROUTE
+import com.example.besonapp.util.NavigationConstants.CATAGORIES_SCREEN_TITLE
+import com.example.besonapp.util.NavigationConstants.INTRO_SCREEN_ROUTE
+import com.example.besonapp.util.NavigationConstants.INTRO_SCREEN_TITLE
+import com.example.besonapp.util.NavigationConstants.LOGIN_SCREEN_ROUTE
+import com.example.besonapp.util.NavigationConstants.LOGIN_SCREEN_TITLE
+import com.example.besonapp.util.NavigationConstants.PROFILE_SCREEN_ROUTE
+import com.example.besonapp.util.NavigationConstants.PROFILE_SCREEN_TITLE
+import com.example.besonapp.util.NavigationConstants.SETTINGS_SCREEN_ROUTE
+import com.example.besonapp.util.NavigationConstants.SETTINGS_SCREEN_TITLE
+import com.example.besonapp.util.NavigationConstants.SIGNUP_SCREEN_ROUTE
+import com.example.besonapp.util.NavigationConstants.SIGNUP_SCREEN_TITLE
+import com.example.besonapp.util.NavigationConstants.SPLASH_SCREEN_ROUTE
+import com.example.besonapp.util.NavigationConstants.SPLASH_SCREEN_TITLE
 
 sealed class NavigationItem(var title:String, var icon:Int, var screen_routeWithoutArguments:String, var arguments: String = ""){
 

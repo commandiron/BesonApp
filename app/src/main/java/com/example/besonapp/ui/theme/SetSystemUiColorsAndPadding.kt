@@ -1,6 +1,7 @@
 package com.example.besonapp.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
@@ -10,7 +11,7 @@ import com.example.besonapp.presentation.navigation.NavigationItem
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun SetSystemUiColors(
+fun SetSystemUiColorsAndPadding(
     currentRoute: String?,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable (Boolean) -> Unit){
@@ -25,13 +26,8 @@ fun SetSystemUiColors(
 
                 applySystemUiPadding = false
 
-                systemUiController.setStatusBarColor(
-                    color = Color.Transparent,
-                    darkIcons = false
-                )
-
-                systemUiController.setNavigationBarColor(
-                    color = Color.Transparent,
+                systemUiController.setSystemBarsColor(
+                    color = logoBackGround,
                     darkIcons = false
                 )
             }
@@ -42,7 +38,7 @@ fun SetSystemUiColors(
 
                 systemUiController.setStatusBarColor(
                     color = Color.Transparent,
-                    darkIcons = false
+                    darkIcons = !darkTheme
                 )
 
                 systemUiController.setNavigationBarColor(
@@ -55,47 +51,23 @@ fun SetSystemUiColors(
 
                 applySystemUiPadding = false
 
-                systemUiController.setStatusBarColor(
+                systemUiController.setSystemBarsColor(
                     color = Color.Transparent,
-                    darkIcons = false
-                )
-
-                systemUiController.setNavigationBarColor(
-                    color = Color.Transparent,
-                    darkIcons = false
+                    darkIcons = !darkTheme
                 )
             }
 
             NavigationItem.LogIn.screenRoute ->{
 
-                applySystemUiPadding = false
-
-                systemUiController.setStatusBarColor(
-                    color = Color.Transparent,
-                    darkIcons = false
-                )
-
-                systemUiController.setNavigationBarColor(
-                    color = Color.Transparent,
-                    darkIcons = false
-                )
-            }
-
-            else -> {
-
                 applySystemUiPadding = true
 
-                systemUiController.setStatusBarColor(
-                    color = Color.Red,
-                    darkIcons = true
-                )
-
-                systemUiController.setNavigationBarColor(
-                    color = Color.Red,
-                    darkIcons = true
+                systemUiController.setSystemBarsColor(
+                    color = logoBackGround,
+                    darkIcons = false
                 )
             }
         }
     }
+
     content(applySystemUiPadding)
 }

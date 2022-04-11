@@ -1,6 +1,7 @@
 package com.example.besonapp.presentation.common_components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
@@ -24,18 +25,21 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.besonapp.R
 import com.example.besonapp.ui.theme.backgroundLight
+import com.example.besonapp.ui.theme.buttonAndTextFieldBackgroundColor
 import com.example.besonapp.ui.theme.textFieldErrorColor
 
 @Composable
 fun CustomTextFieldComponent(
     entry: String,
     hint: String,
-    textFieldError : Boolean,
+    textFieldError : Boolean = false,
+    textFieldErrorMessage: String = "",
     fontSize: TextUnit = 14.sp,
     maxLine: Int = 1,
     maxChar: Int = 50,
@@ -59,7 +63,8 @@ fun CustomTextFieldComponent(
     ) {
         BasicTextField(
             modifier = Modifier
-                .background(MaterialTheme.colors.surface)
+                .background(buttonAndTextFieldBackgroundColor)
+                .border(1.dp, MaterialTheme.colors.onBackground)
                 .padding(6.dp)
                 .width(250.dp)
                 .height(30.dp)
@@ -79,9 +84,10 @@ fun CustomTextFieldComponent(
             },
             singleLine = true,
             maxLines = maxLine,
-            cursorBrush = SolidColor(MaterialTheme.colors.onSurface),
+            cursorBrush = SolidColor(MaterialTheme.colors.onPrimary),
             textStyle = LocalTextStyle.current.copy(
-                fontSize = fontSize
+                fontSize = fontSize,
+                color = MaterialTheme.colors.onPrimary
             ),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction =  ImeAction.Next),
             keyboardActions = KeyboardActions(onNext = { localFocusManager.moveFocus(FocusDirection.Down)}),
@@ -94,7 +100,7 @@ fun CustomTextFieldComponent(
                         if (text.isEmpty())
                             Text(hint,
                                 style = LocalTextStyle.current.copy(
-                                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.3f),
+                                    color = MaterialTheme.colors.onPrimary.copy(alpha = 0.3f),
                                     fontSize = fontSize
                                 )
                             )
@@ -115,7 +121,7 @@ fun CustomTextFieldComponent(
                             Icon(
                                 imageVector = image,
                                 contentDescription = null,
-                                tint = backgroundLight)
+                                tint = MaterialTheme.colors.onPrimary)
                         }
                     }
                 }
@@ -124,12 +130,25 @@ fun CustomTextFieldComponent(
         )
 
         if(textFieldError){
-            println("2")
-            Icon(
-                modifier = Modifier.padding(start = 300.dp).size(24.dp),
-                imageVector = Icons.Default.ErrorOutline,
-                tint = textFieldErrorColor,
-                contentDescription = null)
+            Row(
+                modifier = Modifier
+                    .padding(start = 330.dp)
+                    .size(60.dp, 40.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+
+                Icon(
+                    modifier = Modifier.size(12.dp),
+                    imageVector = Icons.Default.ErrorOutline,
+                    tint = textFieldErrorColor,
+                    contentDescription = null)
+                Text(
+                    modifier = Modifier.weight(2f),
+                    text = textFieldErrorMessage,
+                    style = MaterialTheme.typography.caption,
+                    color = textFieldErrorColor)
+            }
+
         }
     }
 }

@@ -16,6 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.besonapp.ui.theme.backgroundLight
+import com.example.besonapp.ui.theme.logoBackGround
 
 @Composable
 fun SignUpScreenLogoAnimation(
@@ -78,11 +79,10 @@ fun SignUpScreenLogoAnimation(
             modifier = Modifier.clip(CircleShape).clickable(interactionSource, null) {
                 onSignUpScreenLogoClick()
             },
-            color = backgroundLight
+            color = logoBackGround
         ) {
             AppLogoIconView(
                 modifier = Modifier.padding(20.dp),
-                tint = MaterialTheme.colors.onBackground,
                 sizeAnimValue = Dp(sizeAnim.value),
                 rotateAnimValue = rotateAnim.value
             )

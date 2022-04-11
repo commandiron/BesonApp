@@ -46,7 +46,6 @@ fun LogInScreenLogoAnimationOnStart(){
 
             AppLogoIconView(
                 modifier = Modifier.padding(20.dp),
-                tint = MaterialTheme.colors.onBackground,
                 sizeAnimValue = Dp(sizeAnim.value),
                 alphaAnimValue = alphaAnim.value
             )

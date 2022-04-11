@@ -1,7 +1,5 @@
 package com.example.besonapp.presentation
 
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -13,11 +11,12 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.besonapp.ui.theme.logoColor
 
 @Composable
 fun AppLogoIconView(
     modifier: Modifier = Modifier,
-    tint: Color = MaterialTheme.colors.onBackground,
+    tint: Color = logoColor,
     sizeAnimValue:Dp = 100.dp,
     alphaAnimValue:Float = 1f,
     rotateAnimValue:Float = 0f){
