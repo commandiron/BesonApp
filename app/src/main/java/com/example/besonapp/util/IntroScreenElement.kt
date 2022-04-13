@@ -1,4 +1,4 @@
-package com.example.besonapp.presentation.model
+package com.example.besonapp.util
 
 import com.example.besonapp.R
 

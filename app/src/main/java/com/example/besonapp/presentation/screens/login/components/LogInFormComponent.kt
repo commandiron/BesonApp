@@ -1,5 +1,6 @@
 package com.example.besonapp.presentation.screens.login.components
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -7,30 +8,29 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.besonapp.presentation.common_components.CustomTextFieldComponent
-import com.example.besonapp.presentation.model.UserInfoForLogIn
-import com.example.besonapp.presentation.model.UserInfoForSignUp
-import com.example.besonapp.presentation.model.UserInfoForSignUpTextFieldError
+import com.example.besonapp.util.UserLogInInfo
 import com.example.besonapp.util.AppStaticTexts
+import com.example.besonapp.util.SignUpAndLogInFormErrorHandle
 
 @Composable
 fun LogInFormComponent(
+    modifier: Modifier,
+    signUpAndLogInFormErrorHandle: SignUpAndLogInFormErrorHandle,
     onSignUpButtonClick:() -> Unit,
-    onLogInButtonClick:(UserInfoForLogIn) -> Unit,
+    onLogInButtonClick:(UserLogInInfo) -> Unit,
 
-){
+    ){
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    var userInfoSignUpError by remember { mutableStateOf(UserInfoForSignUpTextFieldError())}
-
     Column(
-        modifier = Modifier
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -43,8 +43,8 @@ fun LogInFormComponent(
         CustomTextFieldComponent(
             entry = email,
             hint = AppStaticTexts.SIGNUP_SCREEN_EMAIL_HINT_TEXT,
-            textFieldError = userInfoSignUpError.emailError,
-            textFieldErrorMessage = userInfoSignUpError.emailErrorMessage,
+            textFieldError = signUpAndLogInFormErrorHandle.emailError,
+            textFieldErrorMessage = signUpAndLogInFormErrorHandle.emailErrorMessage,
             keyboardType = KeyboardType.Email){
             email = it
         }
@@ -52,6 +52,8 @@ fun LogInFormComponent(
         CustomTextFieldComponent(
             entry = password,
             hint =  AppStaticTexts.SIGNUP_SCREEN_PASSWORD_HINT_TEXT,
+            textFieldError = signUpAndLogInFormErrorHandle.passwordError,
+            textFieldErrorMessage = signUpAndLogInFormErrorHandle.passwordErrorMessage,
             keyboardType = KeyboardType.Password){
             password = it
         }
@@ -65,9 +67,7 @@ fun LogInFormComponent(
             Button(
                 modifier = Modifier.width(200.dp),
                 onClick = {
-                    userInfoSignUpError = UserInfoForSignUp(email).getUserInfoForSignUpTextFieldError()
-
-                    onLogInButtonClick(UserInfoForLogIn(email, password))
+                    onLogInButtonClick(UserLogInInfo(email, password))
                 }
             ) {
                 Text(text = "Giriş")

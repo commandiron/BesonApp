@@ -10,26 +10,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.presentation.model.UserInfoForSignUp
-import com.example.besonapp.presentation.model.UserInfoForSignUpTextFieldError
-import com.example.besonapp.util.AppStaticTexts
+import com.example.besonapp.util.UserSignUpInfo
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_EMAIL_HINT_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_FORM_TITLE_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_PASSWORD_AGAIN_HINT_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_PASSWORD_HINT_TEXT
+import com.example.besonapp.util.SignUpAndLogInFormErrorHandle
 
 @Composable
 fun SignUpFormComponent(
     buttonText: String,
     paddingFromBottom: Dp = 0.dp,
-    onButtonClick:(UserInfoForSignUp) -> Unit,
+    signUpAndLogInFormErrorHandle: SignUpAndLogInFormErrorHandle,
+    onButtonClick:(UserSignUpInfo) -> Unit,
 ){
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordAgain by remember { mutableStateOf("") }
-
-    var userInfoSignUpError by remember { mutableStateOf(UserInfoForSignUpTextFieldError())}
 
     Column(
         modifier = Modifier
@@ -46,8 +44,8 @@ fun SignUpFormComponent(
         CustomTextFieldComponent(
             entry = email,
             hint = SIGNUP_SCREEN_EMAIL_HINT_TEXT,
-            textFieldError = userInfoSignUpError.emailError,
-            textFieldErrorMessage = userInfoSignUpError.emailErrorMessage,
+            textFieldError = signUpAndLogInFormErrorHandle.emailError,
+            textFieldErrorMessage = signUpAndLogInFormErrorHandle.emailErrorMessage,
             keyboardType = KeyboardType.Email){
             email = it
         }
@@ -55,8 +53,8 @@ fun SignUpFormComponent(
         CustomTextFieldComponent(
             entry = password,
             hint =  SIGNUP_SCREEN_PASSWORD_HINT_TEXT,
-            textFieldError = userInfoSignUpError.passwordError,
-            textFieldErrorMessage = userInfoSignUpError.passwordErrorMessage,
+            textFieldError = signUpAndLogInFormErrorHandle.passwordError,
+            textFieldErrorMessage = signUpAndLogInFormErrorHandle.passwordErrorMessage,
             keyboardType = KeyboardType.Password){
             password = it
         }
@@ -64,8 +62,8 @@ fun SignUpFormComponent(
         CustomTextFieldComponent(
             entry = passwordAgain,
             hint =  SIGNUP_SCREEN_PASSWORD_AGAIN_HINT_TEXT,
-            textFieldError = userInfoSignUpError.passwordError,
-            textFieldErrorMessage = userInfoSignUpError.passwordErrorMessage,
+            textFieldError = signUpAndLogInFormErrorHandle.passwordError,
+            textFieldErrorMessage = signUpAndLogInFormErrorHandle.passwordErrorMessage,
             keyboardType = KeyboardType.Password){
             passwordAgain = it
         }
@@ -73,9 +71,7 @@ fun SignUpFormComponent(
         Button(
             onClick = {
 
-                userInfoSignUpError = UserInfoForSignUp(email,password,passwordAgain).getUserInfoForSignUpTextFieldError()
-
-                onButtonClick(UserInfoForSignUp(email, password, passwordAgain))
+                onButtonClick(UserSignUpInfo(email, password, passwordAgain))
             }
         ) {
             Text(text = buttonText)

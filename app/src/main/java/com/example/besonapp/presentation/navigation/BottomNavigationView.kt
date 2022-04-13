@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.besonapp.presentation.navigation.NavigationItem
 
+
 @Composable
 fun BottomNavigationView(navController: NavController, currentRoute: String?) {
     val items = listOf(
@@ -26,11 +27,10 @@ fun BottomNavigationView(navController: NavController, currentRoute: String?) {
     val bottomBarMTS = remember {MutableTransitionState(false)}
 
     LaunchedEffect(key1 = currentRoute){
-        items.forEach {
-            if(currentRoute == it.screen_routeWithoutArguments){
-                bottomBarMTS.targetState = true
-            }
-        }
+
+        val screenRouteList = items.map { it.screen_route }
+
+        bottomBarMTS.targetState = screenRouteList.contains(currentRoute)
     }
     
     AnimatedVisibility(
@@ -50,9 +50,9 @@ fun BottomNavigationView(navController: NavController, currentRoute: String?) {
                         label = { Text(text = item.title,
                             fontSize = 9.sp) },
                         alwaysShowLabel = false,
-                        selected = currentRoute == item.screen_routeWithoutArguments,
+                        selected = currentRoute == item.screen_route_without_arguments,
                         onClick = {
-                            navController.navigate(item.screen_routeWithoutArguments) {
+                            navController.navigate(item.screen_route_without_arguments) {
                                 navController.graph.startDestinationRoute?.let { screen_route ->
                                     popUpTo(screen_route) {
                                         saveState = true

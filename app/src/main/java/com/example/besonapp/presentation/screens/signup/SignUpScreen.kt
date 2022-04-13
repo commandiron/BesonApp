@@ -20,12 +20,12 @@ import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_SIGNUP_BUT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_TEXT_BUTTON_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_TEXT_DETAILS
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_TEXT_TITLE
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_FORM_TITLE_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_IMAGE_URL
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_SIGNUP_BUTTON_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_TEXT_BUTTON_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_TEXT_DETAILS
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_TEXT_TITLE
+import com.example.besonapp.util.SignUpAndLogInFormErrorHandle
 
 @Composable
 fun SignUpScreen(
@@ -53,6 +53,10 @@ fun SignUpScreen(
 
         Column{
 
+            var signUpAndLogInFormErrorHandle by remember { mutableStateOf(
+                SignUpAndLogInFormErrorHandle()
+            )}
+
             Box(
                 modifier = Modifier
                     .weight(1f)) {
@@ -63,8 +67,13 @@ fun SignUpScreen(
 
                     if(customerSignUpComponentIsVisible){
                         SignUpFormComponent(
-                            buttonText = SIGNUP_SCREEN_CUSTOMER_SIGNUP_BUTTON_TEXT){
-                            //Müşteri olarak giriş yaptır ya da kayıt oldur.
+                            buttonText = SIGNUP_SCREEN_CUSTOMER_SIGNUP_BUTTON_TEXT,
+                            signUpAndLogInFormErrorHandle = signUpAndLogInFormErrorHandle){
+
+                            signUpAndLogInFormErrorHandle = SignUpAndLogInFormErrorHandle().invokeForSignUp(it) //Bu kısım viewModel'de halledilmeli
+
+                            //Bu navigasyonda, bilgiler önce server'a gönderilecek ordan olumlu cevap gelirse navigate edilecek.
+                            navController.navigate(NavigationItem.SignUpStepsAsCustomer.screen_route)
                         }
                     }
 
@@ -97,8 +106,13 @@ fun SignUpScreen(
 
                         SignUpFormComponent(
                             buttonText = SIGNUP_SCREEN_COMPANY_SIGNUP_BUTTON_TEXT,
-                            paddingFromBottom = 56.dp){
-                            //Firma olarak giriş yaptır ya da kayıt oldur.
+                            paddingFromBottom = 56.dp,
+                            signUpAndLogInFormErrorHandle = signUpAndLogInFormErrorHandle){
+
+                            signUpAndLogInFormErrorHandle = SignUpAndLogInFormErrorHandle().invokeForSignUp(it) //Bu kısım viewModel'de halledilmeli
+
+                            //Bu navigasyonda, bilgiler önce server'a gönderilecek ordan olumlu cevap gelirse navigate edilecek.
+                            navController.navigate(NavigationItem.SignUpStepsAsCompany.screen_route)
                         }
                     }
 
@@ -136,7 +150,7 @@ fun SignUpScreen(
                 customerWindowIsClosed = false
                 companyWindowIsClosed = false
 
-                navController.navigate(NavigationItem.LogIn.screenRoute)
+                navController.navigate(NavigationItem.LogIn.screen_route)
             }
         }
     }

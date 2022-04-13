@@ -22,7 +22,7 @@ fun SetSystemUiColorsAndPadding(
 
     SideEffect{
         when(currentRoute){
-            NavigationItem.Splash.screenRoute ->{
+            NavigationItem.Splash.screen_route ->{
 
                 applySystemUiPadding = false
 
@@ -32,7 +32,7 @@ fun SetSystemUiColorsAndPadding(
                 )
             }
 
-            NavigationItem.Intro.screenRoute ->{
+            NavigationItem.Intro.screen_route ->{
 
                 applySystemUiPadding = false
 
@@ -47,7 +47,7 @@ fun SetSystemUiColorsAndPadding(
                 )
             }
 
-            NavigationItem.SignUp.screenRoute ->{
+            NavigationItem.SignUp.screen_route ->{
 
                 applySystemUiPadding = false
 
@@ -57,12 +57,32 @@ fun SetSystemUiColorsAndPadding(
                 )
             }
 
-            NavigationItem.LogIn.screenRoute ->{
+            NavigationItem.LogIn.screen_route ->{
+
+                applySystemUiPadding = false
+
+                systemUiController.setSystemBarsColor(
+                    color = Color.Transparent,
+                    darkIcons = !darkTheme
+                )
+            }
+
+            NavigationItem.SignUpStepsAsCustomer.screen_route ->{
+
+                applySystemUiPadding = false
+
+                systemUiController.setSystemBarsColor(
+                    color = Color.Transparent,
+                    darkIcons = !darkTheme
+                )
+            }
+
+            NavigationItem.Profile.screen_route ->{
 
                 applySystemUiPadding = true
 
                 systemUiController.setSystemBarsColor(
-                    color = logoBackGround,
+                    color = Color.Transparent,
                     darkIcons = false
                 )
             }

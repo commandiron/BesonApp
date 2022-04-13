@@ -97,6 +97,7 @@ fun MainContent(){
                         onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
                     ){
 
+                        //Navigation graph for navigate between screens.
                         NavigationGraph(
                             navController = navController,
                             isSignUpScreenLogoClick = isSignUpScreenLogoClick)

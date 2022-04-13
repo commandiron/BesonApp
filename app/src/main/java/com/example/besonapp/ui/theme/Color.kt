@@ -8,16 +8,22 @@ val onPrimaryLight = Color.DarkGray
 val primaryVariantLight = Color(0xFFF7B91D)
 
 val backgroundLight = Color(0xFFf5f5f5)
-val onBackgroundLight = Color.Black
+val onBackgroundLight = Color(0xFF2b2b2b)
+
+val surfaceLight = Color(0xFF000000)
+val onSurfaceLight = Color(0xFFFFFFFF)
 
 
 //Dark
 val primaryDark = Color(0xFFF7CB1D)
 val onPrimaryDark = Color.Black
-val primaryVariantDark = Color(0xFFF78E1D)
+val primaryVariantDark = Color(0xFFF7B91D)
 
 val backgroundDark = Color(0xFF2b2b2b)
-val onBackgroundDark = Color.White
+val onBackgroundDark = Color(0xFFf5f5f5)
+
+val surfaceDark = Color(0xFF000000)
+val onSurfaceDark = Color(0xFFFFFFFF)
 
 val logoColor = Color(0xFFF7CB1D)
 val logoBackGround = Color(0xFF2b2b2b)

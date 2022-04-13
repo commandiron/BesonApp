@@ -6,7 +6,9 @@ import androidx.compose.runtime.*
 import androidx.navigation.NavHostController
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.LogInScreen
+import com.example.besonapp.presentation.screens.ProfileScreen
 import com.example.besonapp.presentation.screens.intro.IntroScreen
+import com.example.besonapp.presentation.screens.signup_steps_as_customer.SignUpStepsAsCustomerScreen
 import com.example.besonapp.util.AnimationConstants.INTRO_SCREEN_ENTER_TRANSITION_ANIMATION_DURATION
 import com.example.besonapp.util.AnimationConstants.INTRO_SCREEN_EXIT_TRANSITION_ANIMATION_DURATION
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -18,11 +20,11 @@ fun NavigationGraph(
     isSignUpScreenLogoClick: Boolean,
 ) {
 
-    AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screenRoute) {
+    AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screen_route) {
 
         //SPLASH SCREEN
         composable(
-            NavigationItem.Splash.screenRoute,
+            NavigationItem.Splash.screen_route,
             enterTransition = {
                 when(initialState.destination.route){
                     else -> null
@@ -40,16 +42,16 @@ fun NavigationGraph(
 
         //INTRO SCREEN
         composable(
-            NavigationItem.Intro.screenRoute,
+            NavigationItem.Intro.screen_route,
             enterTransition = {
                 when(initialState.destination.route){
-                    NavigationItem.Splash.screenRoute -> fadeIn(animationSpec = tween(INTRO_SCREEN_ENTER_TRANSITION_ANIMATION_DURATION))
+                    NavigationItem.Splash.screen_route -> fadeIn(animationSpec = tween(INTRO_SCREEN_ENTER_TRANSITION_ANIMATION_DURATION))
                     else -> null
                 }
 
             }, exitTransition = {
                 when (targetState.destination.route) {
-                    NavigationItem.SignUp.screenRoute -> fadeOut(animationSpec = tween(INTRO_SCREEN_EXIT_TRANSITION_ANIMATION_DURATION))
+                    NavigationItem.SignUp.screen_route -> fadeOut(animationSpec = tween(INTRO_SCREEN_EXIT_TRANSITION_ANIMATION_DURATION))
                     else -> null
                 }
             }) {
@@ -59,17 +61,18 @@ fun NavigationGraph(
 
         //SIGNUP SCREEN
         composable(
-            NavigationItem.SignUp.screenRoute,
+            NavigationItem.SignUp.screen_route,
             enterTransition = {
                 when(initialState.destination.route){
-                    NavigationItem.Intro.screenRoute-> scaleIn(animationSpec = tween(2000))
+                    NavigationItem.Intro.screen_route-> scaleIn(animationSpec = tween(2000))
                     else -> null
                 }
 
             },
             exitTransition = {
                 when(targetState.destination.route){
-//                    NavigationItem.LogIn.screenRoute-> fadeOut(animationSpec = tween(1000))
+                    NavigationItem.LogIn.screen_route-> fadeOut(animationSpec = tween(1000))
+                    NavigationItem.SignUpStepsAsCustomer.screen_route-> fadeOut(animationSpec = tween(1000))
                     else -> null
                 }
             }) {
@@ -79,10 +82,11 @@ fun NavigationGraph(
 
         //LOGIN SCREEN
         composable(
-            NavigationItem.LogIn.screenRoute,
+            NavigationItem.LogIn.screen_route,
             enterTransition = {
                 when(initialState.destination.route){
-//                    NavigationItem.SignUp.screenRoute-> fadeIn(animationSpec = tween(1000))
+                    NavigationItem.SignUp.screen_route-> fadeIn(animationSpec = tween(1000))
+                    NavigationItem.SignUpStepsAsCustomer.screen_route-> fadeIn(animationSpec = tween(1000))
                     else -> null
                 }
 
@@ -94,6 +98,45 @@ fun NavigationGraph(
             }) {
 
             LogInScreen(navController)
+        }
+
+        //SIGNUP STEPS AS CUSTOMER SCREEN
+        composable(
+            NavigationItem.SignUpStepsAsCustomer.screen_route,
+            enterTransition = {
+                when(initialState.destination.route){
+                    NavigationItem.SignUp.screen_route-> fadeIn(animationSpec = tween(1000))
+                    else -> null
+                }
+
+            },
+            exitTransition = {
+                when(targetState.destination.route){
+                    NavigationItem.LogIn.screen_route-> fadeOut(animationSpec = tween(1000))
+                    else -> null
+                }
+            }) {
+
+            SignUpStepsAsCustomerScreen(navController)
+        }
+
+        //PROFILE SCREEN
+        composable(
+            NavigationItem.Profile.screen_route,
+            enterTransition = {
+                when(initialState.destination.route){
+                    NavigationItem.SignUpStepsAsCustomer.screen_route-> fadeIn(animationSpec = tween(1000))
+                    else -> null
+                }
+
+            },
+            exitTransition = {
+                when(targetState.destination.route){
+                    else -> null
+                }
+            }) {
+
+            ProfileScreen(navController)
         }
     }
 }

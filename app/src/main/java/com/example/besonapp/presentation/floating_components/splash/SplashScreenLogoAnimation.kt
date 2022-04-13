@@ -56,8 +56,6 @@ fun SplashScreenLogoAnimation(
         contentAlignment = Alignment.Center
     ) {
 
-        println("1")
-
         AppLogoIconView(alphaAnimValue = alphaAnim.value, rotateAnimValue = rotateAnim.value)
 
         Text(

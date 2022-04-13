@@ -1,7 +1,6 @@
 package com.example.besonapp.presentation.screens.intro
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -10,14 +9,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
-import com.example.besonapp.presentation.model.IntroScreenElement
+import com.example.besonapp.util.IntroScreenElement
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.util.AppStaticTexts.INTRO_SCREEN_BOTTOM_TEXT
 import com.example.besonapp.util.AppStaticTexts.INTRO_SCREEN_BOTTOM_TEXT_LAST_PAGE
@@ -76,7 +74,7 @@ fun IntroScreen(
                 .fillMaxWidth()
                 .height(56.dp + navigationBarHeight)
                 .clickable {
-                    navController.navigate(NavigationItem.SignUp.screenRoute)
+                    navController.navigate(NavigationItem.SignUp.screen_route)
 //                    introViewModel.setUserOpenAppOnceFlagTrue()
                 },
             color = if(lastPageFlag) MaterialTheme.colors.primaryVariant else MaterialTheme.colors.primary) {

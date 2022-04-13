@@ -37,7 +37,7 @@ fun SplashScreen(
         delay(SPLASH_SCREEN_DELAY.toLong())
 
         navController.popBackStack()
-        navController.navigate(NavigationItem.Intro.screenRoute)
+        navController.navigate(NavigationItem.Intro.screen_route)
     }
 
     Surface(
