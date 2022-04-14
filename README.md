@@ -20,7 +20,7 @@ BESON is a native android construction market price tracking application written
 
 * Tech-stack ⚛️
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
-    * [Accompanist](https://github.com/google/accompanist)
+    * [Accompanist](https://github.com/google/accompanist) - supplement of Jetpack Compose
     * [Coil](https://coil-kt.github.io/coil/)
     * [Hilt](https://dagger.dev/hilt/) - DI
     * [Jetpack](https://developer.android.com/jetpack)
