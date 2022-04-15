@@ -2,13 +2,17 @@
 
 BESON is a native android construction market price tracking application written in Kotlin using Jetpack Compose.
 
-### Under Construction
-
 * Video 🧪
 
-|Splash, Login|
+|Splash, Intro, Signup, Login|
 |----------------------|
-|<img src="https://user-images.githubusercontent.com/50905347/161758920-9b5a4fb8-6bdb-4afd-a862-eef56b192704.gif" width="258" height="532">|
+|[Link](https://imgur.com/a/NtuJbjM)|
+
+* Screenshots 🖼️
+
+|Splash|Intro|SignUp|
+|------|-----|------|
+|<img src="https://user-images.githubusercontent.com/50905347/163470343-bfcab4b7-75df-4588-bbf8-3cfccb5945a7.png" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163471241-3b3df951-b09d-4422-a6a5-952a407d96dd.png" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163470350-f92a7508-2145-46aa-94a4-35c15eee84dc.png" width="250" height="530">|
 
 * Application - Features ☕
    * Language - Turkish
@@ -16,12 +20,14 @@ BESON is a native android construction market price tracking application written
 
 * Tech-stack ⚛️
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
-    * [Accompanist](https://github.com/google/accompanist)
-    * [Coil](https://coil-kt.github.io/coil/)
+    * [Accompanist](https://github.com/google/accompanist) - supplement of Jetpack Compose
+    * [Coil](https://coil-kt.github.io/coil/) - image loading library 
+    * [Hilt](https://dagger.dev/hilt/) - DI
     * [Jetpack](https://developer.android.com/jetpack)
         * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) - deal with whole in-app navigation      
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way
-        * [Compose](https://developer.android.com/jetpack/compose)
+        * [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - simple data storage
+        * [Compose](https://developer.android.com/jetpack/compose) - toolkit for building native UI
 * Architecture 🏗️
     * Model-View-ViewModel
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
