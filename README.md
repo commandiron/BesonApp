@@ -11,7 +11,7 @@ BESON is a native android construction market price tracking application written
 * Screenshots 🖼️
 
 
-<img src="https://user-images.githubusercontent.com/50905347/163470343-bfcab4b7-75df-4588-bbf8-3cfccb5945a7.png" width="250" height="530"><pre>       </pre><img src="https://user-images.githubusercontent.com/50905347/163471241-3b3df951-b09d-4422-a6a5-952a407d96dd.png" width="250" height="530"> <img src="https://user-images.githubusercontent.com/50905347/163470350-f92a7508-2145-46aa-94a4-35c15eee84dc.png" width="250" height="530">
+<img src="https://user-images.githubusercontent.com/50905347/163470343-bfcab4b7-75df-4588-bbf8-3cfccb5945a7.png" width="250" height="530"> <img src="https://user-images.githubusercontent.com/50905347/163471241-3b3df951-b09d-4422-a6a5-952a407d96dd.png" width="250" height="530"> <img src="https://user-images.githubusercontent.com/50905347/163470350-f92a7508-2145-46aa-94a4-35c15eee84dc.png" width="250" height="530">
 
 * Application - Features ☕
    * Language - Turkish
