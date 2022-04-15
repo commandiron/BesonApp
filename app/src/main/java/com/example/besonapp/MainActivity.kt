@@ -13,6 +13,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.besonapp.presentation.FloatingComponentsGraph
+import com.example.besonapp.presentation.screens.components.LoadingScreen
 import com.example.besonapp.ui.theme.BesonAppTheme
 import com.example.besonapp.ui.theme.SetSystemUiColorsAndPadding
 import com.example.chatapp_by_command.view.BottomNavigationView
@@ -42,7 +43,6 @@ fun MainContent(){
 
     //KeyboardController for hide keyboard when touch outside
     val keyboardController = LocalSoftwareKeyboardController.current
-
     //For hide scaffold click ripple effect.
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -54,10 +54,12 @@ fun MainContent(){
     //Notify floating components clicks
     var isSignUpScreenLogoClick by remember { mutableStateOf(false)}
 
+    //Notify loading screen
+    var isLoading by remember { mutableStateOf(false)}
 
     BesonAppTheme() {
 
-        SetSystemUiColorsAndPadding(currentRoute){
+        SetSystemUiColorsAndPadding(currentRoute){ applyPadding ->
 
             Scaffold(
                 modifier = Modifier
@@ -65,8 +67,8 @@ fun MainContent(){
                     .padding(
                         rememberInsetsPaddingValues(
                             insets = LocalWindowInsets.current.systemBars,
-                            applyTop = it,
-                            applyBottom = it,
+                            applyTop = applyPadding,
+                            applyBottom = applyPadding,
                         )
                     )
                     .clickable(
@@ -91,16 +93,22 @@ fun MainContent(){
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background) {
 
-                    //Floating Components Logo, explaining strip etc.
-                    FloatingComponentsGraph(
-                        currentRoute = currentRoute,
-                        onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
-                    ){
+                    //Loading Screen
+                    LoadingScreen(isLoading = isLoading) {
 
-                        //Navigation graph for navigate between screens.
-                        NavigationGraph(
-                            navController = navController,
-                            isSignUpScreenLogoClick = isSignUpScreenLogoClick)
+                        //Floating Components Logo, explaining strip etc.
+                        FloatingComponentsGraph(
+                            currentRoute = currentRoute,
+                            onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
+                        ){
+
+                            //Navigation graph for navigate between screens.
+                            NavigationGraph(
+                                navController = navController,
+                                isSignUpScreenLogoClick = isSignUpScreenLogoClick){ isLoadingFromScreen ->
+                                isLoading = isLoadingFromScreen
+                            }
+                        }
                     }
                 }
             }

@@ -27,7 +27,7 @@ import com.example.besonapp.R
 @Composable
 fun SignUpStepsClickableToGalleryImagePage(
     modifier: Modifier,
-    title: String,
+    buttonText: String,
     size: Dp = 100.dp,
     onClick:(Uri?) -> Unit = {}){
 
@@ -43,13 +43,13 @@ fun SignUpStepsClickableToGalleryImagePage(
 
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+        verticalArrangement = Arrangement.spacedBy(30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
-            text = title,
-            style = MaterialTheme.typography.h4
+            text = "Profil Resmi Seçiniz.",
+            style = MaterialTheme.typography.body1
         )
 
         Image(
@@ -57,7 +57,6 @@ fun SignUpStepsClickableToGalleryImagePage(
                 data = if(imageUri!=null)imageUri else R.drawable.ic_blank_profile_picture),
             contentDescription = null,
             modifier = Modifier
-                .padding(16.dp)
                 .clickable { launcher.launch("image/*") }
                 .size(size)
                 .clip(CircleShape)
@@ -68,7 +67,7 @@ fun SignUpStepsClickableToGalleryImagePage(
             onClick(imageUri)
 
         }) {
-            Text(text = "İleri")
+            Text(text = buttonText)
         }
     }
 }

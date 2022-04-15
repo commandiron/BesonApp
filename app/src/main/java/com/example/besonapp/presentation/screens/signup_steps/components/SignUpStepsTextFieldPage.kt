@@ -32,16 +32,14 @@ fun SignUpStepsTextFieldPage(
 
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+        verticalArrangement = Arrangement.spacedBy(30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
             text = title,
-            style = MaterialTheme.typography.h4
+            style = MaterialTheme.typography.body1
         )
-
-        Spacer(modifier = Modifier.height(30.dp))
 
         SignUpStepsCustomTextField(
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -52,8 +50,6 @@ fun SignUpStepsTextFieldPage(
                 name = it
             },
         )
-
-        Spacer(modifier = Modifier.height(30.dp))
 
         Button(
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -87,8 +83,8 @@ fun SignUpStepsCustomTextField(
                 buttonAndTextFieldBackgroundColor,
                 RoundedCornerShape(percent = 50)
             )
-            .padding(6.dp)
-            .size(250.dp, 30.dp),
+            .padding(4.dp)
+            .size(250.dp, 46.dp),
         value = text,
         onValueChange = {
             if(it.length <= maxChar){

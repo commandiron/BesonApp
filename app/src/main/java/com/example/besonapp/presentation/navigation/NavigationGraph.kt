@@ -8,6 +8,7 @@ import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.LogInScreen
 import com.example.besonapp.presentation.screens.ProfileScreen
 import com.example.besonapp.presentation.screens.intro.IntroScreen
+import com.example.besonapp.presentation.screens.signup_steps_as_company.SignUpStepsAsCompanyScreen
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.SignUpStepsAsCustomerScreen
 import com.example.besonapp.util.AnimationConstants.INTRO_SCREEN_ENTER_TRANSITION_ANIMATION_DURATION
 import com.example.besonapp.util.AnimationConstants.INTRO_SCREEN_EXIT_TRANSITION_ANIMATION_DURATION
@@ -18,6 +19,7 @@ import com.google.accompanist.navigation.animation.composable
 fun NavigationGraph(
     navController: NavHostController,
     isSignUpScreenLogoClick: Boolean,
+    isLoading: (Boolean) -> Unit,
 ) {
 
     AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screen_route) {
@@ -118,6 +120,26 @@ fun NavigationGraph(
             }) {
 
             SignUpStepsAsCustomerScreen(navController)
+        }
+
+        //SIGNUP STEPS AS COMPANY SCREEN
+        composable(
+            NavigationItem.SignUpStepsAsCompany.screen_route,
+            enterTransition = {
+                when(initialState.destination.route){
+                    NavigationItem.SignUp.screen_route-> fadeIn(animationSpec = tween(1000))
+                    else -> null
+                }
+
+            },
+            exitTransition = {
+                when(targetState.destination.route){
+                    NavigationItem.LogIn.screen_route-> fadeOut(animationSpec = tween(1000))
+                    else -> null
+                }
+            }) {
+
+            SignUpStepsAsCompanyScreen(navController)
         }
 
         //PROFILE SCREEN

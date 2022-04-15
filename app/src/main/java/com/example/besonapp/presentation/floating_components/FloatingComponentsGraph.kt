@@ -51,5 +51,12 @@ fun FloatingComponentsGraph(
 
             FloatingLogoWithAppName()
         }
+
+        NavigationItem.SignUpStepsAsCompany.screen_route -> {
+
+            LogInScreenLogoAnimationOnStart()
+
+            FloatingLogoWithAppName()
+        }
     }
 }

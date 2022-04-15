@@ -9,30 +9,32 @@ data class IntroScreenElement(
 ) {
     companion object{
 
+        //Create static data for intro screen elements.
+
         var staticIntroElementList = listOf<IntroScreenElement>()
 
         val introElement1 =
             IntroScreenElement(
-                imageResource = R.drawable.screenshot_1,
+                imageResource = R.drawable.besonapp_ss_splash,
                 explanationText = "BEŞON, İNŞAAT YAPIM FİYATLARI TAKİP VE TAŞERON BULMA PLATFORMUDUR.",
                 textPadding = 580f
             )
 
         val introElement2 =
             IntroScreenElement(
-                imageResource = R.drawable.screenshot_2,
+                imageResource = R.drawable.besonapp_ss_signup_customer,
                 explanationText = "İSTER MÜŞTERİ OLARAK GÜNCEL İNŞAAT FİYATLARINI TAKİP ET VE İŞİNİ YAPTIRACAK FİRMA BUL",
                 textPadding = 580f)
 
         val introElement3 =
             IntroScreenElement(
-                imageResource = R.drawable.screenshot_3,
+                imageResource = R.drawable.besonapp_ss_signup_company,
                 explanationText = "İSTER FİRMA OLARAK FİYATLARIN GÜNCEL KALMASINA DESTEK VER VE MÜŞTERİ BUL.",
                 textPadding = 580f)
 
         val introElement4 =
             IntroScreenElement(
-                imageResource = R.drawable.screenshot_4,
+                imageResource = R.drawable.besonapp_ss_signup,
                 explanationText = "HEMDE BEDAVA",
                 textPadding = 340f)
 

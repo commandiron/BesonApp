@@ -46,7 +46,7 @@ fun BottomNavigationView(navController: NavController, currentRoute: String?) {
                 items.forEach { item ->
 
                     BottomNavigationItem(
-                        icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
+                        icon = { Icon(imageVector = item.icon!!, contentDescription = item.title) },
                         label = { Text(text = item.title,
                             fontSize = 9.sp) },
                         alwaysShowLabel = false,

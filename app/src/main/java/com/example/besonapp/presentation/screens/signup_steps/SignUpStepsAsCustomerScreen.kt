@@ -16,7 +16,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.besonapp.presentation.model.UserRegister
+import com.example.besonapp.presentation.model.CustomerRegister
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.AlreadyMemberStripComponent
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsClickableToGalleryImagePage
@@ -59,19 +59,17 @@ fun SignUpStepsAsCustomerScreen(
         HorizontalPager(
             count = 3,
             state = pagerState,
-            userScrollEnabled = false,
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(2f)
+                .fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            userScrollEnabled = false
         ) { page ->
 
             when(page){
 
                 0 -> {
                     SignUpStepsTextFieldPage(
-                        modifier = Modifier
-                            .size(300.dp)
-                            .padding(20.dp),
+                        modifier = Modifier,
                         entry = name,
                         title = "Adınızı giriniz.",
                         hint = "Adınız"
@@ -85,9 +83,7 @@ fun SignUpStepsAsCustomerScreen(
 
                 1 -> {
                     SignUpStepsTextFieldPage(
-                        modifier = Modifier
-                            .size(300.dp)
-                            .padding(20.dp),
+                        modifier = Modifier,
                         entry = phoneNumber,
                         title = "Telefon numaranızı giriniz.",
                         hint = "Telefon no:",
@@ -102,14 +98,12 @@ fun SignUpStepsAsCustomerScreen(
 
                 2 -> {
                     SignUpStepsClickableToGalleryImagePage(
-                        modifier = Modifier
-                            .size(300.dp)
-                            .padding(20.dp),
-                        title = "Profil resmi seçiniz."
+                        modifier = Modifier,
+                        buttonText = "Kaydı Tamamla"
                     ){
                         profilePictureUri = it.toString()
 
-                        val userRegister = UserRegister(
+                        val userRegister = CustomerRegister(
                             name = name,
                             phoneNumber = phoneNumber,
                             profilePictureUri = profilePictureUri)
@@ -121,14 +115,6 @@ fun SignUpStepsAsCustomerScreen(
                     }
                 }
             }
-        }
-
-        AlreadyMemberStripComponent(
-            modifier = Modifier
-                .fillMaxSize()
-                .weight(1f)
-                .padding(bottom = 100.dp)){
-            navController.navigate(NavigationItem.LogIn.screen_route)
         }
 
         BackHandler {

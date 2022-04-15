@@ -38,7 +38,7 @@ fun LogInFormComponent(
             text = "Beşon'a Giriş Yapın",
             style = MaterialTheme.typography.h2)
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(28.dp))
 
         CustomTextFieldComponent(
             entry = email,
@@ -62,10 +62,10 @@ fun LogInFormComponent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(28.dp))
 
             Button(
-                modifier = Modifier.width(200.dp),
+                modifier = Modifier.width(100.dp),
                 onClick = {
                     onLogInButtonClick(UserLogInInfo(email, password))
                 }
@@ -80,7 +80,7 @@ fun LogInFormComponent(
             Spacer(modifier = Modifier.height(40.dp))
 
             Button(
-                modifier = Modifier.width(200.dp),
+                modifier = Modifier.width(100.dp),
                 onClick = {
                     onSignUpButtonClick()
                 }

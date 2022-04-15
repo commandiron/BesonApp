@@ -8,12 +8,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun AlreadyMemberStripComponent(
     modifier: Modifier,
+    color: Color = MaterialTheme.colors.onBackground,
     onTextClick:() -> Unit
 ){
     Row(
@@ -23,7 +25,7 @@ fun AlreadyMemberStripComponent(
     ) {
         Divider(
             modifier = Modifier.width(60.dp),
-            color = MaterialTheme.colors.primary,
+            color = color,
             thickness = 1.dp)
         Text(
             modifier = Modifier.clickable {
@@ -31,10 +33,10 @@ fun AlreadyMemberStripComponent(
             },
             textAlign = TextAlign.Center,
             text = "Zaten Üyeyim",
-            style = MaterialTheme.typography.body2.copy(color = MaterialTheme.colors.primary))
+            style = MaterialTheme.typography.body2.copy(color = color))
         Divider(
             modifier = Modifier.width(60.dp),
-            color = MaterialTheme.colors.primary,
+            color = color,
             thickness = 1.dp)
     }
 }

@@ -1,5 +1,8 @@
 package com.example.besonapp.presentation.navigation
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.besonapp.R
 import com.example.besonapp.presentation.navigation.NavigationConstants.CATAGORIES_SCREEN_ARGUMENT
 import com.example.besonapp.presentation.navigation.NavigationConstants.CATAGORIES_SCREEN_ROUTE
@@ -29,60 +32,54 @@ import com.example.besonapp.presentation.navigation.NavigationConstants.SPLASH_S
 import com.example.besonapp.presentation.navigation.NavigationConstants.SPLASH_SCREEN_ROUTE
 import com.example.besonapp.presentation.navigation.NavigationConstants.SPLASH_SCREEN_TITLE
 
-sealed class NavigationItem(var title:String, var icon:Int, var screen_route_without_arguments:String, var arguments: String, var screen_route: String){
+sealed class NavigationItem(var title:String, var icon:ImageVector? = null, var screen_route_without_arguments:String, var arguments: String, var screen_route: String){
 
     object Splash: NavigationItem(
-        SPLASH_SCREEN_TITLE,
-        R.drawable.ic_launcher_foreground,
-        SPLASH_SCREEN_ROUTE,
-        SPLASH_SCREEN_ARGUMENT,
-        SPLASH_SCREEN_ROUTE + SPLASH_SCREEN_ARGUMENT
+        title = SPLASH_SCREEN_TITLE,
+        screen_route_without_arguments = SPLASH_SCREEN_ROUTE,
+        arguments = SPLASH_SCREEN_ARGUMENT,
+        screen_route = SPLASH_SCREEN_ROUTE + SPLASH_SCREEN_ARGUMENT
     )
 
     object Intro: NavigationItem(
-        INTRO_SCREEN_TITLE,
-        R.drawable.ic_launcher_foreground,
-        INTRO_SCREEN_ROUTE,
-        INTRO_SCREEN_ARGUMENT,
-        INTRO_SCREEN_ROUTE + INTRO_SCREEN_ARGUMENT
+        title = INTRO_SCREEN_TITLE,
+        screen_route_without_arguments = INTRO_SCREEN_ROUTE,
+        arguments = INTRO_SCREEN_ARGUMENT,
+        screen_route = INTRO_SCREEN_ROUTE + INTRO_SCREEN_ARGUMENT
     )
 
     object SignUp: NavigationItem(
-        SIGNUP_SCREEN_TITLE,
-        R.drawable.ic_launcher_foreground,
-        SIGNUP_SCREEN_ROUTE,
-        SIGNUP_SCREEN_ARGUMENT,
-        SIGNUP_SCREEN_ROUTE + SIGNUP_SCREEN_ARGUMENT
+        title = SIGNUP_SCREEN_TITLE,
+        screen_route_without_arguments = SIGNUP_SCREEN_ROUTE,
+        arguments = SIGNUP_SCREEN_ARGUMENT,
+        screen_route = SIGNUP_SCREEN_ROUTE + SIGNUP_SCREEN_ARGUMENT
     )
 
     object LogIn: NavigationItem(
-        LOGIN_SCREEN_TITLE,
-        R.drawable.ic_launcher_foreground,
-        LOGIN_SCREEN_ROUTE,
-        LOGIN_SCREEN_ARGUMENT,
-        LOGIN_SCREEN_ROUTE + LOGIN_SCREEN_ARGUMENT
+        title = LOGIN_SCREEN_TITLE,
+        screen_route_without_arguments = LOGIN_SCREEN_ROUTE,
+        arguments = LOGIN_SCREEN_ARGUMENT,
+        screen_route = LOGIN_SCREEN_ROUTE + LOGIN_SCREEN_ARGUMENT
     )
 
     object SignUpStepsAsCustomer: NavigationItem(
-        SIGNUP_STEPS_AS_CUSTOMER_SCREEN_TITLE,
-        R.drawable.ic_launcher_foreground,
-        SIGNUP_STEPS_AS_CUSTOMER_SCREEN_ROUTE,
-        SIGNUP_STEPS_AS_CUSTOMER_SCREEN_ARGUMENT,
-        SIGNUP_STEPS_AS_CUSTOMER_SCREEN_ROUTE + SIGNUP_STEPS_AS_CUSTOMER_SCREEN_ARGUMENT
+        title = SIGNUP_STEPS_AS_CUSTOMER_SCREEN_TITLE,
+        screen_route_without_arguments = SIGNUP_STEPS_AS_CUSTOMER_SCREEN_ROUTE,
+        arguments = SIGNUP_STEPS_AS_CUSTOMER_SCREEN_ARGUMENT,
+        screen_route = SIGNUP_STEPS_AS_CUSTOMER_SCREEN_ROUTE + SIGNUP_STEPS_AS_CUSTOMER_SCREEN_ARGUMENT
     )
 
     object SignUpStepsAsCompany: NavigationItem(
-        SIGNUP_STEPS_AS_COMPANY_SCREEN_TITLE,
-        R.drawable.ic_launcher_foreground,
-        SIGNUP_STEPS_AS_COMPANY_SCREEN_ROUTE,
-        SIGNUP_STEPS_AS_COMPANY_SCREEN_ARGUMENT,
-        SIGNUP_STEPS_AS_COMPANY_SCREEN_ROUTE + SIGNUP_STEPS_AS_COMPANY_SCREEN_ARGUMENT
+        title = SIGNUP_STEPS_AS_COMPANY_SCREEN_TITLE,
+        screen_route_without_arguments = SIGNUP_STEPS_AS_COMPANY_SCREEN_ROUTE,
+        arguments = SIGNUP_STEPS_AS_COMPANY_SCREEN_ARGUMENT,
+        screen_route = SIGNUP_STEPS_AS_COMPANY_SCREEN_ROUTE + SIGNUP_STEPS_AS_COMPANY_SCREEN_ARGUMENT
     )
 
 
     object Profile : NavigationItem(
         PROFILE_SCREEN_TITLE,
-        R.drawable.ic_launcher_foreground,
+        Icons.Default.Home,
         PROFILE_SCREEN_ROUTE,
         PROFILE_SCREEN_ARGUMENT,
         PROFILE_SCREEN_ROUTE + PROFILE_SCREEN_ARGUMENT
@@ -90,7 +87,7 @@ sealed class NavigationItem(var title:String, var icon:Int, var screen_route_wit
 
     object Catagories : NavigationItem(
         CATAGORIES_SCREEN_TITLE,
-        R.drawable.ic_launcher_foreground,
+        Icons.Default.Home,
         CATAGORIES_SCREEN_ROUTE,
         CATAGORIES_SCREEN_ARGUMENT,
         CATAGORIES_SCREEN_ROUTE + CATAGORIES_SCREEN_ARGUMENT
@@ -98,7 +95,7 @@ sealed class NavigationItem(var title:String, var icon:Int, var screen_route_wit
 
     object Settings : NavigationItem(
         SETTINGS_SCREEN_TITLE,
-        R.drawable.ic_launcher_foreground,
+        Icons.Default.Home,
         SETTINGS_SCREEN_ROUTE,
         SETTINGS_SCREEN_ARGUMENT,
         SETTINGS_SCREEN_ROUTE + SETTINGS_SCREEN_ARGUMENT
