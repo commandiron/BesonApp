@@ -26,7 +26,7 @@ import com.google.accompanist.pager.rememberPagerState
 
 @Composable
 fun IntroScreen(
-    navController: NavController,
+    navController: NavController
 //    introViewModel: IntroViewModel = hiltViewModel()
 ){
 
@@ -74,6 +74,7 @@ fun IntroScreen(
                 .fillMaxWidth()
                 .height(56.dp + navigationBarHeight)
                 .clickable {
+
                     navController.navigate(NavigationItem.SignUp.screen_route)
 //                    introViewModel.setUserOpenAppOnceFlagTrue()
                 },

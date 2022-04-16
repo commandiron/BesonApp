@@ -22,6 +22,7 @@ import com.example.besonapp.presentation.model.ConstructionItem
 @Composable
 fun SignUpStepsCategorySelectionPage(
     itemList: List<ConstructionItem>,
+    buttonText: String,
     onNextButtonClick:(Int) -> Unit
 ){
 
@@ -67,7 +68,7 @@ fun SignUpStepsCategorySelectionPage(
                     Box(modifier = Modifier
                         .size(100.dp)
                         .padding(1.dp)
-                        .border(boxBorder, Color.White)
+                        .border(boxBorder, MaterialTheme.colors.onBackground)
                         .clickable {
                             isSelected = !isSelected
 
@@ -92,7 +93,7 @@ fun SignUpStepsCategorySelectionPage(
                 onNextButtonClick(selectedItemId)
 
             }) {
-            Text(text = "İleri")
+            Text(text = buttonText)
         }
     }
 }

@@ -17,7 +17,7 @@ fun SetSystemUiColorsAndPadding(
 
     val systemUiController = rememberSystemUiController()
 
-    var applySystemUiPadding by remember { mutableStateOf(true)}
+    var applySystemUiPadding by remember { mutableStateOf(false)}
 
     SideEffect{
         when(currentRoute){

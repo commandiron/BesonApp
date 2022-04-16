@@ -3,6 +3,7 @@ package com.example.besonapp.presentation
 import androidx.compose.runtime.Composable
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.common_components.logoanimation.LogInScreenLogoAnimationOnStart
+import com.example.besonapp.presentation.floating_components.SplashScreenLogoAnimation2
 import com.example.besonapp.presentation.floating_components.signup_steps.FloatingLogoWithAppName
 
 @Composable
@@ -17,7 +18,7 @@ fun FloatingComponentsGraph(
     when(currentRoute){
         NavigationItem.Splash.screen_route ->{
 
-            SplashScreenLogoAnimation()
+            SplashScreenLogoAnimation2()
 
         }
 

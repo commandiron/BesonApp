@@ -16,8 +16,6 @@ fun LoadingScreen(
     isLoading: Boolean = false,
     content: @Composable () -> Unit
 ){
-    content()
-
     if(isLoading){
         Box(
             modifier = Modifier.background(MaterialTheme.colors.background),
@@ -32,5 +30,7 @@ fun LoadingScreen(
                 strokeWidth = 3.dp
             )
         }
+    }else{
+        content()
     }
 }

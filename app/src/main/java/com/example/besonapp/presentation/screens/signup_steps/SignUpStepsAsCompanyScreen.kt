@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -84,7 +85,8 @@ fun SignUpStepsAsCompanyScreen(
                         modifier = Modifier,
                         entry = phoneNumber,
                         title = "Telefon numaranızı giriniz.",
-                        hint = "Telefon no"
+                        hint = "Telefon no",
+                        keyboardType = KeyboardType.Phone
                     ){
                         phoneNumber = it
                         coroutineScope.launch {
@@ -111,7 +113,7 @@ fun SignUpStepsAsCompanyScreen(
 
                     val mainConstructionCatagories = ConstructionItem.createMainCatagoryList()
 
-                    SignUpStepsCategorySelectionPage(mainConstructionCatagories){ selectedItemId ->
+                    SignUpStepsCategorySelectionPage(mainConstructionCatagories,"İleri"){ selectedItemId ->
 
                         selectedMainCategoryId = selectedItemId
 
@@ -125,7 +127,7 @@ fun SignUpStepsAsCompanyScreen(
 
                     val subConstructionCatagories = ConstructionItem.createSubCatagoryList()
 
-                    SignUpStepsCategorySelectionPage(subConstructionCatagories[selectedMainCategoryId]!!){ selectedItemList ->
+                    SignUpStepsCategorySelectionPage(subConstructionCatagories[selectedMainCategoryId]!!, "Kaydı Tamamla"){ selectedItemList ->
 
                         val companyRegister = CompanyRegister(
                             nameOrCompanyName = nameOrCompanyName,

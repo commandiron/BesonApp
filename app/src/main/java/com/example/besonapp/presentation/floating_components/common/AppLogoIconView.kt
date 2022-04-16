@@ -17,12 +17,14 @@ import com.example.besonapp.ui.theme.logoColor
 fun AppLogoIconView(
     modifier: Modifier = Modifier,
     tint: Color = logoColor,
+    paddingBottomAnimValue: Float = 0f,
     sizeAnimValue:Dp = 100.dp,
     alphaAnimValue:Float = 1f,
     rotateAnimValue:Float = 0f){
 
     Icon(
         modifier = modifier
+            .padding(bottom = Dp(paddingBottomAnimValue))
             .size(sizeAnimValue)
             .alpha(alphaAnimValue)
             .rotate(rotateAnimValue),

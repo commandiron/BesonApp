@@ -2,8 +2,8 @@ package com.example.besonapp.util
 
 object AppStaticTexts {
 
-    const val APP_NAME = "BEŞON"
-    const val APP_STATEMENT = "BEŞON; İnşaat yapım fiyatları takip ve taşeron bulma uygulamasıdır."
+    const val APP_NAME = "Beşon"
+    const val APP_STATEMENT = "Beşon; İnşaat yapım fiyatları takip ve taşeron bulma uygulamasıdır."
 
     const val INTRO_SCREEN_BOTTOM_TEXT = "HEMEN BAŞLA"
     const val INTRO_SCREEN_BOTTOM_TEXT_LAST_PAGE = "BAŞLA"
