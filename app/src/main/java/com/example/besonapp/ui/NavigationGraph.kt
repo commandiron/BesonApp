@@ -139,7 +139,7 @@ fun NavigationGraph(
                 }
             }) {
 
-            SignUpStepsAsCompanyScreen(navController)
+            SignUpStepsAsCompanyScreen(navController = navController)
         }
 
         //PROFILE SCREEN

@@ -26,7 +26,7 @@ import com.example.besonapp.R
 
 @Composable
 fun SignUpStepsClickableToGalleryImagePage(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     buttonText: String,
     size: Dp = 100.dp,
     onClick:(Uri?) -> Unit = {}){

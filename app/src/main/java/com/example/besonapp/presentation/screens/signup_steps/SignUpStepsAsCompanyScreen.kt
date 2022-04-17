@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.besonapp.presentation.model.CompanyRegister
@@ -52,7 +53,11 @@ fun SignUpStepsAsCompanyScreen(
             pagerState.scrollToPage(0)
         }
 
+        //Page 3 variable, burası viewmodele taşınacak.
         var selectedMainCategoryId by remember { mutableStateOf(0)}
+
+        //Page 4 variable, burası viewmodele taşınacak.
+        var selectedSubCategoryList by remember { mutableStateOf<List<ConstructionItem>>(emptyList())}
 
         HorizontalPager(
             count = 5,
@@ -67,7 +72,6 @@ fun SignUpStepsAsCompanyScreen(
 
                 0 -> {
                     SignUpStepsTextFieldPage(
-                        modifier = Modifier,
                         entry = nameOrCompanyName,
                         title = "Adınızı ya da şirket adınızı giriniz.",
                         hint = "Adınız"
@@ -82,7 +86,6 @@ fun SignUpStepsAsCompanyScreen(
                 1 -> {
 
                     SignUpStepsTextFieldPage(
-                        modifier = Modifier,
                         entry = phoneNumber,
                         title = "Telefon numaranızı giriniz.",
                         hint = "Telefon no",
@@ -98,7 +101,6 @@ fun SignUpStepsAsCompanyScreen(
                 2 -> {
 
                     SignUpStepsClickableToGalleryImagePage(
-                        modifier = Modifier,
                         buttonText = "İleri"
                     ){
                         profilePictureUri = it.toString()
@@ -111,32 +113,63 @@ fun SignUpStepsAsCompanyScreen(
 
                 3 -> {
 
+                    //Bu kısım viewmodel'den gelmeli
                     val mainConstructionCatagories = ConstructionItem.createMainCatagoryList()
 
-                    SignUpStepsCategorySelectionPage(mainConstructionCatagories,"İleri"){ selectedItemId ->
+                    SignUpStepsCategorySelectionPage(
+                        title = "Ana Kategori Seçiniz",
+                        itemList = mainConstructionCatagories,
+                        buttonText = "İleri",
+                        multipleSelectionEnabled = false,
+                        onNextButtonClickSingleSelection = { selectedItem ->
 
-                        selectedMainCategoryId = selectedItemId
+                            if(selectedItem != null){
 
-                        coroutineScope.launch {
-                            pagerState.animateScrollToPage(page + 1)
+                                //Bu kısım viewmodel'e gönderilmeli
+                                    //getSubConstructionCategory fonksiyonu ile çağırılacak.
+                                selectedMainCategoryId = selectedItem.id
+
+                                coroutineScope.launch {
+                                    pagerState.animateScrollToPage(page + 1)
+                                }
+                            }else{
+                             //SEÇİM YAPMADINIZ
+                            }
                         }
-                    }
+                    )
                 }
 
                 4 -> {
 
+                    //Bu kısım viewmodel'den gelmeli
                     val subConstructionCatagories = ConstructionItem.createSubCatagoryList()
 
-                    SignUpStepsCategorySelectionPage(subConstructionCatagories[selectedMainCategoryId]!!, "Kaydı Tamamla"){ selectedItemList ->
+                    SignUpStepsCategorySelectionPage(
+                        title = "Alt Kategori Seçiniz",
+                        itemList = subConstructionCatagories[selectedMainCategoryId] ?: emptyList(),
+                        buttonText = "Kaydı Tamamla",
+                        multipleSelectionEnabled = true,
+                        onNextButtonClickMultipleSelection = { selectedItemList ->
 
-                        val companyRegister = CompanyRegister(
-                            nameOrCompanyName = nameOrCompanyName,
-                            phoneNumber = phoneNumber,
-                            profilePictureUri = profilePictureUri)
+                            if(selectedItemList != null){
 
-                        navController.popBackStack()
-                        navController.navigate(NavigationItem.Profile.screen_route)
-                    }
+                                //Bu kısımda viewmodel'e gönderilip kayıt yapılacak.
+                                selectedSubCategoryList = selectedItemList
+
+                                val companyRegister = CompanyRegister(
+                                    nameOrCompanyName = nameOrCompanyName,
+                                    phoneNumber = phoneNumber,
+                                    profilePictureUri = profilePictureUri,
+                                    selectedSubCategoryList = selectedSubCategoryList
+                                )
+
+                                navController.popBackStack()
+                                navController.navigate(NavigationItem.Profile.screen_route)
+                            }else{
+                                //SEÇİM YAPMADINIZ
+                            }
+                        }
+                    )
                 }
             }
         }

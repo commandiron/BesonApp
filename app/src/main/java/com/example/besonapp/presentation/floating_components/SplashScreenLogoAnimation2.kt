@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -19,62 +20,78 @@ import androidx.compose.ui.unit.dp
 import com.example.besonapp.presentation.AppLogoIconView
 import com.example.besonapp.ui.theme.logoColor
 import com.example.besonapp.util.AppStaticTexts
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 @Composable
 fun SplashScreenLogoAnimation2(
 
 ){
+
+    val scope = rememberCoroutineScope()
+
     val logoRotateAnim = remember { Animatable(0f) }
     val logoBottomPaddingAnim = remember { Animatable(0f) }
     val textAlphaAnim = remember { Animatable(0f) }
     val textPaddingAnim = remember { Animatable(280f) }
     val textRotationXAnim = remember { Animatable(-30f) }
 
-    LaunchedEffect(key1 = Unit){
-        logoRotateAnim.animateTo(
-            targetValue = 360f,
-            animationSpec = tween(
-                delayMillis = 1000,
-                durationMillis = 1000,
-            )
-        )
-        logoBottomPaddingAnim.animateTo(
-            targetValue = 80f,
-            animationSpec = tween(
-                delayMillis = 500,
-                durationMillis = 1200,
-            )
-        )
-    }
-
+    val introTextAlphaAnim = remember { Animatable(0f) }
 
     LaunchedEffect(key1 = Unit){
-        textAlphaAnim.animateTo(
-            targetValue = 1f,
-            animationSpec = tween(
-                delayMillis = 2500,
-                durationMillis = 2000
-            )
-        )
-    }
 
-    LaunchedEffect(key1 = Unit){
-        textPaddingAnim.animateTo(
-            targetValue = 360f,
-            animationSpec = tween(
-                delayMillis = 2500,
-                durationMillis = 1000,
+        scope.launch {
+            logoRotateAnim.animateTo(
+                targetValue = 360f,
+                animationSpec = tween(
+                    delayMillis = 1500,
+                    durationMillis = 1000,
+                )
             )
-        )
-    }
-    LaunchedEffect(key1 = Unit){
-        textRotationXAnim.animateTo(
-            targetValue = 0f,
-            animationSpec = tween(
-                delayMillis = 2500,
-                durationMillis = 1000,
+            logoBottomPaddingAnim.animateTo(
+                targetValue = 40f,
+                animationSpec = tween(
+                    delayMillis = 0,
+                    durationMillis = 1000,
+                )
             )
-        )
+        }
+        scope.launch {
+            textAlphaAnim.animateTo(
+                targetValue = 1f,
+                animationSpec = tween(
+                    delayMillis = 2800,
+                    durationMillis = 500
+                )
+            )
+        }
+        scope.launch {
+            textPaddingAnim.animateTo(
+                targetValue = 340f,
+                animationSpec = tween(
+                    delayMillis = 2800,
+                    durationMillis = 500,
+                )
+            )
+        }
+        scope.launch {
+            textRotationXAnim.animateTo(
+                targetValue = 0f,
+                animationSpec = tween(
+                    delayMillis = 2800,
+                    durationMillis = 500,
+                )
+            )
+        }
+        scope.launch {
+            introTextAlphaAnim.animateTo(
+                targetValue = 1f,
+                animationSpec = tween(
+                    delayMillis = 2800,
+                    durationMillis = 100
+                )
+            )
+        }
     }
 
     Box(
@@ -105,4 +122,22 @@ fun SplashScreenLogoAnimation2(
 
         )
     }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+
+        Text(
+            text = AppStaticTexts.APP_STATEMENT,
+            color = logoColor,
+            style = MaterialTheme.typography.body2,
+            modifier = Modifier
+                .padding(bottom = 100.dp)
+                .alpha(alpha = introTextAlphaAnim.value)
+        )
+    }
+
+
 }

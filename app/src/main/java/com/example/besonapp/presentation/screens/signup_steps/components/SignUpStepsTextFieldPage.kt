@@ -20,7 +20,7 @@ import com.example.besonapp.ui.theme.buttonAndTextFieldBackgroundColor
 
 @Composable
 fun SignUpStepsTextFieldPage(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     entry: String,
     title: String,
     hint: String,

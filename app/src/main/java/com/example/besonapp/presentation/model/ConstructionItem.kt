@@ -7,7 +7,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 sealed class ConstructionItem(
     val id: Int = 0,
     val title: String = "",
-    val icon: ImageVector = Icons.Default.CarCrash
+    val icon: ImageVector = Icons.Default.CarCrash,
+    var isSelected: Boolean = false
 ){
     object Kazi: ConstructionItem(
         id = 0,
@@ -36,7 +37,7 @@ sealed class ConstructionItem(
             id = 11,
             title = "Demir"
         )
-        object Kalıp: ConstructionItem(
+        object Kalip: ConstructionItem(
             id = 12,
             title = "Kalıp"
         )
@@ -50,7 +51,8 @@ sealed class ConstructionItem(
     object Cati: ConstructionItem(
         id = 2,
         title = "Çatı İşleri"
-    )
+    ){
+    }
 
     object Cephe: ConstructionItem(
         id = 3,
@@ -111,7 +113,7 @@ sealed class ConstructionItem(
                 listOf(
                     KabaYapi.Beton,
                     KabaYapi.Demir,
-                    KabaYapi.Kalıp,
+                    KabaYapi.Kalip,
                     KabaYapi.BetonDemirKalipIscilik
                 )
             )

@@ -9,24 +9,29 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.besonapp.presentation.model.ConstructionItem
 
 @Composable
 fun SignUpStepsCategorySelectionPage(
+    title: String,
     itemList: List<ConstructionItem>,
     buttonText: String,
-    onNextButtonClick:(Int) -> Unit
+    multipleSelectionEnabled: Boolean,
+    onNextButtonClickSingleSelection: ((ConstructionItem?) -> Unit)? = null,
+    onNextButtonClickMultipleSelection: ((List<ConstructionItem>?) -> Unit)? = null
 ){
 
-    var selectedItemId by remember { mutableStateOf(0)}
+    var selectedItemList by remember { mutableStateOf<List<ConstructionItem>?>(null) }
+    var selectedItem by remember { mutableStateOf<ConstructionItem?>(null) }
 
     Column(
         modifier = Modifier
@@ -37,12 +42,12 @@ fun SignUpStepsCategorySelectionPage(
 
         Text(
             modifier = Modifier.height(20.dp),
-            text = "Ana Katagori Seçiniz.",
+            text = title,
             style = MaterialTheme.typography.body1
         )
 
-        var iconSize by remember { mutableStateOf(50.dp)}
-        var boxBorder by remember { mutableStateOf(1.dp)}
+        var gridIconSize by remember { mutableStateOf(50.dp)}
+        var gridBoxBorder by remember { mutableStateOf(1.dp)}
 
         LazyVerticalGrid(
             modifier = Modifier.size(300.dp),
@@ -53,33 +58,41 @@ fun SignUpStepsCategorySelectionPage(
 
                 items(itemList){ item ->
 
-                    //NASIL SADECE TEK BİR GRİDİ SEÇEBİLİRİM BURADA KALDIM/////////////////////////
-
                     var isSelected by remember { mutableStateOf(false)}
 
-                    if(isSelected){
-                        iconSize = 70.dp
-                        boxBorder = 2.dp
-                    }else{
-                        iconSize = 50.dp
-                        boxBorder = 1.dp
+                    if(!multipleSelectionEnabled){
+                        isSelected = item == selectedItem
                     }
 
-                    Box(modifier = Modifier
-                        .size(100.dp)
-                        .padding(1.dp)
-                        .border(boxBorder, MaterialTheme.colors.onBackground)
-                        .clickable {
-                            isSelected = !isSelected
+                    if(isSelected){
+                        gridIconSize = 70.dp
+                        gridBoxBorder = 2.dp
+                    }else{
+                        gridIconSize = 50.dp
+                        gridBoxBorder = 1.dp
+                    }
 
-                            selectedItemId = item.id
-                        },
+                    Box(
+                        modifier = Modifier
+                            .size(100.dp)
+                            .padding(1.dp)
+                            .border(
+                                gridBoxBorder,
+                                MaterialTheme.colors.onBackground)
+                            .clickable {
+                                if(multipleSelectionEnabled){
+                                    isSelected = !isSelected
+                                    selectedItemList = listOf(item)
+                                }else{
+                                    selectedItem = item
+                                }
+                            },
                         contentAlignment = Alignment.Center
                     ){
                         Icon(
                             modifier = Modifier
-                            .size(iconSize),
-                            imageVector = item.icon,
+                                .size(gridIconSize),
+                            imageVector = Icons.Default.Settings,
                             contentDescription = null,
                             tint = MaterialTheme.colors.primary)
                     }
@@ -89,9 +102,11 @@ fun SignUpStepsCategorySelectionPage(
 
         Button(
             onClick = {
-
-                onNextButtonClick(selectedItemId)
-
+                if(multipleSelectionEnabled){
+                    onNextButtonClickMultipleSelection!!.invoke(selectedItemList)
+                }else{
+                    onNextButtonClickSingleSelection!!.invoke(selectedItem)
+                }
             }) {
             Text(text = buttonText)
         }
