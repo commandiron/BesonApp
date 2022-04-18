@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.besonapp.presentation.FloatingComponentsGraph
@@ -98,6 +99,7 @@ fun MainContent(){
 
                         //Floating Components Logo, explaining strip etc.
                         FloatingComponentsGraph(
+                            navController = navController,
                             currentRoute = currentRoute,
                             onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
                         ){
@@ -115,3 +117,4 @@ fun MainContent(){
         }
     }
 }
+

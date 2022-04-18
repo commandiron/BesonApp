@@ -22,7 +22,7 @@ fun NavigationGraph(
     isLoading: (Boolean) -> Unit,
 ) {
 
-    AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screen_route) {
+    AnimatedNavHost(navController, startDestination = NavigationItem.SignUpStepsAsCompany.screen_route) {
 
         //SPLASH SCREEN
         composable(
@@ -139,7 +139,9 @@ fun NavigationGraph(
                 }
             }) {
 
-            SignUpStepsAsCompanyScreen(navController = navController)
+            SignUpStepsAsCompanyScreen(
+                navController = navController
+            )
         }
 
         //PROFILE SCREEN

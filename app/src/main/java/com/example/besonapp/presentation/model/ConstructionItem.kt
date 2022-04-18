@@ -1,33 +1,35 @@
 package com.example.besonapp.presentation.model
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CarCrash
-import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.besonapp.R
 
 sealed class ConstructionItem(
     val id: Int = 0,
     val title: String = "",
-    val icon: ImageVector = Icons.Default.CarCrash,
+    val imageResource: Int = R.drawable.my_launcher_icon_foreground,
     var isSelected: Boolean = false
 ){
     object Kazi: ConstructionItem(
         id = 0,
-        title = "Kazi İşleri"
+        title = "Kazi İşleri",
+        imageResource = R.drawable.construction_item_kazi
     ){
 
         object Iksa: ConstructionItem(
             id = 8,
-            title = "İksa İşleri"
+            title = "İksa İşleri",
+            imageResource = R.drawable.construction_item_iksa
         )
         object Hafriyat: ConstructionItem(
             id = 9,
-            title = "Hafriyat İşleri"
+            title = "Hafriyat İşleri",
+            imageResource = R.drawable.construction_item_hafriyat
         )
     }
 
     object KabaYapi: ConstructionItem(
         id = 1,
-        title = "Kaba Yapi İşleri"
+        title = "Kaba Yapi İşleri",
+        imageResource = R.drawable.construction_item_kaba_yapi
     ){
         object Beton: ConstructionItem(
             id = 10,
@@ -50,33 +52,39 @@ sealed class ConstructionItem(
 
     object Cati: ConstructionItem(
         id = 2,
-        title = "Çatı İşleri"
+        title = "Çatı İşleri",
+        imageResource = R.drawable.construction_item_cati
     ){
     }
 
     object Cephe: ConstructionItem(
         id = 3,
-        title = "Cephe İşleri"
+        title = "Cephe İşleri",
+        imageResource = R.drawable.construction_item_cephe
     )
 
     object MekanikTesisat: ConstructionItem(
         id = 4,
-        title = "Mekanik Tesisat İşleri"
+        title = "Mekanik Tesisat İşleri",
+        imageResource = R.drawable.construction_item_mekanik_tesisat
     )
 
     object ElektrikTesisat: ConstructionItem(
         id = 5,
-        title = "Elektrik Tesisat İşleri"
+        title = "Elektrik Tesisat İşleri",
+        imageResource = R.drawable.construction_item_elektrik_tesisat
     )
 
     object IcImalatlar: ConstructionItem(
         id = 6,
-        title = "İç İmalatlar"
+        title = "İç İmalatlar",
+        imageResource = R.drawable.construction_item_ic_imalatlar
     )
 
     object PeysajVeCevreDuzenlemesi: ConstructionItem(
         id = 7,
-        title = "Peysaj ve Çevre Düzenlemesi İşleri"
+        title = "Peysaj ve Çevre Düzenlemesi İşleri",
+        imageResource = R.drawable.construction_item_peysaj_ve_cevre
     )
 
 

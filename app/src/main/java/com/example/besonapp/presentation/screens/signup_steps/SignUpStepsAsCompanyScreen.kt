@@ -1,12 +1,15 @@
 package com.example.besonapp.presentation.screens.signup_steps_as_company
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,7 +37,12 @@ fun SignUpStepsAsCompanyScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 150.dp, bottom = 120.dp),
+            .systemBarsPadding()
+            .padding(
+                top = 100.dp,
+                start = 10.dp,
+                end = 10.dp
+            ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -43,6 +51,8 @@ fun SignUpStepsAsCompanyScreen(
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h2
         )
+        
+        Spacer(modifier = Modifier.height(20.dp))
 
         // Remember a PagerState
         val pagerState = rememberPagerState()
@@ -63,8 +73,8 @@ fun SignUpStepsAsCompanyScreen(
             count = 5,
             state = pagerState,
             modifier = Modifier
-                .fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically,
+                .wrapContentSize(),
+            verticalAlignment = Alignment.Top,
             userScrollEnabled = false,
         ) { page ->
 
@@ -117,7 +127,7 @@ fun SignUpStepsAsCompanyScreen(
                     val mainConstructionCatagories = ConstructionItem.createMainCatagoryList()
 
                     SignUpStepsCategorySelectionPage(
-                        title = "Ana Kategori Seçiniz",
+                        title = "Ana İnşaat Kategorisini Seçiniz",
                         itemList = mainConstructionCatagories,
                         buttonText = "İleri",
                         multipleSelectionEnabled = false,
@@ -146,6 +156,7 @@ fun SignUpStepsAsCompanyScreen(
 
                     SignUpStepsCategorySelectionPage(
                         title = "Alt Kategori Seçiniz",
+                        underButtonHintText = "*Birden fazla kategori seçebilirsiniz.",
                         itemList = subConstructionCatagories[selectedMainCategoryId] ?: emptyList(),
                         buttonText = "Kaydı Tamamla",
                         multipleSelectionEnabled = true,
@@ -163,7 +174,6 @@ fun SignUpStepsAsCompanyScreen(
                                     selectedSubCategoryList = selectedSubCategoryList
                                 )
 
-                                navController.popBackStack()
                                 navController.navigate(NavigationItem.Profile.screen_route)
                             }else{
                                 //SEÇİM YAPMADINIZ

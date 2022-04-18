@@ -14,34 +14,33 @@ import com.example.besonapp.util.AppStaticTexts
 
 @Composable
 fun FloatingLogoWithAppName(
-    contentAlignment: Alignment = Alignment.Center
+    contentAlignment: Alignment = Alignment.BottomCenter
 ){
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 600.dp),
+            .systemBarsPadding()
+            .padding(bottom = 40.dp),
         contentAlignment = contentAlignment
     ) {
+        Row(
+            modifier = Modifier.padding(vertical = 2.dp),
+            horizontalArrangement = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            AppLogoIconView(
+                sizeAnimValue = 30.dp,
+                tint = MaterialTheme.colors.primary,
+            )
 
-            Row(
-                modifier = Modifier.padding(vertical = 2.dp),
-                horizontalArrangement = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                AppLogoIconView(
-                    sizeAnimValue = 30.dp,
-                    tint = MaterialTheme.colors.primary,
-                )
-
-                Text(
-                    text = AppStaticTexts.APP_NAME,
-                    color = MaterialTheme.colors.primary,
-                    style = MaterialTheme.typography.h3,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.align(Alignment.Bottom)
-                )
-            }
-
+            Text(
+                text = AppStaticTexts.APP_NAME,
+                color = MaterialTheme.colors.primary,
+                style = MaterialTheme.typography.h3,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.align(Alignment.Bottom)
+            )
+        }
     }
 }

@@ -37,7 +37,12 @@ fun SignUpStepsAsCustomerScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 150.dp, bottom = 120.dp),
+            .systemBarsPadding()
+            .padding(
+                top = 100.dp,
+                start = 10.dp,
+                end = 10.dp
+            ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -46,6 +51,8 @@ fun SignUpStepsAsCustomerScreen(
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h2
         )
+
+        Spacer(modifier = Modifier.height(20.dp))
 
         // Remember a PagerState
         val pagerState = rememberPagerState()
@@ -60,8 +67,8 @@ fun SignUpStepsAsCustomerScreen(
             count = 3,
             state = pagerState,
             modifier = Modifier
-                .fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically,
+                .wrapContentSize(),
+            verticalAlignment = Alignment.Top,
             userScrollEnabled = false
         ) { page ->
 
@@ -110,7 +117,6 @@ fun SignUpStepsAsCustomerScreen(
 
                         //Burada userRegister kaydı yapılacak ve profil sayfasına gidilecek.
 
-                        navController.popBackStack()
                         navController.navigate(NavigationItem.Profile.screen_route)
                     }
                 }
