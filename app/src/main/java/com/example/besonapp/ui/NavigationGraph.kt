@@ -5,8 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.runtime.*
 import androidx.navigation.NavHostController
 import com.example.besonapp.presentation.navigation.NavigationItem
-import com.example.besonapp.presentation.screens.LogInScreen
-import com.example.besonapp.presentation.screens.ProfileScreen
+import com.example.besonapp.presentation.screens.*
 import com.example.besonapp.presentation.screens.intro.IntroScreen
 import com.example.besonapp.presentation.screens.signup_steps_as_company.SignUpStepsAsCompanyScreen
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.SignUpStepsAsCustomerScreen
@@ -22,7 +21,7 @@ fun NavigationGraph(
     isLoading: (Boolean) -> Unit,
 ) {
 
-    AnimatedNavHost(navController, startDestination = NavigationItem.SignUpStepsAsCompany.screen_route) {
+    AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screen_route) {
 
         //SPLASH SCREEN
         composable(
@@ -161,6 +160,42 @@ fun NavigationGraph(
             }) {
 
             ProfileScreen(navController)
+        }
+
+        // PRICES SCREEN
+        composable(
+            NavigationItem.Prices.screen_route,
+            enterTransition = {
+                when(initialState.destination.route){
+                    else -> null
+                }
+
+            },
+            exitTransition = {
+                when(targetState.destination.route){
+                    else -> null
+                }
+            }) {
+
+            PricesScreen(navController)
+        }
+
+        // UPDATEPRICES SCREEN
+        composable(
+            NavigationItem.UpdatePrices.screen_route,
+            enterTransition = {
+                when(initialState.destination.route){
+                    else -> null
+                }
+
+            },
+            exitTransition = {
+                when(targetState.destination.route){
+                    else -> null
+                }
+            }) {
+
+            UpdatePricesScreen(navController)
         }
     }
 }

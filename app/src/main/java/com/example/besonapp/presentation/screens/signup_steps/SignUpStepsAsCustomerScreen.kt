@@ -1,7 +1,6 @@
 package com.example.besonapp.presentation.screens.signup_steps_as_customer
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -11,14 +10,11 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.besonapp.presentation.model.CustomerRegister
 import com.example.besonapp.presentation.navigation.NavigationItem
-import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.AlreadyMemberStripComponent
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsClickableToGalleryImagePage
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsTextFieldPage
 import com.google.accompanist.pager.HorizontalPager
@@ -110,13 +106,12 @@ fun SignUpStepsAsCustomerScreen(
                     ){
                         profilePictureUri = it.toString()
 
-                        val userRegister = CustomerRegister(
-                            name = name,
-                            phoneNumber = phoneNumber,
-                            profilePictureUri = profilePictureUri)
+                        //KAYIT YAPILACAK
 
                         //Burada userRegister kaydı yapılacak ve profil sayfasına gidilecek.
 
+                        //Bu kasım kayıt olumlu olursa çalışacak.
+                        navController.popBackStack()
                         navController.navigate(NavigationItem.Profile.screen_route)
                     }
                 }

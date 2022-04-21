@@ -3,10 +3,10 @@ package com.example.besonapp.presentation.screens.signup_steps.components
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.*
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Button
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material3.Icon
@@ -22,12 +22,15 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.besonapp.presentation.common_components.CircleCheckbox
 import com.example.besonapp.presentation.model.ConstructionItem
+import com.example.besonapp.util.*
+import kotlin.math.min
+import kotlin.math.roundToInt
 
 @Composable
 fun SignUpStepsCategorySelectionPage(
     title: String,
     underButtonHintText: String = "",
-    itemList: List<ConstructionItem>,
+    itemListMain: List<ConstructionItem>,
     buttonText: String,
     multipleSelectionEnabled: Boolean,
     onNextButtonClickSingleSelection: ((ConstructionItem?) -> Unit)? = null,
@@ -36,6 +39,8 @@ fun SignUpStepsCategorySelectionPage(
 
     var selectedItemList by remember { mutableStateOf<List<ConstructionItem>?>(null) }
     var selectedItem by remember { mutableStateOf<ConstructionItem?>(null) }
+
+    val lazyGridState = rememberLazyGridState()
 
     Column(
         modifier = Modifier
@@ -55,14 +60,20 @@ fun SignUpStepsCategorySelectionPage(
         var gridIconSize by remember { mutableStateOf(80.dp)}
         var gridBoxBorder by remember { mutableStateOf(1.dp)}
 
+        //BURADA BİR PROBLEM VAR PATLIYOR BAKILACAK.
+
         LazyVerticalGrid(
-            modifier = Modifier.wrapContentSize(),
+            state = lazyGridState,
+            modifier = Modifier
+                .wrapContentWidth()
+                .height(330.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top),
             horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
+            userScrollEnabled = true,
             columns = GridCells.Fixed(3),
             content = {
 
-                items(itemList){ item ->
+                items(itemListMain){ item ->
 
                     var isSelected by remember { mutableStateOf(false)}
                     var borderColor by remember { mutableStateOf<Color?>(null)}
@@ -142,7 +153,7 @@ fun SignUpStepsCategorySelectionPage(
             }
         )
 
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Button(
             onClick = {
@@ -161,5 +172,56 @@ fun SignUpStepsCategorySelectionPage(
             text = underButtonHintText,
             style = MaterialTheme.typography.body2
         )
+    }
+
+    //Scroll bar
+    if(itemListMain.size > 9){
+
+        val minPercentage: Double
+
+        if(itemListMain.size < 9){
+            minPercentage = 0.9
+        }else{
+            val invisibleItemCount = itemListMain.size - 9
+            val invisibleLineCount = Math.ceil(invisibleItemCount / 3.0)
+
+            minPercentage = 0.9 - invisibleLineCount/10
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.TopEnd
+        ) {
+
+            val lazyListState = rememberLazyListState()
+
+            Carousel(
+                state = lazyListState,
+                totalLength = 276,
+                modifier = Modifier
+                    .size(2.dp, 330.dp)
+                    .padding(top = 100.dp),
+                minPercentage = minPercentage.toFloat(),
+                maxPercentage = 0.9f,
+                colors = CarouselDefaults.colors(
+                    scrollingThumbColor = MaterialTheme.colors.primary,
+                    scrollingBackgroundColor = MaterialTheme.colors.onSecondary),
+                scrolled = {lazyGridState.firstVisibleItemScrollOffset})
+        }
+    }else{
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.TopEnd
+        ) {
+
+            Divider(
+                modifier = Modifier
+                    .size(2.dp, 330.dp)
+                    .padding(top = 100.dp),
+                color = MaterialTheme.colors.primary
+            )
+        }
     }
 }

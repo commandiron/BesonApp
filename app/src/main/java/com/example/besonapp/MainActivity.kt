@@ -7,13 +7,17 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.besonapp.presentation.FloatingComponentsGraph
+import com.example.besonapp.presentation.common_components.CustomFloatingActionButton
+import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.components.LoadingScreen
 import com.example.besonapp.ui.theme.BesonAppTheme
 import com.example.besonapp.ui.theme.SetSystemUiColorsAndPadding
@@ -37,6 +41,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 fun MainContent(){
 
@@ -46,6 +51,10 @@ fun MainContent(){
     val keyboardController = LocalSoftwareKeyboardController.current
     //For hide scaffold click ripple effect.
     val interactionSource = remember { MutableInteractionSource() }
+
+    //Fab
+    val fabState = rememberSaveable {(mutableStateOf(false))}
+    var isFabClicked by remember { mutableStateOf(false)}
 
     //Navigation Control and Navigation Visibility
     val navController = rememberAnimatedNavController()
@@ -81,6 +90,30 @@ fun MainContent(){
 
                 scaffoldState = scaffoldState,
 
+                floatingActionButton = {
+
+                    fabState.value =
+                        currentRoute == NavigationItem.Profile.screen_route ||
+                                currentRoute == NavigationItem.Prices.screen_route
+
+                    CustomFloatingActionButton(
+                        fabState = fabState.value,
+                        onClick = {
+                            isFabClicked = !isFabClicked
+
+                            navController.navigate(NavigationItem.UpdatePrices.screen_route)
+                        },
+                        backgroundColor = MaterialTheme.colors.primaryVariant) {
+                        Icon(
+                            Icons.Filled.Add,
+                            tint = MaterialTheme.colors.onPrimary,
+                            contentDescription = null
+                        )
+                    }
+                },
+                isFloatingActionButtonDocked = true,
+                floatingActionButtonPosition = FabPosition.Center,
+
                 bottomBar = {
                     BottomNavigationView(
                         navController = navController,
@@ -88,6 +121,9 @@ fun MainContent(){
                 }
 
             ) {
+
+                //I don't know what it is used for.
+                println("unUsedPaddingValues: " + it)
 
                 //Background Surface
                 Surface(

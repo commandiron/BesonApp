@@ -9,11 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 
 @Composable
-fun ProfileScreen(navController: NavController){
+fun PricesScreen(navController: NavController){
 
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center) {
-        Text("Profile Screen")
+        Text("Prices Screen")
     }
 }

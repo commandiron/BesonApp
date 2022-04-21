@@ -16,7 +16,7 @@ data class IntroScreenElement(
         val introElement1 =
             IntroScreenElement(
                 imageResource = R.drawable.besonapp_ss_splash,
-                explanationText = "BEŞON, İNŞAAT YAPIM FİYATLARI TAKİP VE TAŞERON BULMA PLATFORMUDUR.",
+                explanationText = "BEŞON, BİNA YAPIM FİYATLARI TAKİP VE TAŞERON BULMA PLATFORMUDUR.",
                 textPadding = 580f
             )
 

@@ -26,15 +26,15 @@ object NavigationConstants {
     const val SIGNUP_STEPS_AS_COMPANY_SCREEN_ROUTE = "signupstepsascompany"
     const val SIGNUP_STEPS_AS_COMPANY_SCREEN_ARGUMENT = ""
 
-    const val PROFILE_SCREEN_TITLE = "Profile"
+    const val PROFILE_SCREEN_TITLE = "Profil"
     const val PROFILE_SCREEN_ROUTE = "profile"
     const val PROFILE_SCREEN_ARGUMENT = ""
 
-    const val CATAGORIES_SCREEN_TITLE = "Catagories"
-    const val CATAGORIES_SCREEN_ROUTE = "catagories"
-    const val CATAGORIES_SCREEN_ARGUMENT = ""
+    const val PRICES_SCREEN_TITLE = "Fiyatlar"
+    const val PRICES_SCREEN_ROUTE = "prices"
+    const val PRICES_SCREEN_ARGUMENT = ""
 
-    const val SETTINGS_SCREEN_TITLE = "Settings"
-    const val SETTINGS_SCREEN_ROUTE = "settings"
-    const val SETTINGS_SCREEN_ARGUMENT = ""
+    const val UPDATE_PRICES_SCREEN_TITLE = "UpdatePrices"
+    const val UPDATE_PRICES_SCREEN_ROUTE = "updatePrices"
+    const val UPDATE_PRICES_SCREEN_ARGUMENT = ""
 }
