@@ -11,6 +11,7 @@ import androidx.compose.material.icons.outlined.Circle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.besonapp.ui.theme.primaryColorNoTheme
 
 @Composable
 fun CircleCheckbox(
@@ -18,7 +19,7 @@ fun CircleCheckbox(
 
     val color = MaterialTheme.colors
     val imageVector = if (selected) Icons.Filled.CheckCircle else Icons.Outlined.Circle
-    val tint = if (selected) color.primary else color.onSecondary
+    val tint = if (selected) primaryColorNoTheme else color.onBackground
     val background = if (selected) color.background else color.background
 
     Icon(

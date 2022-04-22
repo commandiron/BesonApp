@@ -25,5 +25,4 @@ object AppStaticTexts {
     const val SIGNUP_SCREEN_EMAIL_HINT_TEXT = "Eposta"
     const val SIGNUP_SCREEN_PASSWORD_HINT_TEXT = "Şifre"
     const val SIGNUP_SCREEN_PASSWORD_AGAIN_HINT_TEXT = "Şifre (Tekrar)"
-
 }

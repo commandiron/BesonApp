@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -21,10 +20,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.besonapp.presentation.common_components.CircleCheckbox
+import com.example.besonapp.presentation.common_components.CustomButton
 import com.example.besonapp.presentation.model.ConstructionItem
+import com.example.besonapp.ui.theme.LOWER_VISIBILITY_ALPHA
+import com.example.besonapp.ui.theme.primaryColorNoTheme
 import com.example.besonapp.util.*
-import kotlin.math.min
-import kotlin.math.roundToInt
 
 @Composable
 fun SignUpStepsCategorySelectionPage(
@@ -52,6 +52,7 @@ fun SignUpStepsCategorySelectionPage(
         Text(
             modifier = Modifier.height(20.dp),
             text = title,
+            color = MaterialTheme.colors.onBackground.copy(LOWER_VISIBILITY_ALPHA),
             style = MaterialTheme.typography.body1
         )
 
@@ -86,12 +87,12 @@ fun SignUpStepsCategorySelectionPage(
                         gridIconSize = 60.dp
                         gridBoxBorder = 2.dp
 
-                        borderColor = MaterialTheme.colors.primary
+                        borderColor = primaryColorNoTheme
                     }else{
                         gridIconSize = 50.dp
                         gridBoxBorder = 1.dp
 
-                        borderColor = MaterialTheme.colors.onSecondary
+                        borderColor = MaterialTheme.colors.onBackground
                     }
 
                     Column(
@@ -155,7 +156,7 @@ fun SignUpStepsCategorySelectionPage(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Button(
+        CustomButton(
             onClick = {
                 if(multipleSelectionEnabled){
                     onNextButtonClickMultipleSelection!!.invoke(selectedItemList)
@@ -170,6 +171,7 @@ fun SignUpStepsCategorySelectionPage(
 
         Text(
             text = underButtonHintText,
+            color = MaterialTheme.colors.onBackground.copy(LOWER_VISIBILITY_ALPHA),
             style = MaterialTheme.typography.body2
         )
     }
@@ -205,8 +207,8 @@ fun SignUpStepsCategorySelectionPage(
                 minPercentage = minPercentage.toFloat(),
                 maxPercentage = 0.9f,
                 colors = CarouselDefaults.colors(
-                    scrollingThumbColor = MaterialTheme.colors.primary,
-                    scrollingBackgroundColor = MaterialTheme.colors.onSecondary),
+                    scrollingThumbColor = primaryColorNoTheme,
+                    scrollingBackgroundColor = MaterialTheme.colors.onBackground),
                 scrolled = {lazyGridState.firstVisibleItemScrollOffset})
         }
     }else{
@@ -220,7 +222,7 @@ fun SignUpStepsCategorySelectionPage(
                 modifier = Modifier
                     .size(2.dp, 330.dp)
                     .padding(top = 100.dp),
-                color = MaterialTheme.colors.primary
+                color = primaryColorNoTheme
             )
         }
     }

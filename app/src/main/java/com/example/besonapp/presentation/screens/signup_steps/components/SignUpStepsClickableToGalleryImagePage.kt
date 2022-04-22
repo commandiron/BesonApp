@@ -8,7 +8,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -17,12 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.besonapp.R
+import com.example.besonapp.presentation.common_components.CustomButton
+import com.example.besonapp.ui.theme.LOWER_VISIBILITY_ALPHA
 
 @Composable
 fun SignUpStepsClickableToGalleryImagePage(
@@ -49,6 +48,7 @@ fun SignUpStepsClickableToGalleryImagePage(
 
         Text(
             text = "Profil Resmi Seçiniz.",
+            color = MaterialTheme.colors.onBackground.copy(LOWER_VISIBILITY_ALPHA),
             style = MaterialTheme.typography.body1
         )
 
@@ -63,7 +63,7 @@ fun SignUpStepsClickableToGalleryImagePage(
                 .border(2.dp, Color.Gray, CircleShape),
             contentScale = ContentScale.Crop)
 
-        Button(onClick = {
+        CustomButton(onClick = {
             onClick(imageUri)
 
         }) {

@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.besonapp.presentation.floating_components.signup_steps.FloatingLogoWithAppName
+import com.example.besonapp.ui.theme.primaryColorNoTheme
 
 @Composable
 fun LoadingScreen(
@@ -26,7 +27,7 @@ fun LoadingScreen(
 
             CircularProgressIndicator(
                 modifier = Modifier.size(30.dp),
-                color = androidx.compose.material.MaterialTheme.colors.primary,
+                color = primaryColorNoTheme,
                 strokeWidth = 3.dp
             )
         }

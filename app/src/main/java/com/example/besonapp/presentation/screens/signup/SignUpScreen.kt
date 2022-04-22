@@ -12,8 +12,8 @@ import com.example.besonapp.presentation.CustomerOrCompanyComponent
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.common_components.SignUpFormComponent
 import com.example.besonapp.presentation.floating_components.LogInButtonComponent
-import com.example.besonapp.ui.theme.backgroundColorVariant1
-import com.example.besonapp.ui.theme.backgroundColorVariant2
+import com.example.besonapp.ui.theme.backgroundColorVariantSignUpCustomer
+import com.example.besonapp.ui.theme.backgroundColorVariantSignUpCompany
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_IMAGE_URL
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_LOGIN_BUTTON_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_SIGNUP_BUTTON_TEXT
@@ -82,7 +82,7 @@ fun SignUpScreen(
                         details = SIGNUP_SCREEN_CUSTOMER_TEXT_DETAILS,
                         buttonText = SIGNUP_SCREEN_CUSTOMER_TEXT_BUTTON_TEXT,
                         imageUrl = SIGNUP_SCREEN_CUSTOMER_IMAGE_URL,
-                        surfaceColor = backgroundColorVariant1,
+                        surfaceColor = backgroundColorVariantSignUpCustomer,
                         targetOffsetValue = -constraints.maxHeight/4.toFloat() + 130f,
                         componentIsClosed = customerWindowIsClosed
                     ){
@@ -121,7 +121,7 @@ fun SignUpScreen(
                         details = SIGNUP_SCREEN_COMPANY_TEXT_DETAILS,
                         buttonText = SIGNUP_SCREEN_COMPANY_TEXT_BUTTON_TEXT,
                         imageUrl = SIGNUP_SCREEN_COMPANY_IMAGE_URL,
-                        surfaceColor = backgroundColorVariant2,
+                        surfaceColor = backgroundColorVariantSignUpCompany,
                         targetOffsetValue = constraints.maxHeight/4.toFloat() -130f,
                         componentIsClosed = companyWindowIsClosed
                     ){

@@ -1,5 +1,6 @@
 package com.example.besonapp.ui.theme
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
@@ -66,23 +67,12 @@ val Typography = Typography(
     caption = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Medium,
-        fontSize = 8.sp
+        fontSize = 8.sp,
     ),
     button = TextStyle(
         fontFamily = Roboto,
         fontSize = 16.sp
-    ),
-
-    /* Other default text styles to override
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
-    ),
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
     )
-    */
 )
+
+const val LOWER_VISIBILITY_ALPHA = 0.8f

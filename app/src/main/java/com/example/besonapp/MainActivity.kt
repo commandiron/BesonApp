@@ -3,6 +3,7 @@ package com.example.besonapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -12,7 +13,15 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.besonapp.presentation.FloatingComponentsGraph
@@ -21,6 +30,8 @@ import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.components.LoadingScreen
 import com.example.besonapp.ui.theme.BesonAppTheme
 import com.example.besonapp.ui.theme.SetSystemUiColorsAndPadding
+import com.example.besonapp.ui.theme.onPrimaryColorNoTheme
+import com.example.besonapp.ui.theme.primaryVariantColorNoTheme
 import com.example.chatapp_by_command.view.BottomNavigationView
 import com.google.accompanist.insets.*
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -64,6 +75,9 @@ fun MainContent(){
     //Notify floating components clicks
     var isSignUpScreenLogoClick by remember { mutableStateOf(false)}
 
+    //To reduce alpha of screen during the tutorial
+    val screenAlphaForTutorial by remember { mutableStateOf(1.0f)}
+
     //Notify loading screen
     var isLoading by remember { mutableStateOf(false)}
 
@@ -103,11 +117,13 @@ fun MainContent(){
 
                             navController.navigate(NavigationItem.UpdatePrices.screen_route)
                         },
-                        backgroundColor = MaterialTheme.colors.primaryVariant) {
+                        backgroundColor = primaryVariantColorNoTheme,
+                        screenAlphaForTutorial = screenAlphaForTutorial) {
+
                         Icon(
-                            Icons.Filled.Add,
-                            tint = MaterialTheme.colors.onPrimary,
-                            contentDescription = null
+                            imageVector = Icons.Filled.Add,
+                            tint = onPrimaryColorNoTheme,
+                            contentDescription = null,
                         )
                     }
                 },
@@ -115,9 +131,11 @@ fun MainContent(){
                 floatingActionButtonPosition = FabPosition.Center,
 
                 bottomBar = {
+
                     BottomNavigationView(
                         navController = navController,
-                        currentRoute = currentRoute)
+                        currentRoute = currentRoute,
+                        screenAlphaForTutorial = screenAlphaForTutorial)
                 }
 
             ) {
@@ -126,9 +144,14 @@ fun MainContent(){
                 println("unUsedPaddingValues: " + it)
 
                 //Background Surface
+
+                //BURDA KALDIM, DELİK OLUŞTURMAYA ÇALIŞIYORUM
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background) {
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .alpha(screenAlphaForTutorial),
+                    color = MaterialTheme.colors.background,
+                ){
 
                     //Loading Screen
                     LoadingScreen(isLoading = isLoading) {

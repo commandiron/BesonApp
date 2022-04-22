@@ -1,17 +1,16 @@
 package com.example.besonapp.presentation.screens.login.components
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.example.besonapp.presentation.common_components.CustomButton
 import com.example.besonapp.presentation.common_components.CustomTextFieldComponent
+import com.example.besonapp.ui.theme.LOWER_VISIBILITY_ALPHA
 import com.example.besonapp.util.UserLogInInfo
 import com.example.besonapp.util.AppStaticTexts
 import com.example.besonapp.util.SignUpAndLogInFormErrorHandle
@@ -36,6 +35,7 @@ fun LogInFormComponent(
 
         Text(
             text = "Beşon'a Giriş Yapın",
+            color = MaterialTheme.colors.onBackground,
             style = MaterialTheme.typography.h2)
 
         Spacer(modifier = Modifier.height(28.dp))
@@ -64,7 +64,7 @@ fun LogInFormComponent(
 
             Spacer(modifier = Modifier.height(28.dp))
 
-            Button(
+            CustomButton(
                 modifier = Modifier.width(100.dp),
                 onClick = {
                     onLogInButtonClick(UserLogInInfo(email, password))
@@ -75,11 +75,14 @@ fun LogInFormComponent(
 
             Spacer(modifier = Modifier.height(40.dp))
             
-            Text(text = "ya da")
+            Text(
+                text = "ya da",
+                color = MaterialTheme.colors.onBackground.copy(LOWER_VISIBILITY_ALPHA),
+                style = MaterialTheme.typography.body1)
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            Button(
+            CustomButton(
                 modifier = Modifier.width(100.dp),
                 onClick = {
                     onSignUpButtonClick()

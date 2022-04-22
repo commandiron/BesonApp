@@ -21,7 +21,7 @@ fun NavigationGraph(
     isLoading: (Boolean) -> Unit,
 ) {
 
-    AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screen_route) {
+    AnimatedNavHost(navController, startDestination = NavigationItem.Profile.screen_route) {
 
         //SPLASH SCREEN
         composable(

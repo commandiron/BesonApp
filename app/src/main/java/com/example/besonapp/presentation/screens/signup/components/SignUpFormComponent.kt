@@ -39,6 +39,7 @@ fun SignUpFormComponent(
 
         Text(
             text = SIGNUP_SCREEN_FORM_TITLE_TEXT,
+            color = MaterialTheme.colors.onBackground,
             style = MaterialTheme.typography.h2)
 
         CustomTextFieldComponent(
@@ -68,7 +69,7 @@ fun SignUpFormComponent(
             passwordAgain = it
         }
 
-        Button(
+        CustomButton(
             onClick = {
 
                 onButtonClick(UserSignUpInfo(email, password, passwordAgain))

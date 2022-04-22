@@ -44,6 +44,7 @@ fun SignUpStepsAsCustomerScreen(
 
         Text(
             text = "Profil Oluştur",
+            color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h2
         )

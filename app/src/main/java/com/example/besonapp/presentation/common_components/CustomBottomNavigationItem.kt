@@ -3,7 +3,6 @@ package com.example.besonapp.presentation.common_components
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.TweenSpec
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
@@ -24,6 +23,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
+import com.example.besonapp.ui.theme.primaryColorNoTheme
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -59,30 +59,27 @@ fun RowScope.CustomBottomNavigationItem(
                 enabled = enabled,
                 role = Role.Tab,
                 interactionSource = interactionSource,
-                indication = ripple //Changed line.
+                indication = null //Changed line.
             )
             .weight(1f),
         contentAlignment = Alignment.Center
     ) {
 
-//        if(selected){
-//            Surface(
-//                modifier = Modifier.fillMaxSize(),
-//                color = MaterialTheme.colors.primary
-//            ){}
-//        }
-
         BottomNavigationTransition(
             selectedContentColor,
             unselectedContentColor,
             selected
-        ) { progress ->
-            val animationProgress = if (alwaysShowLabel) 1f else progress
+        ) { animationProgressFromTransition, iconBackGroundAnimationProgressFromTransition ->
+            val animationProgress = if (alwaysShowLabel) 1f else animationProgressFromTransition
+
+            val iconBackGroundAnimationProgress = if (alwaysShowLabel) 1f else iconBackGroundAnimationProgressFromTransition
 
             BottomNavigationItemBaselineLayout(
+                selected = selected,
                 icon = icon,
                 label = styledLabel,
-                iconPositionAnimationProgress = animationProgress
+                iconPositionAnimationProgress = animationProgress,
+                iconBackGroundAnimationProgress = iconBackGroundAnimationProgress
             )
         }
 
@@ -95,16 +92,26 @@ private val BottomNavigationAnimationSpec = TweenSpec<Float>(
     easing = FastOutSlowInEasing
 )
 
+private val IconBackGroundAnimationSpec = TweenSpec<Float>(
+    durationMillis = 300,
+    easing = FastOutSlowInEasing
+)
+
 @Composable
 private fun BottomNavigationTransition(
     activeColor: Color,
     inactiveColor: Color,
     selected: Boolean,
-    content: @Composable (animationProgress: Float) -> Unit
+    content: @Composable (animationProgress: Float, iconBackGroundAnimationSpec: Float) -> Unit
 ) {
     val animationProgress by animateFloatAsState(
         targetValue = if (selected) 1f else 0f,
         animationSpec = BottomNavigationAnimationSpec
+    )
+
+    val iconBackGroundAnimationProgress by animateFloatAsState(
+        targetValue = if (selected) 1f else 0f,
+        animationSpec = IconBackGroundAnimationSpec
     )
 
     val color = lerp(inactiveColor, activeColor, animationProgress)
@@ -113,7 +120,7 @@ private fun BottomNavigationTransition(
         LocalContentColor provides color.copy(alpha = 1f),
         LocalContentAlpha provides color.alpha,
     ) {
-        content(animationProgress)
+        content(animationProgress, iconBackGroundAnimationProgress)
     }
 }
 
@@ -121,18 +128,35 @@ private val BottomNavigationItemHorizontalPadding = 12.dp
 
 @Composable
 private fun BottomNavigationItemBaselineLayout(
+    selected: Boolean,
     icon: @Composable () -> Unit,
     label: @Composable (() -> Unit)?,
     /*@FloatRange(from = 0.0, to = 1.0)*/
-    iconPositionAnimationProgress: Float
+    iconPositionAnimationProgress: Float,
+    iconBackGroundAnimationProgress: Float
 ) {
     Layout(
         {
+
             Box(
-                Modifier
+                modifier = Modifier
                     .layoutId("icon")
-                    .padding(horizontal = BottomNavigationItemHorizontalPadding)
-            ) { icon() }
+                    .padding(horizontal = BottomNavigationItemHorizontalPadding),
+                contentAlignment = Alignment.Center
+            ) {
+
+//                if(selected){
+//                    Surface(
+//                        modifier = Modifier
+//                            .alpha(iconBackGroundAnimationProgress)
+//                            .size(30.dp),
+//                        shape = CircleShape,
+//                        color = primaryColorNoTheme
+//                    ) {}
+//                }
+
+                icon()
+            }
             if (label != null) {
                 Box(
                     Modifier
@@ -141,6 +165,10 @@ private fun BottomNavigationItemBaselineLayout(
                         .padding(horizontal = BottomNavigationItemHorizontalPadding)
                 ) { label() }
             }
+
+
+
+
         }
     ) { measurables, constraints ->
         val iconPlaceable = measurables.first { it.layoutId == "icon" }.measure(constraints)

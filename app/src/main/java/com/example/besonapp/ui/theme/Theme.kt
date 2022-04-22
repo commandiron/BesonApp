@@ -9,38 +9,33 @@ import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalViewConfiguration
 import com.example.besonapp.ui.theme.*
 
 private val DarkColorPalette = darkColors(
     primary = primaryDark,
     onPrimary = onPrimaryDark,
 
-    primaryVariant = primaryVariantDark,
-
-    secondary = secondaryDark,
-    onSecondary = onSecondaryDark,
-
     background = backgroundDark,
     onBackground = onBackgroundDark,
 
     surface = surfaceDark,
-    onSurface = onSurfaceDark
+    onSurface = onSurfaceDark,
+
+    error = errorColorDark
 )
 
 private val LightColorPalette = lightColors(
     primary = primaryLight,
     onPrimary = onPrimaryLight,
 
-    primaryVariant = primaryVariantLight,
-
-    secondary = secondaryLight,
-    onSecondary = onSecondaryLight,
-
     background = backgroundLight,
     onBackground = onBackgroundLight,
 
     surface = surfaceLight,
-    onSurface = onSurfaceLight
+    onSurface = onSurfaceLight,
+
+    error = errorColorLight
 )
 
 @Composable

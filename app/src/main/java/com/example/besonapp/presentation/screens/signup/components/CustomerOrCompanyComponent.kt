@@ -91,12 +91,12 @@ fun CustomerOrCompanyComponent(
                 Text(
                     text = title,
                     style = MaterialTheme.typography.h1,
-                    color = MaterialTheme.colors.primary)
+                    color = primaryColorNoTheme)
 
                 Text(
                     text = details,
                     style = MaterialTheme.typography.body1,
-                    color = MaterialTheme.colors.primary)
+                    color = primaryColorNoTheme)
 
                 val interactionSource = remember { MutableInteractionSource() }
 
@@ -108,7 +108,7 @@ fun CustomerOrCompanyComponent(
 
                             onClick()
                         },
-                    color = buttonAndTextFieldBackgroundColor,
+                    color = textFieldBackgroundColor,
                     shape = RoundedCornerShape(16.dp),
                     border = BorderStroke(1.dp, buttonBorder),
                     elevation = 8.dp
@@ -117,7 +117,7 @@ fun CustomerOrCompanyComponent(
                         Text(
                             modifier = Modifier
                                 .padding(6.dp),
-                            color = surfaceColor,
+                            color = onPrimaryColorNoTheme,
                             text = buttonText,
                             style = MaterialTheme.typography.button)
                     }

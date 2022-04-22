@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.besonapp.presentation.AppLogoIconView
+import com.example.besonapp.ui.theme.primaryColorNoTheme
 import com.example.besonapp.util.AppStaticTexts
 
 
@@ -31,12 +32,12 @@ fun FloatingLogoWithAppName(
         ) {
             AppLogoIconView(
                 sizeAnimValue = 30.dp,
-                tint = MaterialTheme.colors.primary,
+                tint = primaryColorNoTheme,
             )
 
             Text(
                 text = AppStaticTexts.APP_NAME,
-                color = MaterialTheme.colors.primary,
+                color = primaryColorNoTheme,
                 style = MaterialTheme.typography.h3,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.align(Alignment.Bottom)

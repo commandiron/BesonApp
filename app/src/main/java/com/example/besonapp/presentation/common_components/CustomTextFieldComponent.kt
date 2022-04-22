@@ -17,22 +17,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.besonapp.R
-import com.example.besonapp.ui.theme.backgroundLight
-import com.example.besonapp.ui.theme.buttonAndTextFieldBackgroundColor
-import com.example.besonapp.ui.theme.textFieldErrorColor
+import com.example.besonapp.ui.theme.textFieldBackgroundColor
+import com.example.besonapp.ui.theme.onPrimaryColorNoTheme
 
 @Composable
 fun CustomTextFieldComponent(
@@ -63,7 +58,7 @@ fun CustomTextFieldComponent(
     ) {
         BasicTextField(
             modifier = Modifier
-                .background(buttonAndTextFieldBackgroundColor)
+                .background(textFieldBackgroundColor)
                 .border(1.dp, MaterialTheme.colors.onBackground)
                 .padding(6.dp)
                 .width(250.dp)
@@ -84,10 +79,10 @@ fun CustomTextFieldComponent(
             },
             singleLine = true,
             maxLines = maxLine,
-            cursorBrush = SolidColor(MaterialTheme.colors.onPrimary),
+            cursorBrush = SolidColor(onPrimaryColorNoTheme),
             textStyle = LocalTextStyle.current.copy(
                 fontSize = fontSize,
-                color = MaterialTheme.colors.onPrimary
+                color = onPrimaryColorNoTheme
             ),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction =  ImeAction.Next),
             keyboardActions = KeyboardActions(onNext = { localFocusManager.moveFocus(FocusDirection.Down)}),
@@ -100,7 +95,7 @@ fun CustomTextFieldComponent(
                         if (text.isEmpty())
                             Text(hint,
                                 style = LocalTextStyle.current.copy(
-                                    color = MaterialTheme.colors.onPrimary.copy(alpha = 0.3f),
+                                    color = onPrimaryColorNoTheme.copy(alpha = 0.3f),
                                     fontSize = fontSize
                                 )
                             )
@@ -121,7 +116,7 @@ fun CustomTextFieldComponent(
                             Icon(
                                 imageVector = image,
                                 contentDescription = null,
-                                tint = MaterialTheme.colors.onPrimary)
+                                tint = onPrimaryColorNoTheme)
                         }
                     }
                 }
@@ -140,13 +135,13 @@ fun CustomTextFieldComponent(
                 Icon(
                     modifier = Modifier.size(12.dp),
                     imageVector = Icons.Default.ErrorOutline,
-                    tint = textFieldErrorColor,
+                    tint = MaterialTheme.colors.error,
                     contentDescription = null)
                 Text(
                     modifier = Modifier.weight(2f),
                     text = textFieldErrorMessage,
                     style = MaterialTheme.typography.caption,
-                    color = textFieldErrorColor)
+                    color = MaterialTheme.colors.error)
             }
 
         }

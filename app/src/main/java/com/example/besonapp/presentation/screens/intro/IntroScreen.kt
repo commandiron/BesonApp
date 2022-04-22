@@ -17,6 +17,9 @@ import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.besonapp.util.IntroScreenElement
 import com.example.besonapp.presentation.navigation.NavigationItem
+import com.example.besonapp.ui.theme.onPrimaryColorNoTheme
+import com.example.besonapp.ui.theme.primaryColorNoTheme
+import com.example.besonapp.ui.theme.primaryVariantColorNoTheme
 import com.example.besonapp.util.AppStaticTexts.INTRO_SCREEN_BOTTOM_TEXT
 import com.example.besonapp.util.AppStaticTexts.INTRO_SCREEN_BOTTOM_TEXT_LAST_PAGE
 import com.google.accompanist.insets.LocalWindowInsets
@@ -63,6 +66,8 @@ fun IntroScreen(
 
         HorizontalPagerIndicator(
             pagerState = pagerState,
+            activeColor = if(lastPageFlag) primaryVariantColorNoTheme else primaryColorNoTheme,
+            inactiveColor = if(lastPageFlag) primaryVariantColorNoTheme.copy(0.5f) else primaryColorNoTheme.copy(0.5f)
         )
 
         Spacer(modifier = Modifier.height(30.dp))
@@ -78,13 +83,13 @@ fun IntroScreen(
                     navController.navigate(NavigationItem.SignUp.screen_route)
 //                    introViewModel.setUserOpenAppOnceFlagTrue()
                 },
-            color = if(lastPageFlag) MaterialTheme.colors.primaryVariant else MaterialTheme.colors.primary) {
+            color = if(lastPageFlag) primaryVariantColorNoTheme else primaryColorNoTheme) {
 
             Text(
                 modifier = Modifier.padding(top = 18.dp),
                 textAlign = TextAlign.Center,
                 text = if(lastPageFlag) INTRO_SCREEN_BOTTOM_TEXT_LAST_PAGE else INTRO_SCREEN_BOTTOM_TEXT,
-                color = MaterialTheme.colors.onPrimary,
+                color = onPrimaryColorNoTheme,
                 style = MaterialTheme.typography.h3)
         }
     }
