@@ -16,13 +16,12 @@ fun BackToSignUpTextButton(
     contentAlignment: Alignment = Alignment.TopStart,
     onTextClick:() -> Unit
 ){
-
     Box(
         modifier = Modifier
             .fillMaxSize()
             .systemBarsPadding()
             .padding(
-                vertical = 10.dp,
+                vertical = 40.dp,
                 horizontal = 10.dp),
         contentAlignment = contentAlignment
     ) {

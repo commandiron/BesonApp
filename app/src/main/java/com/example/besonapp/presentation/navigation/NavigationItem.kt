@@ -1,15 +1,5 @@
 package com.example.besonapp.presentation.navigation
 
-import android.content.Intent
-import android.graphics.drawable.AdaptiveIconDrawable
-import android.graphics.drawable.Drawable
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
 import com.example.besonapp.R
 import com.example.besonapp.presentation.navigation.NavigationConstants.INTRO_SCREEN_ARGUMENT
 import com.example.besonapp.presentation.navigation.NavigationConstants.INTRO_SCREEN_ROUTE

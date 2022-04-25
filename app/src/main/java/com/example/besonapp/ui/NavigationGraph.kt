@@ -159,7 +159,11 @@ fun NavigationGraph(
                 }
             }) {
 
-            ProfileScreen(navController)
+            ProfileScreen(
+                navController = navController,
+                isLoading = {
+                    isLoading(it)
+                })
         }
 
         // PRICES SCREEN

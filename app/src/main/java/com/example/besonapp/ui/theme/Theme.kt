@@ -16,6 +16,8 @@ private val DarkColorPalette = darkColors(
     primary = primaryDark,
     onPrimary = onPrimaryDark,
 
+    secondary = secondaryDark,
+
     background = backgroundDark,
     onBackground = onBackgroundDark,
 
@@ -28,6 +30,8 @@ private val DarkColorPalette = darkColors(
 private val LightColorPalette = lightColors(
     primary = primaryLight,
     onPrimary = onPrimaryLight,
+
+    secondary = secondaryLight,
 
     background = backgroundLight,
     onBackground = onBackgroundLight,

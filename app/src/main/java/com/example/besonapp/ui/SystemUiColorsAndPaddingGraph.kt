@@ -10,20 +10,22 @@ import com.example.besonapp.presentation.navigation.NavigationItem
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun SetSystemUiColorsAndPadding(
+fun SystemUiColorsAndPaddingGraph(
     currentRoute: String?,
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable (Boolean) -> Unit){
+    content: @Composable (Boolean, Boolean) -> Unit){
 
     val systemUiController = rememberSystemUiController()
 
-    var applySystemUiPadding by remember { mutableStateOf(false)}
+    var applyStatusBarPadding by remember { mutableStateOf(false)}
+    var applyNavigationBarPadding by remember { mutableStateOf(false)}
 
     SideEffect{
         when(currentRoute){
             NavigationItem.Splash.screen_route ->{
 
-                applySystemUiPadding = false
+                applyStatusBarPadding = false
+                applyNavigationBarPadding = false
 
                 systemUiController.setSystemBarsColor(
                     color = logoBackGround,
@@ -33,7 +35,8 @@ fun SetSystemUiColorsAndPadding(
 
             NavigationItem.Intro.screen_route ->{
 
-                applySystemUiPadding = false
+                applyStatusBarPadding = false
+                applyNavigationBarPadding = false
 
                 systemUiController.setStatusBarColor(
                     color = Color.Transparent,
@@ -48,7 +51,8 @@ fun SetSystemUiColorsAndPadding(
 
             NavigationItem.SignUp.screen_route ->{
 
-                applySystemUiPadding = false
+                applyStatusBarPadding = false
+                applyNavigationBarPadding = false
 
                 systemUiController.setSystemBarsColor(
                     color = Color.Transparent,
@@ -58,7 +62,8 @@ fun SetSystemUiColorsAndPadding(
 
             NavigationItem.LogIn.screen_route ->{
 
-                applySystemUiPadding = false
+                applyStatusBarPadding = false
+                applyNavigationBarPadding = false
 
                 systemUiController.setSystemBarsColor(
                     color = Color.Transparent,
@@ -68,7 +73,8 @@ fun SetSystemUiColorsAndPadding(
 
             NavigationItem.SignUpStepsAsCustomer.screen_route ->{
 
-                applySystemUiPadding = false
+                applyStatusBarPadding = false
+                applyNavigationBarPadding = false
 
                 systemUiController.setSystemBarsColor(
                     color = Color.Transparent,
@@ -78,9 +84,15 @@ fun SetSystemUiColorsAndPadding(
 
             NavigationItem.Profile.screen_route ->{
 
-                applySystemUiPadding = true
+                applyStatusBarPadding = false
+                applyNavigationBarPadding = true
 
-                systemUiController.setSystemBarsColor(
+                systemUiController.setStatusBarColor(
+                    color = Color.Transparent,
+                    darkIcons = true
+                )
+
+                systemUiController.setNavigationBarColor(
                     color = Color.Transparent,
                     darkIcons = false
                 )
@@ -88,5 +100,5 @@ fun SetSystemUiColorsAndPadding(
         }
     }
 
-    content(applySystemUiPadding)
+    content(applyStatusBarPadding, applyNavigationBarPadding)
 }

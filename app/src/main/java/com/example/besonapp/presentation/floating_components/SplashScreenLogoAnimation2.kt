@@ -2,7 +2,6 @@ package com.example.besonapp.presentation.floating_components
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -13,27 +12,23 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.besonapp.presentation.AppLogoIconView
 import com.example.besonapp.ui.theme.logoColor
 import com.example.besonapp.util.AppStaticTexts
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 @Composable
-fun SplashScreenLogoAnimation2(
-
-){
+fun SplashScreenLogoAnimation2(){
 
     val scope = rememberCoroutineScope()
 
     val logoRotateAnim = remember { Animatable(0f) }
     val logoBottomPaddingAnim = remember { Animatable(0f) }
     val textAlphaAnim = remember { Animatable(0f) }
-    val textPaddingAnim = remember { Animatable(280f) }
+    val textPaddingAnim = remember { Animatable(250f) }
     val textRotationXAnim = remember { Animatable(-30f) }
 
     val introTextAlphaAnim = remember { Animatable(0f) }
@@ -67,7 +62,7 @@ fun SplashScreenLogoAnimation2(
         }
         scope.launch {
             textPaddingAnim.animateTo(
-                targetValue = 340f,
+                targetValue = 300f,
                 animationSpec = tween(
                     delayMillis = 2800,
                     durationMillis = 500,
@@ -107,7 +102,8 @@ fun SplashScreenLogoAnimation2(
 
     Box(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .systemBarsPadding(),
         contentAlignment = Alignment.BottomCenter
     ) {
 
@@ -117,7 +113,7 @@ fun SplashScreenLogoAnimation2(
             style = MaterialTheme.typography.h1,
             modifier = Modifier
                 .alpha(alpha = textAlphaAnim.value)
-                .padding(bottom = Dp(textPaddingAnim.value))
+                .padding(bottom =  Dp(textPaddingAnim.value))
                 .graphicsLayer { rotationX = textRotationXAnim.value }
 
         )
@@ -125,7 +121,8 @@ fun SplashScreenLogoAnimation2(
 
     Box(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(bottom = 80.dp),
         contentAlignment = Alignment.BottomCenter
     ) {
 
@@ -134,7 +131,6 @@ fun SplashScreenLogoAnimation2(
             color = logoColor,
             style = MaterialTheme.typography.body2,
             modifier = Modifier
-                .padding(bottom = 100.dp)
                 .alpha(alpha = introTextAlphaAnim.value)
         )
     }

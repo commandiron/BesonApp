@@ -4,7 +4,6 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -38,7 +37,6 @@ fun LogInScreenLogoAnimationOnStart(){
         )
     }
 
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -49,6 +47,5 @@ fun LogInScreenLogoAnimationOnStart(){
                 sizeAnimValue = Dp(sizeAnim.value),
                 alphaAnimValue = alphaAnim.value
             )
-
     }
 }

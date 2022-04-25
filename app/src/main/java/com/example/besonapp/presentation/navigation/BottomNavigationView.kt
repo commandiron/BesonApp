@@ -2,29 +2,21 @@ package com.example.chatapp_by_command.view
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.besonapp.presentation.common_components.CustomBottomNavigationItem
 import com.example.besonapp.presentation.navigation.NavigationItem
-import com.example.besonapp.ui.theme.buttonBorder
-import com.example.besonapp.ui.theme.primaryColorNoTheme
 
 
 @Composable
 fun BottomNavigationView(
     navController: NavController,
-    currentRoute: String?,
-    screenAlphaForTutorial: Float) {
+    currentRoute: String?) {
 
     val items = listOf(
         NavigationItem.Profile,
@@ -47,8 +39,7 @@ fun BottomNavigationView(
         content = {
             BottomNavigation(
                 backgroundColor = MaterialTheme.colors.background,
-                elevation = 0.dp,
-                modifier = Modifier.alpha(screenAlphaForTutorial)
+                elevation = 0.dp
             ) {
 
                 items.forEach { item ->

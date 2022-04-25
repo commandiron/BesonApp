@@ -26,7 +26,7 @@ object NavigationConstants {
     const val SIGNUP_STEPS_AS_COMPANY_SCREEN_ROUTE = "signupstepsascompany"
     const val SIGNUP_STEPS_AS_COMPANY_SCREEN_ARGUMENT = ""
 
-    const val PROFILE_SCREEN_TITLE = "Profil"
+    const val PROFILE_SCREEN_TITLE = "Profilim"
     const val PROFILE_SCREEN_ROUTE = "profile"
     const val PROFILE_SCREEN_ARGUMENT = ""
 

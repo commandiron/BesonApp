@@ -6,8 +6,7 @@ import androidx.compose.ui.graphics.Color
 val primaryDark = Color(0xFF2b2b2b)
 val onPrimaryDark = Color(0xFFF7CB1D)
 
-val secondaryDark = Color(0xFF4B4B4B)
-val onSecondaryDark = Color(0xFFB1B0B0)
+val secondaryDark = Color(0xFFF7CB1D)
 
 val backgroundDark = Color(0xFF2b2b2b)
 val onBackgroundDark = Color(0xFFf5f5f5)
@@ -15,17 +14,13 @@ val onBackgroundDark = Color(0xFFf5f5f5)
 val surfaceDark = Color(0xFFFFFFFF)
 val onSurfaceDark = Color(0xFF000000)
 
-val logoColor = Color(0xFFF7CB1D)
-val logoBackGround = Color(0xFF2b2b2b)
-
 val errorColorDark = Color(0xFFFF0000)
 
 //Light
 val primaryLight = Color(0xFFF7CB1D)
 val onPrimaryLight = Color(0xFF2b2b2b)
 
-val secondaryLight = Color(0xFFf5f5f5)
-val onSecondaryLight = Color(0xFF2b2b2b)
+val secondaryLight = Color(0xFF2b2b2b)
 
 val backgroundLight = Color(0xFFf5f5f5)
 val onBackgroundLight = Color(0xFF2b2b2b)
@@ -40,6 +35,9 @@ val errorColorLight = Color(0xFFFF0000)
 val primaryColorNoTheme = Color(0xFFF7CB1D)
 val primaryVariantColorNoTheme = Color(0xFFF7B91D)
 val onPrimaryColorNoTheme = Color(0xFF2b2b2b)
+
+val logoColor = Color(0xFFF7CB1D)
+val logoBackGround = Color(0xFF2b2b2b)
 
 val backgroundColorVariantSignUpCustomer = Color(0xff333333)
 val backgroundColorVariantSignUpCompany = Color(0xFF555454)

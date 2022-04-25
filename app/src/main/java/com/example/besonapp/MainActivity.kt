@@ -3,7 +3,6 @@ package com.example.besonapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -13,23 +12,17 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.*
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.besonapp.presentation.FloatingComponentsGraph
 import com.example.besonapp.presentation.common_components.CustomFloatingActionButton
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.components.LoadingScreen
+import com.example.besonapp.presentation.topbar.TopBarView
+import com.example.besonapp.ui.TutorialGraph
 import com.example.besonapp.ui.theme.BesonAppTheme
-import com.example.besonapp.ui.theme.SetSystemUiColorsAndPadding
+import com.example.besonapp.ui.theme.SystemUiColorsAndPaddingGraph
 import com.example.besonapp.ui.theme.onPrimaryColorNoTheme
 import com.example.besonapp.ui.theme.primaryVariantColorNoTheme
 import com.example.chatapp_by_command.view.BottomNavigationView
@@ -75,99 +68,105 @@ fun MainContent(){
     //Notify floating components clicks
     var isSignUpScreenLogoClick by remember { mutableStateOf(false)}
 
-    //To reduce alpha of screen during the tutorial
-    val screenAlphaForTutorial by remember { mutableStateOf(1.0f)}
-
     //Notify loading screen
     var isLoading by remember { mutableStateOf(false)}
 
+    //Main Theme
     BesonAppTheme() {
 
-        SetSystemUiColorsAndPadding(currentRoute){ applyPadding ->
+        //Padding System Color and Padding
+        SystemUiColorsAndPaddingGraph(currentRoute){ applyPaddingStatusBar, applyPaddingNavigationBar ->
 
-            Scaffold(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(
-                        rememberInsetsPaddingValues(
-                            insets = LocalWindowInsets.current.systemBars,
-                            applyTop = applyPadding,
-                            applyBottom = applyPadding,
-                        )
-                    )
-                    .clickable(
-                        interactionSource = interactionSource,
-                        indication = null
-                    ) {
-                        keyboardController?.hide()
-                    },
+            //Loading Screen
+            LoadingScreen(isLoading = isLoading) {
 
-                scaffoldState = scaffoldState,
+                //Tutorial Screens
+                TutorialGraph(currentRoute = currentRoute){
 
-                floatingActionButton = {
+                    //Layout For All App
+                    Scaffold(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(
+                                rememberInsetsPaddingValues(
+                                    insets = LocalWindowInsets.current.systemBars,
+                                    applyTop = applyPaddingStatusBar,
+                                    applyBottom = applyPaddingNavigationBar,
+                                )
+                            )
+                            .clickable(
+                                interactionSource = interactionSource,
+                                indication = null
+                            ) {
+                                keyboardController?.hide()
+                            },
 
-                    fabState.value =
-                        currentRoute == NavigationItem.Profile.screen_route ||
-                                currentRoute == NavigationItem.Prices.screen_route
+                        scaffoldState = scaffoldState,
 
-                    CustomFloatingActionButton(
-                        fabState = fabState.value,
-                        onClick = {
-                            isFabClicked = !isFabClicked
+                        floatingActionButton = {
 
-                            navController.navigate(NavigationItem.UpdatePrices.screen_route)
+                            fabState.value =
+                                currentRoute == NavigationItem.Profile.screen_route ||
+                                        currentRoute == NavigationItem.Prices.screen_route
+
+                            CustomFloatingActionButton(
+                                fabState = fabState.value,
+                                onClick = {
+                                    isFabClicked = !isFabClicked
+
+                                    navController.navigate(NavigationItem.UpdatePrices.screen_route)
+                                },
+                                backgroundColor = primaryVariantColorNoTheme) {
+
+                                Icon(
+                                    imageVector = Icons.Filled.Add,
+                                    tint = onPrimaryColorNoTheme,
+                                    contentDescription = null,
+                                )
+                            }
                         },
-                        backgroundColor = primaryVariantColorNoTheme,
-                        screenAlphaForTutorial = screenAlphaForTutorial) {
+                        isFloatingActionButtonDocked = true,
+                        floatingActionButtonPosition = FabPosition.Center,
 
-                        Icon(
-                            imageVector = Icons.Filled.Add,
-                            tint = onPrimaryColorNoTheme,
-                            contentDescription = null,
-                        )
-                    }
-                },
-                isFloatingActionButtonDocked = true,
-                floatingActionButtonPosition = FabPosition.Center,
+                        topBar = {
+                            TopBarView(
+                                currentRoute = currentRoute)
+                        },
 
-                bottomBar = {
+                        bottomBar = {
 
-                    BottomNavigationView(
-                        navController = navController,
-                        currentRoute = currentRoute,
-                        screenAlphaForTutorial = screenAlphaForTutorial)
-                }
+                            BottomNavigationView(
+                                navController = navController,
+                                currentRoute = currentRoute)
+                        }
 
-            ) {
+                    ) {
 
-                //I don't know what it is used for.
-                println("unUsedPaddingValues: " + it)
+                        //I don't know what it is used for.
+                        println("unUsedPaddingValues: " + it)
 
-                //Background Surface
-
-                //BURDA KALDIM, DELİK OLUŞTURMAYA ÇALIŞIYORUM
-                Surface(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .alpha(screenAlphaForTutorial),
-                    color = MaterialTheme.colors.background,
-                ){
-
-                    //Loading Screen
-                    LoadingScreen(isLoading = isLoading) {
-
-                        //Floating Components Logo, explaining strip etc.
-                        FloatingComponentsGraph(
-                            navController = navController,
-                            currentRoute = currentRoute,
-                            onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
+                        //Surface for background to prevent unwanted glitches.
+                        Surface(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            color = MaterialTheme.colors.background,
                         ){
 
-                            //Navigation graph for navigate between screens.
-                            NavigationGraph(
+                            //Floating Components Logo, explaining strip etc.
+                            FloatingComponentsGraph(
                                 navController = navController,
-                                isSignUpScreenLogoClick = isSignUpScreenLogoClick){ isLoadingFromScreen ->
-                                isLoading = isLoadingFromScreen
+                                currentRoute = currentRoute,
+                                onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
+                            ){
+
+                                //Navigation graph for navigate between screens.
+                                NavigationGraph(
+                                    navController = navController,
+                                    isSignUpScreenLogoClick = isSignUpScreenLogoClick,
+                                    isLoading = {
+                                        isLoading = it
+                                    }
+                                )
                             }
                         }
                     }
