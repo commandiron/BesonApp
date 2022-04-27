@@ -10,7 +10,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.besonapp.presentation.common_components.CustomButton
 import com.example.besonapp.presentation.common_components.CustomTextFieldComponent
-import com.example.besonapp.ui.theme.LOWER_VISIBILITY_ALPHA
+import com.example.besonapp.presentation.theme.LOWER_VISIBILITY_ALPHA
 import com.example.besonapp.util.UserLogInInfo
 import com.example.besonapp.util.AppStaticTexts
 import com.example.besonapp.util.SignUpAndLogInFormErrorHandle

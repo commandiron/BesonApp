@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import com.example.besonapp.ui.theme.onPrimaryColorNoTheme
-import com.example.besonapp.ui.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.theme.primaryColorNoTheme
 
 @Composable
 fun CustomButton(

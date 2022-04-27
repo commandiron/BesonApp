@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.ui.theme.logoBackGround
+import com.example.besonapp.presentation.theme.logoBackGround
 
 @Composable
 fun SignUpScreenLogoAnimation(

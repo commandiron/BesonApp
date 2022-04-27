@@ -5,7 +5,7 @@ import androidx.navigation.NavController
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.common_components.logoanimation.LogInScreenLogoAnimationOnStart
 import com.example.besonapp.presentation.floating_components.SplashScreenLogoAnimation2
-import com.example.besonapp.presentation.floating_components.common.BackToSignUpTextButton
+import com.example.besonapp.presentation.floating_components.components.common.BackToSignUpTextButton
 import com.example.besonapp.presentation.floating_components.signup_steps.FloatingLogoWithAppName
 
 @Composable
@@ -69,6 +69,11 @@ fun FloatingComponentsGraph(
             BackToSignUpTextButton{
                 navController.navigate(NavigationItem.SignUp.screen_route)
             }
+        }
+
+        NavigationItem.EditProfile.screen_route -> {
+
+            FloatingLogoWithAppName()
         }
     }
 }

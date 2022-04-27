@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.besonapp.R
 import com.example.besonapp.presentation.common_components.CustomButton
-import com.example.besonapp.ui.theme.LOWER_VISIBILITY_ALPHA
+import com.example.besonapp.presentation.theme.LOWER_VISIBILITY_ALPHA
 
 @Composable
 fun SignUpStepsClickableToGalleryImagePage(

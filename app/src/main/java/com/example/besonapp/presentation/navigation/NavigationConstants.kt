@@ -30,11 +30,15 @@ object NavigationConstants {
     const val PROFILE_SCREEN_ROUTE = "profile"
     const val PROFILE_SCREEN_ARGUMENT = ""
 
+    const val EDIT_PROFILE_SCREEN_TITLE = "Profil Düzenle"
+    const val EDIT_PROFILE_SCREEN_ROUTE = "editProfile"
+    const val EDIT_PROFILE_SCREEN_ARGUMENT = ""
+
     const val PRICES_SCREEN_TITLE = "Fiyatlar"
     const val PRICES_SCREEN_ROUTE = "prices"
     const val PRICES_SCREEN_ARGUMENT = ""
 
-    const val UPDATE_PRICES_SCREEN_TITLE = "UpdatePrices"
+    const val UPDATE_PRICES_SCREEN_TITLE = "Fiyat Güncelle"
     const val UPDATE_PRICES_SCREEN_ROUTE = "updatePrices"
     const val UPDATE_PRICES_SCREEN_ARGUMENT = ""
 }

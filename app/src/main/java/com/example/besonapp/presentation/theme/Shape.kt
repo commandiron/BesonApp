@@ -1,4 +1,4 @@
-package com.example.besonapp.ui.theme
+package com.example.besonapp.presentation.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

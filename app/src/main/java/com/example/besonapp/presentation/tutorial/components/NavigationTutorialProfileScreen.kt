@@ -66,8 +66,8 @@ fun NavigationTutorialProfileScreen(
             0 -> {
 
                 highlightCircleSize = Size(
-                    width = screenSize.height / 12,
-                    height = screenSize.height / 12
+                    width = screenSize.height / 14,
+                    height = screenSize.height / 14
                 )
 
                 LaunchedEffect(key1 = screenSize){
@@ -80,7 +80,7 @@ fun NavigationTutorialProfileScreen(
                     infoRectanglePaddingYFromTop = screenSize.height * 0.83f
 
                     highlightCirclePaddingXFromStart =  - screenSize.width * 0.25f
-                    highlightCirclePaddingYFromTop = screenSize.height * 0.92f
+                    highlightCirclePaddingYFromTop = screenSize.height * 0.924f
 
                     infoText = "Profilini Görüntüle"
 
@@ -133,8 +133,8 @@ fun NavigationTutorialProfileScreen(
             2 -> {
 
                 highlightCircleSize = Size(
-                    width = screenSize.height / 12,
-                    height = screenSize.height / 12
+                    width = screenSize.height / 14,
+                    height = screenSize.height / 14
                 )
 
                 LaunchedEffect(key1 = Unit){
@@ -148,7 +148,7 @@ fun NavigationTutorialProfileScreen(
                     infoRectanglePaddingYFromTop = screenSize.height * 0.83f
 
                     highlightCirclePaddingXFromStart = screenSize.width * 0.25f
-                    highlightCirclePaddingYFromTop = screenSize.height * 0.92f
+                    highlightCirclePaddingYFromTop = screenSize.height * 0.924f
 
                     infoText = "Fiyatları Görüntüle"
 
@@ -191,11 +191,11 @@ fun NavigationTutorialProfileScreen(
                 Text(
                     textAlign = TextAlign.Center,
                     text = infoText,
-                    color = MaterialTheme.colors.secondary
+                    color = MaterialTheme.colors.onPrimary
                 )
                 Icon(
                     imageVector = Icons.Default.KeyboardDoubleArrowDown,
-                    tint = MaterialTheme.colors.secondary,
+                    tint = MaterialTheme.colors.onPrimary,
                     contentDescription = null
                 )
             }

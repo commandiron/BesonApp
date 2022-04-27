@@ -12,7 +12,9 @@ fun TutorialGraph(
 
     when(currentRoute){
         NavigationItem.Profile.screen_route -> {
-            NavigationTutorialProfileScreen()
+            NavigationTutorialProfileScreen(
+                enabled = false
+            )
         }
     }
 }

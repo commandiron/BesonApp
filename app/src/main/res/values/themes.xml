@@ -5,6 +5,5 @@
         <item name="android:statusBarColor">@color/logoBackgroundColor</item>
         <item name="android:navigationBarColor">@color/logoBackgroundColor</item>
         <item name="android:windowBackground">@drawable/splash_image</item>
-
     </style>
 </resources>

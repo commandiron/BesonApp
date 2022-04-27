@@ -12,8 +12,8 @@ import com.example.besonapp.presentation.CustomerOrCompanyComponent
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.common_components.SignUpFormComponent
 import com.example.besonapp.presentation.floating_components.LogInButtonComponent
-import com.example.besonapp.ui.theme.backgroundColorVariantSignUpCustomer
-import com.example.besonapp.ui.theme.backgroundColorVariantSignUpCompany
+import com.example.besonapp.presentation.theme.backgroundColorVariantSignUpCustomer
+import com.example.besonapp.presentation.theme.backgroundColorVariantSignUpCompany
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_IMAGE_URL
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_LOGIN_BUTTON_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_SIGNUP_BUTTON_TEXT

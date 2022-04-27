@@ -26,8 +26,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.besonapp.ui.theme.textFieldBackgroundColor
-import com.example.besonapp.ui.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.theme.textFieldBackgroundColor
+import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
 
 @Composable
 fun CustomTextFieldComponent(
@@ -38,7 +38,7 @@ fun CustomTextFieldComponent(
     fontSize: TextUnit = 14.sp,
     maxLine: Int = 1,
     maxChar: Int = 50,
-    keyboardType: KeyboardType,
+    keyboardType: KeyboardType = KeyboardType.Text,
     onFocusChange:(Boolean) -> Unit = {},
     onChange:(String) -> Unit = {}
 ) {
@@ -84,7 +84,7 @@ fun CustomTextFieldComponent(
                 fontSize = fontSize,
                 color = onPrimaryColorNoTheme
             ),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction =  ImeAction.Next),
+            keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction =  ImeAction.Next),
             keyboardActions = KeyboardActions(onNext = { localFocusManager.moveFocus(FocusDirection.Down)}),
             decorationBox = { innerTextField ->
                 Row(
@@ -92,14 +92,14 @@ fun CustomTextFieldComponent(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box(Modifier.weight(1f)) {
-                        if (text.isEmpty())
-                            Text(hint,
-                                style = LocalTextStyle.current.copy(
-                                    color = onPrimaryColorNoTheme.copy(alpha = 0.3f),
-                                    fontSize = fontSize
+                            if (text.isEmpty())
+                                Text(hint,
+                                    style = LocalTextStyle.current.copy(
+                                        color = onPrimaryColorNoTheme.copy(alpha = 0.3f),
+                                        fontSize = fontSize
+                                    )
                                 )
-                            )
-                        innerTextField()
+                            innerTextField()
                     }
 
                     if(keyboardType == KeyboardType.Password){
@@ -116,7 +116,8 @@ fun CustomTextFieldComponent(
                             Icon(
                                 imageVector = image,
                                 contentDescription = null,
-                                tint = onPrimaryColorNoTheme)
+                                tint = onPrimaryColorNoTheme
+                            )
                         }
                     }
                 }

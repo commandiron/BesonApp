@@ -17,8 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.ui.theme.onPrimaryColorNoTheme
-import com.example.besonapp.ui.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.theme.primaryColorNoTheme
 import com.example.besonapp.util.AnimationConstants.APP_EXPLAINING_TAPE_OFFSET_DELAY
 import com.example.besonapp.util.AnimationConstants.APP_EXPLAINING_TAPE_OFFSET_DURATION
 import com.example.besonapp.util.AppStaticTexts

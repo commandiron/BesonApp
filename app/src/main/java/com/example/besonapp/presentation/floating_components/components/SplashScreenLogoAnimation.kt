@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.ui.theme.logoColor
+import com.example.besonapp.presentation.theme.logoColor
 import com.example.besonapp.util.AnimationConstants.SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_AGAIN_DELAY
 import com.example.besonapp.util.AnimationConstants.SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_AGAIN_DURATION
 import com.example.besonapp.util.AnimationConstants.SPLASH_SCREEN_LOGO_ANIMATION_ALPHA_DELAY

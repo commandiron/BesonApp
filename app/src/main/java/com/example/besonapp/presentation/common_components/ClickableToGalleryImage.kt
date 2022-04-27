@@ -8,6 +8,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -17,9 +18,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.besonapp.R
+import com.example.besonapp.presentation.theme.primaryColorNoTheme
 
 @Composable
 fun ClickableToGalleryImage(
+    modifier: Modifier = Modifier,
     size: Dp = 100.dp){
 
     var imageUri by remember {
@@ -36,11 +39,10 @@ fun ClickableToGalleryImage(
         painter = rememberImagePainter(
             data = if(imageUri!=null)imageUri else R.drawable.ic_blank_profile_picture),
         contentDescription = null,
-        modifier = Modifier
+        modifier = modifier
             .clickable { launcher.launch("image/*") }
             .size(size)
-            .clip(CircleShape)
-            .border(2.dp, Color.Gray, CircleShape),
+            .clip(CircleShape),
         contentScale = ContentScale.Crop
     )
 }

@@ -45,7 +45,9 @@ android {
                 "-Xuse-experimental=androidx.compose.ui.ExperimentalComposeUiApi",
                 "-Xuse-experimental=coil.annotation.ExperimentalCoilApi",
                 "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
-                "-Xuse-experimental=com.google.accompanist.pager.ExperimentalPagerApi"
+                "-Xuse-experimental=com.google.accompanist.pager.ExperimentalPagerApi",
+                "-Xuse-experimental=androidx.constraintlayout.compose.ExperimentalMotionApi",
+                "-Xuse-experimental=com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi",
         ]
     }
     buildFeatures {
@@ -78,9 +80,13 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.1.1"
     debugImplementation "androidx.compose.ui:ui-tooling:1.1.1"
 
-    //Androidx
+    //Ktx
     implementation 'androidx.core:core-ktx:1.7.0'
+
+    //Lifecycle
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+
+    //Activity Compose
     implementation 'androidx.activity:activity-compose:1.4.0'
 
     //Compose
@@ -91,6 +97,9 @@ dependencies {
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.material:material-icons-core:$compose_version"
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
+
+    //ConstraintLayout Compose
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0")
 
     //Navigation Compose
     implementation "androidx.navigation:navigation-compose:2.5.0-beta01"
@@ -104,6 +113,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
     implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
     implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-navigation-material:$accompanist_version"
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_system_ui_controller_version"
 
     // Coil

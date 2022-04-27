@@ -13,6 +13,7 @@ import com.example.besonapp.util.AnimationConstants.INTRO_SCREEN_ENTER_TRANSITIO
 import com.example.besonapp.util.AnimationConstants.INTRO_SCREEN_EXIT_TRANSITION_ANIMATION_DURATION
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.material.bottomSheet
 
 @Composable
 fun NavigationGraph(
@@ -148,14 +149,15 @@ fun NavigationGraph(
             NavigationItem.Profile.screen_route,
             enterTransition = {
                 when(initialState.destination.route){
-                    NavigationItem.SignUpStepsAsCustomer.screen_route-> fadeIn(animationSpec = tween(1000))
-                    else -> null
+                    NavigationItem.EditProfile.screen_route -> fadeIn(animationSpec = tween(0))
+                    else -> fadeIn(animationSpec = tween(1000))
                 }
 
             },
             exitTransition = {
                 when(targetState.destination.route){
-                    else -> null
+                    NavigationItem.EditProfile.screen_route -> fadeOut(animationSpec = tween(0))
+                    else -> fadeOut(animationSpec = tween(1000))
                 }
             }) {
 
@@ -166,18 +168,38 @@ fun NavigationGraph(
                 })
         }
 
-        // PRICES SCREEN
+        //EDITPROFILE SCREEN
         composable(
-            NavigationItem.Prices.screen_route,
+            NavigationItem.EditProfile.screen_route,
             enterTransition = {
                 when(initialState.destination.route){
-                    else -> null
+                    NavigationItem.Profile.screen_route -> fadeIn(animationSpec = tween(0))
+                    else -> fadeIn(animationSpec = tween(1000))
                 }
 
             },
             exitTransition = {
                 when(targetState.destination.route){
-                    else -> null
+                    NavigationItem.Profile.screen_route -> fadeOut(animationSpec = tween(0))
+                    else -> fadeOut(animationSpec = tween(1000))
+                }
+            }) {
+
+            EditProfileScreen(navController = navController)
+        }
+
+        // PRICES SCREEN
+        composable(
+            NavigationItem.Prices.screen_route,
+            enterTransition = {
+                when(initialState.destination.route){
+                    else -> fadeIn(animationSpec = tween(1000))
+                }
+
+            },
+            exitTransition = {
+                when(targetState.destination.route){
+                    else -> fadeOut(animationSpec = tween(1000))
                 }
             }) {
 
@@ -185,20 +207,7 @@ fun NavigationGraph(
         }
 
         // UPDATEPRICES SCREEN
-        composable(
-            NavigationItem.UpdatePrices.screen_route,
-            enterTransition = {
-                when(initialState.destination.route){
-                    else -> null
-                }
-
-            },
-            exitTransition = {
-                when(targetState.destination.route){
-                    else -> null
-                }
-            }) {
-
+        bottomSheet(route = NavigationItem.UpdatePrices.screen_route){
             UpdatePricesScreen(navController)
         }
     }

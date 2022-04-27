@@ -11,7 +11,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.ui.theme.logoColor
+import com.example.besonapp.presentation.theme.logoColor
 
 @Composable
 fun AppLogoIconView(

@@ -22,8 +22,8 @@ import coil.compose.rememberImagePainter
 import com.example.besonapp.presentation.common_components.CircleCheckbox
 import com.example.besonapp.presentation.common_components.CustomButton
 import com.example.besonapp.presentation.model.ConstructionItem
-import com.example.besonapp.ui.theme.LOWER_VISIBILITY_ALPHA
-import com.example.besonapp.ui.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.theme.LOWER_VISIBILITY_ALPHA
+import com.example.besonapp.presentation.theme.primaryColorNoTheme
 import com.example.besonapp.util.*
 
 @Composable

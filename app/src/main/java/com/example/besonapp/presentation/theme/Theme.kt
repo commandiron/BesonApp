@@ -1,6 +1,9 @@
-package com.example.besonapp.ui.theme
+package com.example.besonapp.presentation.theme
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.text.selection.LocalTextSelectionColors
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
@@ -9,14 +12,11 @@ import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalViewConfiguration
-import com.example.besonapp.ui.theme.*
 
+@SuppressLint("ConflictingOnColor")
 private val DarkColorPalette = darkColors(
     primary = primaryDark,
     onPrimary = onPrimaryDark,
-
-    secondary = secondaryDark,
 
     background = backgroundDark,
     onBackground = onBackgroundDark,
@@ -30,8 +30,6 @@ private val DarkColorPalette = darkColors(
 private val LightColorPalette = lightColors(
     primary = primaryLight,
     onPrimary = onPrimaryLight,
-
-    secondary = secondaryLight,
 
     background = backgroundLight,
     onBackground = onBackgroundLight,
@@ -60,6 +58,15 @@ fun BesonAppTheme(
     ){
         CompositionLocalProvider(
             LocalRippleTheme provides BesonRippleTheme,
+            content = content
+        )
+
+        val customTextSelectionColors = TextSelectionColors(
+            handleColor = if(darkTheme) onPrimaryDark else Color.Gray,
+            backgroundColor = if(darkTheme) onPrimaryDark.copy(0.4f) else Color.Gray.copy(0.4f),
+        )
+        CompositionLocalProvider(
+            LocalTextSelectionColors provides customTextSelectionColors,
             content = content
         )
     }

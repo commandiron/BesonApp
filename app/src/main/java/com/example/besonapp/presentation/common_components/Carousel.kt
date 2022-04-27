@@ -355,7 +355,7 @@ object CarouselDefaults {
 
     @Composable
     fun colors(
-        thumbColor: Color = MaterialTheme.colors.secondary,
+        thumbColor: Color = MaterialTheme.colors.onPrimary,
         scrollingThumbColor: Color = thumbColor,
         backgroundColor: Color = contentColorFor(thumbColor).copy(alpha = BgAlpha),
         scrollingBackgroundColor: Color = backgroundColor,

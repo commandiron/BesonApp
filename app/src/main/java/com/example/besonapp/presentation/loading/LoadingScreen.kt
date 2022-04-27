@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.besonapp.presentation.floating_components.signup_steps.FloatingLogoWithAppName
-import com.example.besonapp.ui.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.theme.primaryColorNoTheme
 
 @Composable
 fun LoadingScreen(

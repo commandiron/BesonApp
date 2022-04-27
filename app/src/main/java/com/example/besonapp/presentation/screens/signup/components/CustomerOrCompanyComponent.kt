@@ -23,6 +23,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
+import com.example.besonapp.presentation.theme.buttonBorder
+import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.theme.textFieldBackgroundColor
 import com.example.besonapp.ui.theme.*
 
 @Composable
@@ -91,12 +95,14 @@ fun CustomerOrCompanyComponent(
                 Text(
                     text = title,
                     style = MaterialTheme.typography.h1,
-                    color = primaryColorNoTheme)
+                    color = primaryColorNoTheme
+                )
 
                 Text(
                     text = details,
                     style = MaterialTheme.typography.body1,
-                    color = primaryColorNoTheme)
+                    color = primaryColorNoTheme
+                )
 
                 val interactionSource = remember { MutableInteractionSource() }
 

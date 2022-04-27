@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import com.example.besonapp.presentation.navigation.NavigationItem
+import com.example.besonapp.presentation.theme.logoBackGround
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
@@ -83,6 +84,38 @@ fun SystemUiColorsAndPaddingGraph(
             }
 
             NavigationItem.Profile.screen_route ->{
+
+                applyStatusBarPadding = false
+                applyNavigationBarPadding = true
+
+                systemUiController.setStatusBarColor(
+                    color = Color.Transparent,
+                    darkIcons = true
+                )
+
+                systemUiController.setNavigationBarColor(
+                    color = Color.Transparent,
+                    darkIcons = false
+                )
+            }
+
+            NavigationItem.Prices.screen_route ->{
+
+                applyStatusBarPadding = false
+                applyNavigationBarPadding = true
+
+                systemUiController.setStatusBarColor(
+                    color = Color.Transparent,
+                    darkIcons = true
+                )
+
+                systemUiController.setNavigationBarColor(
+                    color = Color.Transparent,
+                    darkIcons = false
+                )
+            }
+
+            NavigationItem.UpdatePrices.screen_route ->{
 
                 applyStatusBarPadding = false
                 applyNavigationBarPadding = true

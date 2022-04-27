@@ -4,30 +4,38 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.besonapp.presentation.FloatingComponentsGraph
 import com.example.besonapp.presentation.common_components.CustomFloatingActionButton
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.components.LoadingScreen
-import com.example.besonapp.presentation.topbar.TopBarView
 import com.example.besonapp.ui.TutorialGraph
-import com.example.besonapp.ui.theme.BesonAppTheme
+import com.example.besonapp.presentation.theme.BesonAppTheme
 import com.example.besonapp.ui.theme.SystemUiColorsAndPaddingGraph
-import com.example.besonapp.ui.theme.onPrimaryColorNoTheme
-import com.example.besonapp.ui.theme.primaryVariantColorNoTheme
+import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.theme.primaryVariantColorNoTheme
+import com.example.besonapp.presentation.top_bar.TopBarGraph
 import com.example.chatapp_by_command.view.BottomNavigationView
 import com.google.accompanist.insets.*
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
+import com.google.accompanist.navigation.material.ModalBottomSheetLayout
 
 //@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -61,7 +69,8 @@ fun MainContent(){
     var isFabClicked by remember { mutableStateOf(false)}
 
     //Navigation Control and Navigation Visibility
-    val navController = rememberAnimatedNavController()
+    val bottomSheetNavigator = rememberBottomSheetNavigator()
+    val navController = rememberAnimatedNavController(bottomSheetNavigator)
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -128,11 +137,6 @@ fun MainContent(){
                         isFloatingActionButtonDocked = true,
                         floatingActionButtonPosition = FabPosition.Center,
 
-                        topBar = {
-                            TopBarView(
-                                currentRoute = currentRoute)
-                        },
-
                         bottomBar = {
 
                             BottomNavigationView(
@@ -142,7 +146,7 @@ fun MainContent(){
 
                     ) {
 
-                        //I don't know what it is used for.
+                        //I didn't need it.
                         println("unUsedPaddingValues: " + it)
 
                         //Surface for background to prevent unwanted glitches.
@@ -159,14 +163,33 @@ fun MainContent(){
                                 onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
                             ){
 
-                                //Navigation graph for navigate between screens.
-                                NavigationGraph(
-                                    navController = navController,
-                                    isSignUpScreenLogoClick = isSignUpScreenLogoClick,
-                                    isLoading = {
-                                        isLoading = it
+                                //BUNU KAYDIRILAMAZ HALE GETİRMEK İSTİYORUM.
+                                //Bottom Sheet
+                                ModalBottomSheetLayout(
+                                    bottomSheetNavigator = bottomSheetNavigator,
+                                    sheetShape = RoundedCornerShape(
+                                        bottomStart = 0.dp,
+                                        bottomEnd = 0.dp,
+                                        topStart = 40.dp,
+                                        topEnd = 40.dp),
+                                    scrimColor = Color.Black.copy(0.5f)
+                                ) {
+
+                                    //TopBar not in scaffold to prevent animation glitches.
+                                    TopBarGraph(
+                                        currentRoute = currentRoute
+                                    ) {
+
+                                        //Navigation graph for navigate between screens.
+                                        NavigationGraph(
+                                            navController = navController,
+                                            isSignUpScreenLogoClick = isSignUpScreenLogoClick,
+                                            isLoading = {
+                                                isLoading = it
+                                            }
+                                        )
                                     }
-                                )
+                                }
                             }
                         }
                     }

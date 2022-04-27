@@ -1,4 +1,4 @@
-package com.example.besonapp.ui.theme
+package com.example.besonapp.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -6,13 +6,11 @@ import androidx.compose.ui.graphics.Color
 val primaryDark = Color(0xFF2b2b2b)
 val onPrimaryDark = Color(0xFFF7CB1D)
 
-val secondaryDark = Color(0xFFF7CB1D)
-
 val backgroundDark = Color(0xFF2b2b2b)
 val onBackgroundDark = Color(0xFFf5f5f5)
 
-val surfaceDark = Color(0xFFFFFFFF)
-val onSurfaceDark = Color(0xFF000000)
+val surfaceDark = Color(0xFF575656)
+val onSurfaceDark = Color(0xFFFFFFFF)
 
 val errorColorDark = Color(0xFFFF0000)
 
@@ -20,13 +18,11 @@ val errorColorDark = Color(0xFFFF0000)
 val primaryLight = Color(0xFFF7CB1D)
 val onPrimaryLight = Color(0xFF2b2b2b)
 
-val secondaryLight = Color(0xFF2b2b2b)
-
 val backgroundLight = Color(0xFFf5f5f5)
 val onBackgroundLight = Color(0xFF2b2b2b)
 
-val surfaceLight = Color(0xFF000000)
-val onSurfaceLight = Color(0xFFFFFFFF)
+val surfaceLight = Color(0xFFFFFFFF)
+val onSurfaceLight = Color(0xFF000000)
 
 val errorColorLight = Color(0xFFFF0000)
 

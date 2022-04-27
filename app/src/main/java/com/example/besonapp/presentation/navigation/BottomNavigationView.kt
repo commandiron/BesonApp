@@ -2,10 +2,12 @@ package com.example.chatapp_by_command.view
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.tween
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
@@ -34,8 +36,8 @@ fun BottomNavigationView(
     
     AnimatedVisibility(
         visibleState = bottomBarMTS,
-        enter = slideInVertically(initialOffsetY = { it }),
-        exit = slideOutVertically(targetOffsetY = { it }),
+        enter = fadeIn(tween(1000)),
+        exit = fadeOut(tween(1000)),
         content = {
             BottomNavigation(
                 backgroundColor = MaterialTheme.colors.background,

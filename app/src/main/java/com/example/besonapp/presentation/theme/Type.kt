@@ -1,4 +1,4 @@
-package com.example.besonapp.ui.theme
+package com.example.besonapp.presentation.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -41,12 +41,12 @@ val Typography = Typography(
     ),
     h3 = TextStyle(
         fontFamily = Roboto,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Medium,
         fontSize = 18.sp
     ),
     h4 = TextStyle(
         fontFamily = Roboto,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Medium,
         fontSize = 16.sp
     ),
     h5 = TextStyle(

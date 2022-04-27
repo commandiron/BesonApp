@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.besonapp.presentation.AppLogoIconView
-import com.example.besonapp.ui.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.theme.primaryColorNoTheme
 import com.example.besonapp.util.AppStaticTexts
 
 

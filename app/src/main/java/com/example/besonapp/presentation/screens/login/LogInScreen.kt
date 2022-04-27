@@ -1,5 +1,6 @@
 package com.example.besonapp.presentation.screens
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,7 +19,7 @@ fun LogInScreen(navController: NavController){
     var signUpAndLogInFormErrorHandle by remember { mutableStateOf(SignUpAndLogInFormErrorHandle()) }
 
     LogInFormComponent(
-        modifier = Modifier.padding(top = 150.dp),
+        modifier = Modifier.fillMaxSize().padding(top = 150.dp),
         signUpAndLogInFormErrorHandle = signUpAndLogInFormErrorHandle,
         onSignUpButtonClick = {
           navController.navigate(NavigationItem.SignUp.screen_route)

@@ -17,9 +17,9 @@ import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.besonapp.util.IntroScreenElement
 import com.example.besonapp.presentation.navigation.NavigationItem
-import com.example.besonapp.ui.theme.onPrimaryColorNoTheme
-import com.example.besonapp.ui.theme.primaryColorNoTheme
-import com.example.besonapp.ui.theme.primaryVariantColorNoTheme
+import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.theme.primaryVariantColorNoTheme
 import com.example.besonapp.util.AppStaticTexts.INTRO_SCREEN_BOTTOM_TEXT
 import com.example.besonapp.util.AppStaticTexts.INTRO_SCREEN_BOTTOM_TEXT_LAST_PAGE
 import com.google.accompanist.insets.LocalWindowInsets
@@ -83,7 +83,8 @@ fun IntroScreen(
                     navController.navigate(NavigationItem.SignUp.screen_route)
 //                    introViewModel.setUserOpenAppOnceFlagTrue()
                 },
-            color = if(lastPageFlag) primaryVariantColorNoTheme else primaryColorNoTheme) {
+            color = if(lastPageFlag) primaryVariantColorNoTheme else primaryColorNoTheme
+        ) {
 
             Text(
                 modifier = Modifier.padding(top = 18.dp),

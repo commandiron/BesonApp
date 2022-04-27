@@ -121,7 +121,7 @@ fun SignUpStepsAsCompanyScreen(
                     val mainConstructionCatagories = ConstructionItem.createCategories()
 
                     SignUpStepsCategorySelectionPage(
-                        title = "Ana İnşaat Kategorinizi Seçiniz",
+                        title = "Ana Faaliyet Kategorinizi Seçiniz",
                         itemListMain = mainConstructionCatagories,
                         buttonText = "İleri",
                         multipleSelectionEnabled = false,
@@ -146,7 +146,7 @@ fun SignUpStepsAsCompanyScreen(
                 4 -> {
 
                     SignUpStepsCategorySelectionPage(
-                        title = "Alt Kategori Seçiniz",
+                        title = "Uzmanlık Alan(lar)ınızı Seçiniz",
                         underButtonHintText = "*Birden fazla kategori seçebilirsiniz ve daha sonra değiştirebilirsiniz.",
                         itemListMain = selectedMainCategory?.subCategories ?: emptyList(),
                         buttonText = "Kaydı Tamamla",

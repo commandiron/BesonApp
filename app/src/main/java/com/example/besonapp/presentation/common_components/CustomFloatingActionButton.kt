@@ -16,9 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.ui.theme.NoRippleTheme
-import com.example.besonapp.ui.theme.onPrimaryColorNoTheme
-import com.example.besonapp.ui.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.theme.NoRippleTheme
+import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.theme.primaryColorNoTheme
 
 @Composable
 fun CustomFloatingActionButton(

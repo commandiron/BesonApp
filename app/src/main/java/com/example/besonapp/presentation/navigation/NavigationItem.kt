@@ -1,6 +1,9 @@
 package com.example.besonapp.presentation.navigation
 
 import com.example.besonapp.R
+import com.example.besonapp.presentation.navigation.NavigationConstants.EDIT_PROFILE_SCREEN_ARGUMENT
+import com.example.besonapp.presentation.navigation.NavigationConstants.EDIT_PROFILE_SCREEN_ROUTE
+import com.example.besonapp.presentation.navigation.NavigationConstants.EDIT_PROFILE_SCREEN_TITLE
 import com.example.besonapp.presentation.navigation.NavigationConstants.INTRO_SCREEN_ARGUMENT
 import com.example.besonapp.presentation.navigation.NavigationConstants.INTRO_SCREEN_ROUTE
 import com.example.besonapp.presentation.navigation.NavigationConstants.INTRO_SCREEN_TITLE
@@ -85,6 +88,13 @@ sealed class NavigationItem(
         screen_route_without_arguments = PROFILE_SCREEN_ROUTE,
         arguments = PROFILE_SCREEN_ARGUMENT,
         screen_route = PROFILE_SCREEN_ROUTE + PROFILE_SCREEN_ARGUMENT
+    )
+
+    object EditProfile : NavigationItem(
+        title = EDIT_PROFILE_SCREEN_TITLE,
+        screen_route_without_arguments = EDIT_PROFILE_SCREEN_ROUTE,
+        arguments = EDIT_PROFILE_SCREEN_ARGUMENT,
+        screen_route = EDIT_PROFILE_SCREEN_ROUTE + EDIT_PROFILE_SCREEN_ARGUMENT
     )
 
     object Prices : NavigationItem(

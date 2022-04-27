@@ -1,4 +1,4 @@
-package com.example.besonapp.presentation.floating_components.common
+package com.example.besonapp.presentation.floating_components.components.common
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.ui.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.theme.primaryColorNoTheme
 
 @Composable
 fun BackToSignUpTextButton(
