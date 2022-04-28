@@ -69,7 +69,6 @@ dependencies {
     ext {
         material3_version = '1.0.0-alpha07'
         accompanist_version = '0.24.3-alpha'
-        accompanist_system_ui_controller_version = '0.10.0'
         coil_version = '1.4.0'
     }
 
@@ -114,7 +113,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
     implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
     implementation "com.google.accompanist:accompanist-navigation-material:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_system_ui_controller_version"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
 
     // Coil
     implementation "io.coil-kt:coil:$coil_version"

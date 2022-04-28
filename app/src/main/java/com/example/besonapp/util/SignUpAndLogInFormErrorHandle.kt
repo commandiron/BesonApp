@@ -66,7 +66,6 @@ class SignUpAndLogInFormErrorHandle(
             logInError.emailErrorMessage = ""
         }
         if(userLogInInfo.password.isEmpty()){
-            println("1")
             logInError.passwordError = true
             logInError.passwordErrorMessage =
                 ErrorTexts.EMPTY_TEXT_FIELD_ERROR_MESSAGE

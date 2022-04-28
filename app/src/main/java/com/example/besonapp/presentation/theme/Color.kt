@@ -32,6 +32,8 @@ val primaryColorNoTheme = Color(0xFFF7CB1D)
 val primaryVariantColorNoTheme = Color(0xFFF7B91D)
 val onPrimaryColorNoTheme = Color(0xFF2b2b2b)
 
+val insertPriceButtonColor = Color(0xFFF7A71D)
+
 val logoColor = Color(0xFFF7CB1D)
 val logoBackGround = Color(0xFF2b2b2b)
 

@@ -7,7 +7,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
@@ -20,31 +19,38 @@ fun BottomNavigationView(
     navController: NavController,
     currentRoute: String?) {
 
-    val items = listOf(
+    val inBottomNavigationAndVisibleItems = listOf(
         NavigationItem.Profile,
         NavigationItem.Prices
+    )
+
+    val notInBottomNavigationAndVisible = listOf(
+        NavigationItem.UpdatePrices
     )
 
     val bottomBarMTS = remember {MutableTransitionState(false)}
 
     LaunchedEffect(key1 = currentRoute){
 
-        val screenRouteList = items.map { it.screen_route }
+        val screenRouteList =
+            inBottomNavigationAndVisibleItems.map { it.screen_route } +
+                notInBottomNavigationAndVisible.map { it.screen_route }
 
-        bottomBarMTS.targetState = screenRouteList.contains(currentRoute)
+        bottomBarMTS.targetState =
+            screenRouteList.contains(currentRoute)
     }
     
     AnimatedVisibility(
         visibleState = bottomBarMTS,
-        enter = fadeIn(tween(1000)),
-        exit = fadeOut(tween(1000)),
+        enter = fadeIn(tween(500)),
+        exit = fadeOut(tween(500)),
         content = {
             BottomNavigation(
                 backgroundColor = MaterialTheme.colors.background,
                 elevation = 0.dp
             ) {
 
-                items.forEach { item ->
+                inBottomNavigationAndVisibleItems.forEach { item ->
 
                     CustomBottomNavigationItem(
                         icon = {

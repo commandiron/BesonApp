@@ -1,6 +1,7 @@
 package com.example.besonapp.presentation.common_components
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.*
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.defaultMinSize
@@ -33,25 +34,34 @@ fun CustomFloatingActionButton(
 ) {
     rememberRipple()
     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme){
-        Surface(
-            onClick = onClick,
-            shape = shape,
-            color = backgroundColor,
-            contentColor = contentColor,
-            elevation = elevation.elevation(interactionSource).value,
-            interactionSource = interactionSource
-        ) {
-            AnimatedVisibility(visible = fabState) {
-                CompositionLocalProvider(
-                    LocalContentAlpha provides contentColor.alpha) {
+
+        AnimatedVisibility(
+            visible = fabState,
+            enter = scaleIn(tween(durationMillis = 250)),
+            exit = scaleOut(tween(durationMillis = 250))) {
+
+            Surface(
+                onClick = onClick,
+                shape = shape,
+                color = backgroundColor,
+                contentColor = contentColor,
+                elevation = elevation.elevation(interactionSource).value,
+                interactionSource = interactionSource
+            ) {
+
+                CompositionLocalProvider(LocalContentAlpha provides contentColor.alpha) {
+
                     ProvideTextStyle(MaterialTheme.typography.button) {
+
                         Box(
                             modifier = Modifier
                                 .defaultMinSize(
                                     minWidth = 56.dp,
                                     minHeight = 56.dp),
                             contentAlignment = Alignment.Center
-                        ) { content() }
+                        ){
+                            content()
+                        }
                     }
                 }
             }

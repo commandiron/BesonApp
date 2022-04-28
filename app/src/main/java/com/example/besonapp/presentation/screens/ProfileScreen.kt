@@ -1,8 +1,11 @@
 package com.example.besonapp.presentation.screens
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
@@ -11,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -34,12 +38,8 @@ fun ProfileScreen(
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState()
 
-
-    // İLGİNÇ BİR ŞEKİLDE BOTTOM SHEETİMİN DIŞARI DOKUNUNCA KAPANMASINI ENGELLEYEN BİR ŞEY VAR
-
     HorizontalPager(
         modifier = Modifier
-            .focusable()
             .fillMaxSize()
             .statusBarsPadding()
             .padding(top = 36.dp),
@@ -52,7 +52,6 @@ fun ProfileScreen(
         when(page){
 
             0 -> {ProfileScreenMainPage(navController, coroutineScope, pagerState)}
-
             1 -> {ProfileScreenMyPriceUpdatesPage()}
         }
     }
@@ -66,7 +65,6 @@ fun ProfileScreen(
             }
         }
     }
-
 }
 
 @Composable

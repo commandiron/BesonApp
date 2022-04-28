@@ -4,9 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,8 +31,8 @@ import com.example.besonapp.presentation.top_bar.TopBarGraph
 import com.example.chatapp_by_command.view.BottomNavigationView
 import com.google.accompanist.insets.*
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
+import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
 
 //@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -70,6 +67,7 @@ fun MainContent(){
 
     //Navigation Control and Navigation Visibility
     val bottomSheetNavigator = rememberBottomSheetNavigator()
+
     val navController = rememberAnimatedNavController(bottomSheetNavigator)
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -92,88 +90,94 @@ fun MainContent(){
                 //Tutorial Screens
                 TutorialGraph(currentRoute = currentRoute){
 
-                    //Layout For All App
-                    Scaffold(
+                    //Bottom Sheet (Over the scaffold because should above the navigation bar)
+                    ModalBottomSheetLayout(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .padding(
-                                rememberInsetsPaddingValues(
-                                    insets = LocalWindowInsets.current.systemBars,
-                                    applyTop = applyPaddingStatusBar,
-                                    applyBottom = applyPaddingNavigationBar,
-                                )
-                            )
                             .clickable(
                                 interactionSource = interactionSource,
                                 indication = null
                             ) {
                                 keyboardController?.hide()
                             },
-
-                        scaffoldState = scaffoldState,
-
-                        floatingActionButton = {
-
-                            fabState.value =
-                                currentRoute == NavigationItem.Profile.screen_route ||
-                                        currentRoute == NavigationItem.Prices.screen_route
-
-                            CustomFloatingActionButton(
-                                fabState = fabState.value,
-                                onClick = {
-                                    isFabClicked = !isFabClicked
-
-                                    navController.navigate(NavigationItem.UpdatePrices.screen_route)
-                                },
-                                backgroundColor = primaryVariantColorNoTheme) {
-
-                                Icon(
-                                    imageVector = Icons.Filled.Add,
-                                    tint = onPrimaryColorNoTheme,
-                                    contentDescription = null,
-                                )
-                            }
-                        },
-                        isFloatingActionButtonDocked = true,
-                        floatingActionButtonPosition = FabPosition.Center,
-
-                        bottomBar = {
-
-                            BottomNavigationView(
-                                navController = navController,
-                                currentRoute = currentRoute)
-                        }
-
+                        bottomSheetNavigator = bottomSheetNavigator,
+                        sheetShape = RoundedCornerShape(
+                            bottomStart = 0.dp,
+                            bottomEnd = 0.dp,
+                            topStart = 40.dp,
+                            topEnd = 40.dp),
+                        scrimColor = Color.Black.copy(0.5f)
                     ) {
 
-                        //I didn't need it.
-                        println("unUsedPaddingValues: " + it)
-
-                        //Surface for background to prevent unwanted glitches.
-                        Surface(
+                        //Layout For All App
+                        Scaffold(
                             modifier = Modifier
-                                .fillMaxSize(),
-                            color = MaterialTheme.colors.background,
-                        ){
+                                .fillMaxSize()
+                                .padding(
+                                    rememberInsetsPaddingValues(
+                                        insets = LocalWindowInsets.current.systemBars,
+                                        applyTop = applyPaddingStatusBar,
+                                        applyBottom = applyPaddingNavigationBar,
+                                    )
+                                )
+                                .clickable(
+                                    interactionSource = interactionSource,
+                                    indication = null
+                                ) {
+                                    keyboardController?.hide()
+                                },
 
-                            //Floating Components Logo, explaining strip etc.
-                            FloatingComponentsGraph(
-                                navController = navController,
-                                currentRoute = currentRoute,
-                                onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
+                            scaffoldState = scaffoldState,
+
+                            floatingActionButton = {
+
+                                fabState.value =
+                                    currentRoute == NavigationItem.Profile.screen_route ||
+                                            currentRoute == NavigationItem.Prices.screen_route
+
+                                CustomFloatingActionButton(
+                                    fabState = fabState.value,
+                                    onClick = {
+                                        isFabClicked = !isFabClicked
+
+                                        navController.navigate(NavigationItem.UpdatePrices.screen_route)
+                                    },
+                                    backgroundColor = primaryVariantColorNoTheme) {
+
+                                    Icon(
+                                        imageVector = Icons.Filled.Add,
+                                        tint = onPrimaryColorNoTheme,
+                                        contentDescription = null,
+                                    )
+                                }
+                            },
+                            isFloatingActionButtonDocked = true,
+                            floatingActionButtonPosition = FabPosition.Center,
+
+                            bottomBar = {
+
+                                BottomNavigationView(
+                                    navController = navController,
+                                    currentRoute = currentRoute)
+                            }
+
+                        ) {
+
+                            //I didn't need it.
+                            it
+
+                            //Surface for background to prevent unwanted glitches.
+                            Surface(
+                                modifier = Modifier
+                                    .fillMaxSize(),
+                                color = MaterialTheme.colors.background,
                             ){
 
-                                //BUNU KAYDIRILAMAZ HALE GETİRMEK İSTİYORUM.
-                                //Bottom Sheet
-                                ModalBottomSheetLayout(
-                                    bottomSheetNavigator = bottomSheetNavigator,
-                                    sheetShape = RoundedCornerShape(
-                                        bottomStart = 0.dp,
-                                        bottomEnd = 0.dp,
-                                        topStart = 40.dp,
-                                        topEnd = 40.dp),
-                                    scrimColor = Color.Black.copy(0.5f)
-                                ) {
+                                //Floating Components Logo, explaining strip etc.
+                                FloatingComponentsGraph(
+                                    navController = navController,
+                                    currentRoute = currentRoute,
+                                    onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
+                                ){
 
                                     //TopBar not in scaffold to prevent animation glitches.
                                     TopBarGraph(
