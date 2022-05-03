@@ -10,8 +10,6 @@ BESON is a native android construction market price tracking application written
 
 <img src="https://user-images.githubusercontent.com/50905347/163470343-bfcab4b7-75df-4588-bbf8-3cfccb5945a7.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/163471241-3b3df951-b09d-4422-a6a5-952a407d96dd.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/163470350-f92a7508-2145-46aa-94a4-35c15eee84dc.png" width="250" height="530">
 
-<img src="https://user-images.githubusercontent.com/50905347/163952753-d41ae9c4-fd16-400f-a249-0c30cbae6718.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/163882783-abb183cd-efb9-4428-bc4c-fbc6d80a0454.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/163882786-56a718b2-830c-43de-b731-91c4dad4c3a2.png" width="250" height="530">
-
 * Screenshots (Light Theme) 🖼️
 
 <img src="https://user-images.githubusercontent.com/50905347/163888639-e90c743e-4f78-4000-9241-69319bd0b1c3.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/163889168-ae0ce1ee-4dc2-44ab-b3a1-643f92d98744.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/163888646-10d2ec66-a216-4d1c-88d3-68f77b995a10.png" width="250" height="530">
