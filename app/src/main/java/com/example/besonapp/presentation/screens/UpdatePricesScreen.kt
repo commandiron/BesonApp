@@ -1,11 +1,11 @@
 package com.example.besonapp.presentation.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -16,7 +16,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
@@ -24,36 +23,40 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
-import com.example.besonapp.presentation.model.ConstructionItem
+import com.example.besonapp.presentation.model.ConstructionPriceItem
+import com.example.besonapp.presentation.model.MainConstructionItem
+import com.example.besonapp.presentation.theme.alternativeGray
 import com.example.besonapp.presentation.theme.insertPriceButtonColor
 import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
 import com.example.besonapp.presentation.theme.primaryColorNoTheme
 import com.example.besonapp.util.NumberDecimalValidation.getValidatedNumber
-import com.google.accompanist.insets.LocalWindowInsets
-import com.google.accompanist.insets.navigationBarsWithImePadding
-import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.myapp.ui.feature.components.AddSymbolIntoTextFieldVisualTransformation
 
 @Composable
 fun UpdatePricesScreen(
-    navController: NavController){
+    navController: NavController) {
 
-    var price by remember { mutableStateOf("")}
+    var price by remember { mutableStateOf("") }
 
     //Bu kısım viewmodelden kullanıcı profili olarak gelecek.
-    val data = ConstructionItem.createCategories()[6]
+    val mainConstructionItems = MainConstructionItem.createMainCategories()[6]
     //Bu kısım viewmodelden kullanıcı profili olarak gelecek.
-    val items = data.subCategories ?: emptyList()
+    val subConstructionCategories = mainConstructionItems.subConstructionCategories ?: emptyList()
+    //Bu kısım viewmodelden kullanıcı profili olarak gelecek.
+    var priceCategories by remember { mutableStateOf<List<ConstructionPriceItem>>(listOf()) }
 
-    var dropDownMenuIsExpanded by remember { mutableStateOf(false) }
-    var dropDownMenuSelectedIndex by remember { mutableStateOf(0) }
+    var firstDropDownMenuIsExpanded by remember { mutableStateOf(false) }
+    var firstDropDownMenuSelectedIndex by remember { mutableStateOf(0) }
+
+    var secondDropDownMenuIsExpanded by remember { mutableStateOf(false) }
+    var secondDropDownMenuSelectedIndex by remember { mutableStateOf(0) }
 
     val keyboardController = LocalSoftwareKeyboardController.current
     var enableAlertDialog by remember { mutableStateOf(false) }
 
     Surface(
         modifier = Modifier
-            .imePadding() //*Klavyenin üstünde beyaz bir boşluk kalıyor.
+            //.imePadding() //*Klavyenin üstünde beyaz bir boşluk kalıyor, başka ekran boyutlarında sıkıntı çıkarıyor.
             .heightIn(max = 414.dp),
         color = primaryColorNoTheme,
         contentColor = onPrimaryColorNoTheme
@@ -63,19 +66,24 @@ fun UpdatePricesScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(40.dp),
-            contentAlignment = Alignment.TopCenter) {
+            contentAlignment = Alignment.TopCenter
+        ) {
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
 
-                Text(text = "Fiyat Kategorisini Seç")
+                Text(text = "Kategori Seç")
 
                 Surface(
                     modifier = Modifier
                         .clickable(
-                            onClick = { dropDownMenuIsExpanded = true }),
+                            onClick = {
+                                secondDropDownMenuSelectedIndex = 0
+                                firstDropDownMenuIsExpanded = true
+                                secondDropDownMenuIsExpanded = false
+                            }),
                     color = onPrimaryColorNoTheme,
                     shape = RoundedCornerShape(20.dp)
                 ) {
@@ -83,49 +91,59 @@ fun UpdatePricesScreen(
                         modifier = Modifier
                             .wrapContentSize()
                             .padding(10.dp),
-                        contentAlignment = Alignment.Center) {
+                        contentAlignment = Alignment.Center
+                    ) {
 
                         Row(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = items[dropDownMenuSelectedIndex].title,
+                                text = subConstructionCategories[firstDropDownMenuSelectedIndex].title,
                                 textAlign = TextAlign.Center,
-                                color = primaryColorNoTheme)
+                                color = primaryColorNoTheme
+                            )
                             Icon(
                                 imageVector = Icons.Default.KeyboardArrowDown,
                                 tint = primaryColorNoTheme,
-                                contentDescription = null)
+                                contentDescription = null
+                            )
                         }
                     }
-                    Box(modifier = Modifier
-                            .offset(x = 0.dp, y = 40.dp)) {
+                    Box(
+                        modifier = Modifier
+                            .offset(x = 0.dp, y = 40.dp)
+                    ) {
                         DropdownMenu(
-                            expanded = dropDownMenuIsExpanded,
-                            onDismissRequest = { dropDownMenuIsExpanded = false },
+                            expanded = firstDropDownMenuIsExpanded,
+                            onDismissRequest = { firstDropDownMenuIsExpanded = false },
                             modifier = Modifier
                                 .requiredSizeIn(maxHeight = 160.dp, maxWidth = 128.dp)
                                 .background(onPrimaryColorNoTheme)
                         ) {
 
-                            items.forEachIndexed { index, s ->
+                            subConstructionCategories.forEachIndexed { index, s ->
 
                                 Column(
                                     verticalArrangement = Arrangement.Center
                                 ) {
                                     DropdownMenuItem(onClick = {
-                                        dropDownMenuSelectedIndex = index
-                                        dropDownMenuIsExpanded = false
+                                        priceCategories =
+                                            subConstructionCategories[index].priceCategories
+                                                ?: emptyList()
+                                        firstDropDownMenuSelectedIndex = index
+                                        firstDropDownMenuIsExpanded = false
                                     }) {
 
-                                        if(index == dropDownMenuSelectedIndex){
+                                        if (index == firstDropDownMenuSelectedIndex) {
                                             Text(
                                                 text = s.title,
-                                                color = primaryColorNoTheme)
-                                        }else{
+                                                color = primaryColorNoTheme
+                                            )
+                                        } else {
                                             Text(
                                                 text = s.title,
-                                                color = Color.White)
+                                                color = Color.White
+                                            )
                                         }
                                     }
                                     Divider(
@@ -138,6 +156,89 @@ fun UpdatePricesScreen(
                     }
                 }
 
+                Text(text = "Girilecek Fiyatı Seç")
+
+                Surface(
+                    modifier = Modifier
+                        .clickable(
+                            onClick = {
+                                firstDropDownMenuIsExpanded = false
+                                secondDropDownMenuIsExpanded = true
+                            }),
+                    color = onPrimaryColorNoTheme,
+                    shape = RoundedCornerShape(20.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .defaultMinSize(minWidth = 100.dp, minHeight = 46.dp)
+                            .wrapContentSize()
+                            .padding(10.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            if (priceCategories != listOf<ConstructionPriceItem>()) {
+                                Text(
+                                    text = priceCategories[secondDropDownMenuSelectedIndex].title,
+                                    textAlign = TextAlign.Center,
+                                    color = primaryColorNoTheme
+                                )
+                                Icon(
+                                    imageVector = Icons.Default.KeyboardArrowDown,
+                                    tint = primaryColorNoTheme,
+                                    contentDescription = null
+                                )
+                            }
+                        }
+                    }
+
+                    Box(
+                        modifier = Modifier
+                            .offset(x = 0.dp, y = 40.dp)
+                    ) {
+                        DropdownMenu(
+                            expanded = secondDropDownMenuIsExpanded,
+                            onDismissRequest = { secondDropDownMenuIsExpanded = false },
+                            modifier = Modifier
+                                .requiredSizeIn(maxHeight = 160.dp, maxWidth = 128.dp)
+                                .background(onPrimaryColorNoTheme)
+                        ) {
+
+                            priceCategories.forEachIndexed { index, constructionPriceItem ->
+
+                                Column(
+                                    verticalArrangement = Arrangement.Center
+                                ) {
+                                    DropdownMenuItem(onClick = {
+                                        secondDropDownMenuSelectedIndex = index
+                                        secondDropDownMenuIsExpanded = false
+                                    }) {
+
+                                        if (index == secondDropDownMenuSelectedIndex) {
+                                            Text(
+                                                text = constructionPriceItem.title,
+                                                color = primaryColorNoTheme
+                                            )
+                                        } else {
+                                            Text(
+                                                text = constructionPriceItem.title,
+                                                color = Color.White
+                                            )
+                                        }
+                                    }
+                                    Divider(
+                                        thickness = 1.dp,
+                                        color = primaryColorNoTheme
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+
+
                 Text(text = "Fiyat Gir")
 
                 Surface(
@@ -147,31 +248,38 @@ fun UpdatePricesScreen(
                 ) {
                     Box(
                         modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.Center) {
+                        contentAlignment = Alignment.Center
+                    ) {
 
-                        BasicTextField(
-                            value = price,
-                            onValueChange = {
-                                if (it.length <= 11) price = getValidatedNumber(it)
-                            },
-                            keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number,
-                                autoCorrect = false),
-                            singleLine = true,
-                            textStyle = MaterialTheme.typography.h2.copy(color = primaryColorNoTheme),
-                            cursorBrush = SolidColor(primaryColorNoTheme),
-                            visualTransformation = AddSymbolIntoTextFieldVisualTransformation("TL / m²")
-                        )
+                        if (priceCategories != listOf<ConstructionPriceItem>()) {
+                            BasicTextField(
+                                value = price,
+                                onValueChange = {
+                                    if (it.length <= 11) price = getValidatedNumber(it)
+                                },
+                                keyboardOptions = KeyboardOptions(
+                                    keyboardType = KeyboardType.Number,
+                                    autoCorrect = false
+                                ),
+                                keyboardActions = KeyboardActions(onDone = {keyboardController?.hide()}),
+                                singleLine = true,
+                                textStyle = MaterialTheme.typography.h2.copy(color = primaryColorNoTheme),
+                                cursorBrush = SolidColor(primaryColorNoTheme),
+                                visualTransformation = AddSymbolIntoTextFieldVisualTransformation
+                                    ("TL / ${priceCategories[secondDropDownMenuSelectedIndex].unit}")
+                            )
+                        }
                     }
                 }
-                
+
                 Spacer(modifier = Modifier.height(10.dp))
-                
+
                 Button(
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = onPrimaryColorNoTheme,
-                        contentColor = insertPriceButtonColor
+                        backgroundColor = insertPriceButtonColor,
+                        contentColor = onPrimaryColorNoTheme
                     ),
+                    shape = RoundedCornerShape(10.dp),
                     onClick = {
 
                         //Burda alert dialog çalışacak
@@ -179,25 +287,29 @@ fun UpdatePricesScreen(
                         enableAlertDialog = !enableAlertDialog
 
                     }
-                ){
-                    
+                ) {
+
                     Text(text = "FİYATI GÖNDER")
                 }
             }
         }
     }
-    if(enableAlertDialog){
+    if (enableAlertDialog) {
         AlertDialog(
-            modifier = Modifier.size(300.dp,100.dp),
+            modifier = Modifier.size(300.dp, 100.dp),
             onDismissRequest = {
 
                 keyboardController?.hide()
-                enableAlertDialog =! enableAlertDialog
+                enableAlertDialog = !enableAlertDialog
             },
             buttons = {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally)) {
+                    horizontalArrangement = Arrangement.spacedBy(
+                        10.dp,
+                        Alignment.CenterHorizontally
+                    )
+                ) {
                     Button(
                         onClick = {
                             //Fiyatı gönder
@@ -206,7 +318,7 @@ fun UpdatePricesScreen(
                     }
                     Button(
                         onClick = {
-                            enableAlertDialog =! enableAlertDialog
+                            enableAlertDialog = !enableAlertDialog
                         }) {
                         Text(text = "Hayır")
                     }

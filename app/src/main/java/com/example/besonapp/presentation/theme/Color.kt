@@ -43,6 +43,8 @@ val backgroundColorVariantSignUpCompany = Color(0xFF555454)
 val textFieldBackgroundColor = Color(0xFFFFFFFF)
 val buttonBorder = Color(0xFF555454)
 
+val alternativeGray = Color(0xFF76808F)
+
 
 
 

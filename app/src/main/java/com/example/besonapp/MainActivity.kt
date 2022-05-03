@@ -132,7 +132,8 @@ fun MainContent(){
 
                                 fabState.value =
                                     currentRoute == NavigationItem.Profile.screen_route ||
-                                            currentRoute == NavigationItem.Prices.screen_route
+                                            currentRoute == NavigationItem.Prices.screen_route ||
+                                                currentRoute == NavigationItem.UpdatePrices.screen_route
 
                                 CustomFloatingActionButton(
                                     fabState = fabState.value,

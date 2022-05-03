@@ -22,7 +22,7 @@ fun NavigationGraph(
     isLoading: (Boolean) -> Unit,
 ) {
 
-    AnimatedNavHost(navController, startDestination = NavigationItem.Profile.screen_route) {
+    AnimatedNavHost(navController, startDestination = NavigationItem.Prices.screen_route) {
 
         //SPLASH SCREEN
         composable(
@@ -150,14 +150,14 @@ fun NavigationGraph(
             enterTransition = {
                 when(initialState.destination.route){
                     NavigationItem.EditProfile.screen_route -> fadeIn(animationSpec = tween(0))
-                    else -> fadeIn(animationSpec = tween(1000))
+                    else -> fadeIn(animationSpec = tween(250))
                 }
 
             },
             exitTransition = {
                 when(targetState.destination.route){
                     NavigationItem.EditProfile.screen_route -> fadeOut(animationSpec = tween(0))
-                    else -> fadeOut(animationSpec = tween(1000))
+                    else -> fadeOut(animationSpec = tween(250))
                 }
             }) {
 
@@ -193,13 +193,13 @@ fun NavigationGraph(
             NavigationItem.Prices.screen_route,
             enterTransition = {
                 when(initialState.destination.route){
-                    else -> fadeIn(animationSpec = tween(1000))
+                    else -> fadeIn(animationSpec = tween(250))
                 }
 
             },
             exitTransition = {
                 when(targetState.destination.route){
-                    else -> fadeOut(animationSpec = tween(1000))
+                    else -> fadeOut(animationSpec = tween(250))
                 }
             }) {
 

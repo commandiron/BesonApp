@@ -12,6 +12,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.besonapp.presentation.model.ConstructionItem
+import com.example.besonapp.presentation.model.MainConstructionItem
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.signup_steps.components.SignUpStepsCategorySelectionPage
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsClickableToGalleryImagePage
@@ -61,7 +62,7 @@ fun SignUpStepsAsCompanyScreen(
         }
 
         //Page 3 variable, burası viewmodele taşınacak.
-        var selectedMainCategory by remember { mutableStateOf<ConstructionItem?>(null)}
+        var selectedMainCategory by remember { mutableStateOf<MainConstructionItem?>(null)}
 
         HorizontalPager(
             count = 5,
@@ -118,7 +119,7 @@ fun SignUpStepsAsCompanyScreen(
                 3 -> {
 
                     //Bu kısım viewmodel'den gelmeli
-                    val mainConstructionCatagories = ConstructionItem.createCategories()
+                    val mainConstructionCatagories = MainConstructionItem.createMainCategories()
 
                     SignUpStepsCategorySelectionPage(
                         title = "Ana Faaliyet Kategorinizi Seçiniz",
@@ -131,7 +132,7 @@ fun SignUpStepsAsCompanyScreen(
 
                                 //Bu kısım viewmodel'e gönderilmeli
                                     //getSubConstructionCategory fonksiyonu ile çağırılacak.
-                                selectedMainCategory = selectedItem
+                                selectedMainCategory = selectedItem as MainConstructionItem
 
                                 coroutineScope.launch {
                                     pagerState.animateScrollToPage(page + 1)
@@ -148,7 +149,7 @@ fun SignUpStepsAsCompanyScreen(
                     SignUpStepsCategorySelectionPage(
                         title = "Uzmanlık Alan(lar)ınızı Seçiniz",
                         underButtonHintText = "*Birden fazla kategori seçebilirsiniz ve daha sonra değiştirebilirsiniz.",
-                        itemListMain = selectedMainCategory?.subCategories ?: emptyList(),
+                        itemListMain = selectedMainCategory?.subConstructionCategories ?: emptyList(),
                         buttonText = "Kaydı Tamamla",
                         multipleSelectionEnabled = true,
                         onNextButtonClickMultipleSelection = { selectedItemList ->

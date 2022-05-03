@@ -21,6 +21,7 @@ import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
 
 @Composable
 fun CustomTextFieldComponent2(
+    modifier: Modifier = Modifier,
     input: String,
     hint: String,
     keyboardType: KeyboardType = KeyboardType.Text,
@@ -30,8 +31,7 @@ fun CustomTextFieldComponent2(
     var text by remember { mutableStateOf(input)}
 
     Surface(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier
             .height(32.dp),
         shape = RoundedCornerShape(10.dp),
         color = MaterialTheme.colors.surface) {

@@ -1,30 +1,25 @@
 package com.example.besonapp.presentation.screens
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import coil.compose.rememberImagePainter
 import com.example.besonapp.presentation.common_components.ConstructionItemView
 import com.example.besonapp.presentation.common_components.CustomTextFieldComponent2
-import com.example.besonapp.presentation.model.ConstructionItem
+import com.example.besonapp.presentation.model.MainConstructionItem
 import com.example.besonapp.presentation.navigation.NavigationItem
-import com.example.besonapp.presentation.theme.primaryColorNoTheme
 
 @Composable
 fun EditProfileScreen(
@@ -90,12 +85,14 @@ fun EditProfileScreen(
             Spacer(modifier = Modifier.height(10.dp))
 
             CustomTextFieldComponent2(
+                modifier = Modifier.fillMaxWidth(),
                 input = name,
                 hint = hintName){
                 name = it
             }
 
             CustomTextFieldComponent2(
+                modifier = Modifier.fillMaxWidth(),
                 input = phoneNumber,
                 hint = hintPhoneNumber,
                 keyboardType = KeyboardType.Phone){
@@ -118,7 +115,7 @@ fun EditProfileScreen(
             )
 
             //Bu kısım viewmodelden kullanıcı profili olarak gelecek.
-            val data = ConstructionItem.createCategories()[6]
+            val data = MainConstructionItem.createMainCategories()[6]
 
             Box(
             ) {
@@ -142,7 +139,7 @@ fun EditProfileScreen(
             )
 
             //Bu kısım viewmodelden kullanıcı profili olarak gelecek.
-            val dataList = data.subCategories ?: emptyList()
+            val dataList = data.subConstructionCategories ?: emptyList()
 
             LazyVerticalGrid(
                 modifier = Modifier.heightIn(max = 100.dp),
