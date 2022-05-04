@@ -2,6 +2,7 @@ package com.example.besonapp.presentation.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -25,15 +26,13 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import com.example.besonapp.presentation.model.ConstructionPriceItem
 import com.example.besonapp.presentation.model.MainConstructionItem
-import com.example.besonapp.presentation.theme.alternativeGray
 import com.example.besonapp.presentation.theme.insertPriceButtonColor
 import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
 import com.example.besonapp.presentation.theme.primaryColorNoTheme
-import com.example.besonapp.util.NumberDecimalValidation.getValidatedNumber
-import com.myapp.ui.feature.components.AddSymbolIntoTextFieldVisualTransformation
+import com.example.besonapp.util.ThousandSeparatorVisualTransformationWithAddedSymbol
 
 @Composable
-fun UpdatePricesScreen(
+fun PostPriceScreen(
     navController: NavController) {
 
     var price by remember { mutableStateOf("") }
@@ -76,9 +75,13 @@ fun UpdatePricesScreen(
 
                 Text(text = "Kategori Seç")
 
+                val interactionSource = remember { MutableInteractionSource() }
+
                 Surface(
                     modifier = Modifier
                         .clickable(
+                            interactionSource = interactionSource,
+                            indication = null,
                             onClick = {
                                 secondDropDownMenuSelectedIndex = 0
                                 firstDropDownMenuIsExpanded = true
@@ -161,6 +164,8 @@ fun UpdatePricesScreen(
                 Surface(
                     modifier = Modifier
                         .clickable(
+                            interactionSource = interactionSource,
+                            indication = null,
                             onClick = {
                                 firstDropDownMenuIsExpanded = false
                                 secondDropDownMenuIsExpanded = true
@@ -255,7 +260,7 @@ fun UpdatePricesScreen(
                             BasicTextField(
                                 value = price,
                                 onValueChange = {
-                                    if (it.length <= 11) price = getValidatedNumber(it)
+                                    if (it.length <= 10) price = it
                                 },
                                 keyboardOptions = KeyboardOptions(
                                     keyboardType = KeyboardType.Number,
@@ -265,8 +270,10 @@ fun UpdatePricesScreen(
                                 singleLine = true,
                                 textStyle = MaterialTheme.typography.h2.copy(color = primaryColorNoTheme),
                                 cursorBrush = SolidColor(primaryColorNoTheme),
-                                visualTransformation = AddSymbolIntoTextFieldVisualTransformation
-                                    ("TL / ${priceCategories[secondDropDownMenuSelectedIndex].unit}")
+                                visualTransformation =
+                                ThousandSeparatorVisualTransformationWithAddedSymbol(
+                                    maxFractionDigits = 2,
+                                    addedSymbol = " TL/" + priceCategories[secondDropDownMenuSelectedIndex].unit)
                             )
                         }
                     }

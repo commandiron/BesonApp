@@ -30,7 +30,7 @@ fun TopBarGraph(
                 TopBarView(title = NavigationItem.Prices.title)
             }
 
-            NavigationItem.UpdatePrices.screen_route ->{
+            NavigationItem.PostPrice.screen_route ->{
                 TopBarView(title = "")
             }
 

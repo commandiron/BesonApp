@@ -2,12 +2,16 @@ package com.example.besonapp.presentation.common_components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
+import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
@@ -24,6 +28,7 @@ import androidx.constraintlayout.compose.MotionLayout
 import androidx.constraintlayout.compose.MotionScene
 import coil.compose.rememberImagePainter
 import com.example.besonapp.R
+import com.example.besonapp.presentation.theme.NoRippleTheme
 
 @Composable
 fun ProfileHeader(
@@ -89,14 +94,18 @@ fun ProfileHeader(
         ){
             onVerticalDrag(this.constraints)
 
-            IconButton(
-                modifier = Modifier.padding(top = 26.dp, bottom = 16.dp, end = 36.dp).size(20.dp),
-                onClick = { onEditButtonClick() }
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Edit,
-                    tint = MaterialTheme.colors.onBackground,
-                    contentDescription = null)
+            CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme){
+                IconButton(
+                    modifier = Modifier
+                        .padding(top = 26.dp, bottom = 16.dp, end = 36.dp)
+                        .size(20.dp),
+                    onClick = { onEditButtonClick() }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Edit,
+                        tint = MaterialTheme.colors.onBackground,
+                        contentDescription = null)
+                }
             }
         }
 

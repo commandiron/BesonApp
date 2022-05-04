@@ -25,7 +25,7 @@ fun BottomNavigationView(
     )
 
     val notInBottomNavigationAndVisible = listOf(
-        NavigationItem.UpdatePrices
+        NavigationItem.PostPrice
     )
 
     val bottomBarMTS = remember {MutableTransitionState(false)}

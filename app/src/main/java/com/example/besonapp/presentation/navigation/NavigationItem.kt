@@ -10,6 +10,9 @@ import com.example.besonapp.presentation.navigation.NavigationConstants.INTRO_SC
 import com.example.besonapp.presentation.navigation.NavigationConstants.LOGIN_SCREEN_ARGUMENT
 import com.example.besonapp.presentation.navigation.NavigationConstants.LOGIN_SCREEN_ROUTE
 import com.example.besonapp.presentation.navigation.NavigationConstants.LOGIN_SCREEN_TITLE
+import com.example.besonapp.presentation.navigation.NavigationConstants.POST_PRICE_SCREEN_ARGUMENT
+import com.example.besonapp.presentation.navigation.NavigationConstants.POST_PRICE_SCREEN_ROUTE
+import com.example.besonapp.presentation.navigation.NavigationConstants.POST_PRICE_SCREEN_TITLE
 import com.example.besonapp.presentation.navigation.NavigationConstants.PRICES_SCREEN_ARGUMENT
 import com.example.besonapp.presentation.navigation.NavigationConstants.PRICES_SCREEN_ROUTE
 import com.example.besonapp.presentation.navigation.NavigationConstants.PRICES_SCREEN_TITLE
@@ -28,9 +31,6 @@ import com.example.besonapp.presentation.navigation.NavigationConstants.SIGNUP_S
 import com.example.besonapp.presentation.navigation.NavigationConstants.SPLASH_SCREEN_ARGUMENT
 import com.example.besonapp.presentation.navigation.NavigationConstants.SPLASH_SCREEN_ROUTE
 import com.example.besonapp.presentation.navigation.NavigationConstants.SPLASH_SCREEN_TITLE
-import com.example.besonapp.presentation.navigation.NavigationConstants.UPDATE_PRICES_SCREEN_ARGUMENT
-import com.example.besonapp.presentation.navigation.NavigationConstants.UPDATE_PRICES_SCREEN_ROUTE
-import com.example.besonapp.presentation.navigation.NavigationConstants.UPDATE_PRICES_SCREEN_TITLE
 
 sealed class NavigationItem(
     var title:String,
@@ -105,11 +105,11 @@ sealed class NavigationItem(
         screen_route = PRICES_SCREEN_ROUTE + PRICES_SCREEN_ARGUMENT
     )
 
-    object UpdatePrices : NavigationItem(
-        title = UPDATE_PRICES_SCREEN_TITLE,
-        screen_route_without_arguments = UPDATE_PRICES_SCREEN_ROUTE,
-        arguments = UPDATE_PRICES_SCREEN_ARGUMENT,
-        screen_route = UPDATE_PRICES_SCREEN_ROUTE + UPDATE_PRICES_SCREEN_ARGUMENT
+    object PostPrice : NavigationItem(
+        title = POST_PRICE_SCREEN_TITLE,
+        screen_route_without_arguments = POST_PRICE_SCREEN_ROUTE,
+        arguments = POST_PRICE_SCREEN_ARGUMENT,
+        screen_route = POST_PRICE_SCREEN_ROUTE + POST_PRICE_SCREEN_ARGUMENT
     )
 }
 

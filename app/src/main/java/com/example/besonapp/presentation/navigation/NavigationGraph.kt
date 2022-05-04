@@ -207,8 +207,8 @@ fun NavigationGraph(
         }
 
         // UPDATEPRICES SCREEN
-        bottomSheet(route = NavigationItem.UpdatePrices.screen_route){
-            UpdatePricesScreen(navController)
+        bottomSheet(route = NavigationItem.PostPrice.screen_route){
+            PostPriceScreen(navController)
         }
     }
 }

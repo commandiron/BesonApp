@@ -1,9 +1,12 @@
 package com.example.besonapp.presentation.model
 
 data class ConstructionPriceItem(
-    val id: Int? = null,
+    val itemId: Int? = null,
     val title: String,
     val unit: String,
     val price: Double? = null,
-    val includeVat: Boolean = false
+    val location: String = "İstanbul",
+    var date: Long = 0,
+    var userById: Int? = null,
+    var userByName: String = "Emir Demirli"
 )

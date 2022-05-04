@@ -115,7 +115,7 @@ fun SystemUiColorsAndPaddingGraph(
                 )
             }
 
-            NavigationItem.UpdatePrices.screen_route ->{
+            NavigationItem.PostPrice.screen_route ->{
 
                 applyStatusBarPadding = false
                 applyNavigationBarPadding = true

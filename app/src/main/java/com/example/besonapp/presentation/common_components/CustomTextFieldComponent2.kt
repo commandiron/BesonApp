@@ -1,5 +1,6 @@
 package com.example.besonapp.presentation.common_components
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -13,10 +14,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
 
 @Composable
@@ -43,6 +46,7 @@ fun CustomTextFieldComponent2(
             contentAlignment = Alignment.CenterStart
         ) {
             BasicTextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = text,
                 textStyle = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.onSurface),
                 onValueChange = {

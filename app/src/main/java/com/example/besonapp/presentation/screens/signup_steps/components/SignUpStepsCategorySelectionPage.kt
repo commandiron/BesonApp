@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.example.besonapp.presentation.common_components.CircleCheckbox
+import com.example.besonapp.presentation.common_components.CustomCircleCheckbox
 import com.example.besonapp.presentation.common_components.CustomButton
 import com.example.besonapp.presentation.model.ConstructionItem
 import com.example.besonapp.presentation.theme.LOWER_VISIBILITY_ALPHA
@@ -148,7 +148,7 @@ fun SignUpStepsCategorySelectionPage(
                             .padding(2.dp),
                         contentAlignment = Alignment.TopStart
                     ){
-                        CircleCheckbox(selected = isSelected)
+                        CustomCircleCheckbox(selected = isSelected)
                     }
                 }
             }

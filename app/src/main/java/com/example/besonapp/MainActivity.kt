@@ -133,14 +133,14 @@ fun MainContent(){
                                 fabState.value =
                                     currentRoute == NavigationItem.Profile.screen_route ||
                                             currentRoute == NavigationItem.Prices.screen_route ||
-                                                currentRoute == NavigationItem.UpdatePrices.screen_route
+                                                currentRoute == NavigationItem.PostPrice.screen_route
 
                                 CustomFloatingActionButton(
                                     fabState = fabState.value,
                                     onClick = {
                                         isFabClicked = !isFabClicked
 
-                                        navController.navigate(NavigationItem.UpdatePrices.screen_route)
+                                        navController.navigate(NavigationItem.PostPrice.screen_route)
                                     },
                                     backgroundColor = primaryVariantColorNoTheme) {
 
@@ -164,7 +164,7 @@ fun MainContent(){
                         ) {
 
                             //I didn't need it.
-                            it
+                            println(it)
 
                             //Surface for background to prevent unwanted glitches.
                             Surface(

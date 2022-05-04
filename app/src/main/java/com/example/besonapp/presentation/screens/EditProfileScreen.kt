@@ -102,7 +102,7 @@ fun EditProfileScreen(
             Spacer(modifier = Modifier.height(10.dp))
             
             Text(
-                text = "Ana Faaliyet Kategorisi",
+                text = "Ana Faaliyet Alanı",
                 color = MaterialTheme.colors.onSurface,
                 style = MaterialTheme.typography.body1)
 
