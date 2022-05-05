@@ -33,8 +33,9 @@ import com.google.accompanist.insets.*
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
 import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
+import dagger.hilt.android.AndroidEntryPoint
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +44,7 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            ProvideWindowInsets() {
+            ProvideWindowInsets {
                 MainContent()
             }
         }
@@ -79,7 +80,7 @@ fun MainContent(){
     var isLoading by remember { mutableStateOf(false)}
 
     //Main Theme
-    BesonAppTheme() {
+    BesonAppTheme {
 
         //Padding System Color and Padding
         SystemUiColorsAndPaddingGraph(currentRoute){ applyPaddingStatusBar, applyPaddingNavigationBar ->
@@ -189,8 +190,8 @@ fun MainContent(){
                                         NavigationGraph(
                                             navController = navController,
                                             isSignUpScreenLogoClick = isSignUpScreenLogoClick,
-                                            isLoading = {
-                                                isLoading = it
+                                            isLoading = { isLoadingFromScreens ->
+                                                isLoading = isLoadingFromScreens
                                             }
                                         )
                                     }

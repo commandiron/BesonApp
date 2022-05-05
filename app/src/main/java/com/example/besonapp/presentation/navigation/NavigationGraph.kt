@@ -22,7 +22,7 @@ fun NavigationGraph(
     isLoading: (Boolean) -> Unit,
 ) {
 
-    AnimatedNavHost(navController, startDestination = NavigationItem.Prices.screen_route) {
+    AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screen_route) {
 
         //SPLASH SCREEN
         composable(
@@ -162,10 +162,7 @@ fun NavigationGraph(
             }) {
 
             ProfileScreen(
-                navController = navController,
-                isLoading = {
-                    isLoading(it)
-                })
+                navController = navController)
         }
 
         //EDITPROFILE SCREEN

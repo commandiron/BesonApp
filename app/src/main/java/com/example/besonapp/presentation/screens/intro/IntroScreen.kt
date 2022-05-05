@@ -13,6 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.besonapp.util.IntroScreenElement
@@ -29,8 +30,8 @@ import com.google.accompanist.pager.rememberPagerState
 
 @Composable
 fun IntroScreen(
-    navController: NavController
-//    introViewModel: IntroViewModel = hiltViewModel()
+    navController: NavController,
+    introViewModel: IntroViewModel = hiltViewModel()
 ){
 
     var lastPageFlag by remember { mutableStateOf(false)}
@@ -81,7 +82,8 @@ fun IntroScreen(
                 .clickable {
 
                     navController.navigate(NavigationItem.SignUp.screen_route)
-//                    introViewModel.setUserOpenAppOnceFlagTrue()
+
+                    introViewModel.setUserOpenAppOnceFlagTrue()
                 },
             color = if(lastPageFlag) primaryVariantColorNoTheme else primaryColorNoTheme
         ) {

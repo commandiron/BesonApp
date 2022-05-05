@@ -1,5 +1,8 @@
 package com.example.besonapp
 
-//@HiltAndroidApp
-//class BesonApp: Application() {
-//}
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class BesonApp: Application() {
+}
