@@ -6,6 +6,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -20,12 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.geometry.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.LocalWindowInsets
@@ -34,7 +34,8 @@ import com.google.accompanist.insets.rememberInsetsPaddingValues
 
 @Composable
 fun NavigationTutorialProfileScreen(
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    profileScreenTutorialFinish:() -> Unit,
 ) {
 
     var tutorialEnabled by remember { mutableStateOf(enabled)}
@@ -56,14 +57,45 @@ fun NavigationTutorialProfileScreen(
     var infoRectanglePaddingYFromTop by remember { mutableStateOf(0f)}
 
     var infoText by remember { mutableStateOf("")}
+    var showIcon by remember { mutableStateOf(false)}
     val infoTextAnimationAlphaDuration = 1000
     val textAlphaAnim = remember { Animatable(0f) }
+    val alphaAnimIteration by remember { mutableStateOf(4)}
 
     if(tutorialEnabled){
 
         when(nextClicked){
 
             0 -> {
+
+                LaunchedEffect(key1 = screenSize){
+
+                    infoRectangleSize = Size(
+                        width = screenSize.width * 0.40f,
+                        height = screenSize.height * 0.09f)
+
+                    infoRectanglePaddingYFromTop = screenSize.height * 0.35f
+
+                    highlightCirclePaddingXFromStart =  - screenSize.width * 0.25f
+                    highlightCirclePaddingYFromTop = screenSize.height * 0.924f
+
+                    infoText = "beson'a Hoş Geldiniz. Burası Profil Sayfanız."
+
+                    textAlphaAnim.animateTo(
+                        targetValue = 1f,
+                        animationSpec = repeatable(
+                            iterations = alphaAnimIteration,
+                            animation = tween(
+                                durationMillis = infoTextAnimationAlphaDuration
+                            )
+                        )
+                    )
+                }
+            }
+
+            1 -> {
+
+                showIcon = true
 
                 highlightCircleSize = Size(
                     width = screenSize.height / 14,
@@ -73,21 +105,22 @@ fun NavigationTutorialProfileScreen(
                 LaunchedEffect(key1 = screenSize){
 
                     infoRectangleSize = Size(
-                        width = screenSize.width * 0.24f,
-                        height = screenSize.height * 0.08f)
+                        width = screenSize.width * 0.34f,
+                        height = screenSize.height * 0.10f)
 
                     infoRectanglePaddingXFromStart =  - screenSize.width * 0.25f
-                    infoRectanglePaddingYFromTop = screenSize.height * 0.83f
+                    infoRectanglePaddingYFromTop = screenSize.height * 0.81f
 
                     highlightCirclePaddingXFromStart =  - screenSize.width * 0.25f
                     highlightCirclePaddingYFromTop = screenSize.height * 0.924f
 
-                    infoText = "Profilini Görüntüle"
+                    infoText = "Profilinizi Burdan Görüntüleyebilirsiniz"
 
+                    textAlphaAnim.animateTo(0f)
                     textAlphaAnim.animateTo(
                         targetValue = 1f,
                         animationSpec = repeatable(
-                            iterations = 3,
+                            iterations = alphaAnimIteration,
                             animation = tween(
                                 durationMillis = infoTextAnimationAlphaDuration
                             )
@@ -96,7 +129,7 @@ fun NavigationTutorialProfileScreen(
                 }
             }
 
-            1 ->{
+            2 ->{
 
                 highlightCircleSize = Size(
                     width = screenSize.height / 10,
@@ -106,23 +139,23 @@ fun NavigationTutorialProfileScreen(
                 LaunchedEffect(key1 = Unit){
 
                     infoRectangleSize = Size(
-                            width = screenSize.width *  0.24f,
-                            height = screenSize.height * 0.08f
+                            width = screenSize.width *  0.34f,
+                            height = screenSize.height * 0.10f
                     )
 
                     infoRectanglePaddingXFromStart = 0f
-                    infoRectanglePaddingYFromTop = screenSize.height * 0.79f
+                    infoRectanglePaddingYFromTop = screenSize.height * 0.76f
 
                     highlightCirclePaddingXFromStart = 0f
-                    highlightCirclePaddingYFromTop = screenSize.height * 0.875f
+                    highlightCirclePaddingYFromTop = screenSize.height * 0.878f
 
-                    infoText = "Fiyat Gir"
+                    infoText = "Fiyat Girmek İçin Bu Butonu Kullanın"
 
                     textAlphaAnim.animateTo(0f)
                     textAlphaAnim.animateTo(
                         targetValue = 1f,
                         animationSpec = repeatable(
-                            iterations = 3,
+                            iterations = alphaAnimIteration,
                             animation = tween(
                                 durationMillis = infoTextAnimationAlphaDuration
                             )
@@ -130,7 +163,7 @@ fun NavigationTutorialProfileScreen(
                     )
                 }
             }
-            2 -> {
+            3 -> {
 
                 highlightCircleSize = Size(
                     width = screenSize.height / 14,
@@ -140,23 +173,23 @@ fun NavigationTutorialProfileScreen(
                 LaunchedEffect(key1 = Unit){
 
                     infoRectangleSize = Size(
-                        width = screenSize.width * 0.24f,
-                        height = screenSize.height * 0.08f
+                        width = screenSize.width * 0.34f,
+                        height = screenSize.height * 0.10f
                     )
 
                     infoRectanglePaddingXFromStart = screenSize.width * 0.25f
-                    infoRectanglePaddingYFromTop = screenSize.height * 0.83f
+                    infoRectanglePaddingYFromTop = screenSize.height * 0.81f
 
                     highlightCirclePaddingXFromStart = screenSize.width * 0.25f
                     highlightCirclePaddingYFromTop = screenSize.height * 0.924f
 
-                    infoText = "Fiyatları Görüntüle"
+                    infoText = "Burdan Fiyatları Görüntüleyebilirsiniz."
 
                     textAlphaAnim.animateTo(0f)
                     textAlphaAnim.animateTo(
                         targetValue = 1f,
                         animationSpec = repeatable(
-                            iterations = 3,
+                            iterations = alphaAnimIteration,
                             animation = tween(
                                 durationMillis = infoTextAnimationAlphaDuration
                             )
@@ -164,8 +197,9 @@ fun NavigationTutorialProfileScreen(
                     )
                 }
             }
-            3 -> {
+            4 -> {
                 tutorialEnabled = false
+                profileScreenTutorialFinish()
             }
         }
 
@@ -191,13 +225,16 @@ fun NavigationTutorialProfileScreen(
                 Text(
                     textAlign = TextAlign.Center,
                     text = infoText,
+                    fontStyle = FontStyle.Italic,
                     color = MaterialTheme.colors.onPrimary
                 )
-                Icon(
-                    imageVector = Icons.Default.KeyboardDoubleArrowDown,
-                    tint = MaterialTheme.colors.onPrimary,
-                    contentDescription = null
-                )
+                if(showIcon){
+                    Icon(
+                        imageVector = Icons.Default.KeyboardDoubleArrowDown,
+                        tint = MaterialTheme.colors.onPrimary,
+                        contentDescription = null
+                    )
+                }
             }
         }
 
@@ -235,20 +272,23 @@ fun NavigationTutorialProfileScreen(
                             )
                         )
 
-                        addRect(
-                            Rect(
-                                offset =
-                                        Offset(
-                                            //Centralize
-                                            x = screenSize.width / 2 -infoRectangleSize.width / 2,
-                                            y = statusBarHeightPx)
+                        addRoundRect(
+                            RoundRect(
+                                rect =  Rect(
+                                    offset =
+                                    Offset(
+                                        //Centralize
+                                        x = screenSize.width / 2 -infoRectangleSize.width / 2,
+                                        y = statusBarHeightPx)
 
                                             //Offset
-                                        + Offset(
-                                            x = infoRectanglePaddingXFromStart,
-                                            y = infoRectanglePaddingYFromTop)
-                                ,
-                                size = infoRectangleSize
+                                            + Offset(
+                                        x = infoRectanglePaddingXFromStart,
+                                        y = infoRectanglePaddingYFromTop)
+                                    ,
+                                    size = infoRectangleSize
+                                ),
+                                cornerRadius = CornerRadius(20f, 20f)
                             )
                         )
                     }

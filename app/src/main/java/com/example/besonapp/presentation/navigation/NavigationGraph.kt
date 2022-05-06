@@ -20,6 +20,7 @@ fun NavigationGraph(
     navController: NavHostController,
     isSignUpScreenLogoClick: Boolean,
     isLoading: (Boolean) -> Unit,
+    runTutorial:() -> Unit
 ) {
 
     AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screen_route) {
@@ -162,7 +163,8 @@ fun NavigationGraph(
             }) {
 
             ProfileScreen(
-                navController = navController)
+                navController = navController,
+                runTutorial = {runTutorial()})
         }
 
         //EDITPROFILE SCREEN

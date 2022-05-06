@@ -1,4 +1,4 @@
-package com.example.besonapp.presentation.screens.intro
+package com.example.besonapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,13 +8,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class IntroViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val useCases: UseCases
 ): ViewModel()  {
 
-    fun setUserOpenAppOnceFlagTrue(){
+    fun setUserPassTutorialOnceFlagTrue(){
         viewModelScope.launch {
-            useCases.setUserOpenAppOnceFlagForShowSplashAndIntroScreens.invoke()
+            useCases.setUserPassTutorialOnceFlag.invoke()
         }
     }
 }

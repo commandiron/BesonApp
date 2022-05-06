@@ -4,6 +4,9 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface AppRepository {
-    suspend fun setUserOpenAppOnceFlagForShowSplashAndIntroScreens(isUserOpenAppOnce: Boolean)
+    suspend fun setUserOpenAppOnceFlagForShowSplashAndIntroScreens()
     suspend fun getUserOpenAppOnceFlag(): Flow<Boolean>
+
+    suspend fun setUserPassTutorialOnceFlag()
+    suspend fun getUserPassTutorialOnceFlag(): Flow<Boolean>
 }

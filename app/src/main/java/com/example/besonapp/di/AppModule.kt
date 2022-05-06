@@ -7,9 +7,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.example.besonapp.data.repository.AppRepositoryImpl
 import com.example.besonapp.domain.repository.AppRepository
-import com.example.besonapp.domain.use_case.GetUserOpenAppOnceFlag
-import com.example.besonapp.domain.use_case.SetUserOpenAppOnceFlagForShowSplashAndIntroScreens
-import com.example.besonapp.domain.use_case.UseCases
+import com.example.besonapp.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,7 +34,9 @@ object AppModule {
     @Provides
     fun provideUseCases(repository: AppRepository) = UseCases(
         setUserOpenAppOnceFlagForShowSplashAndIntroScreens = SetUserOpenAppOnceFlagForShowSplashAndIntroScreens(repository),
-        getUserOpenAppOnceFlag = GetUserOpenAppOnceFlag(repository)
+        getUserOpenAppOnceFlag = GetUserOpenAppOnceFlag(repository),
+        setUserPassTutorialOnceFlag = SetUserPassTutorialOnceFlag(repository),
+        getUserPassTutorialOnceFlag = GetUserPassTutorialOnceFlag(repository)
     )
 
 }

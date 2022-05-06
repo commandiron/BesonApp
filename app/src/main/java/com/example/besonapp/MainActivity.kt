@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.besonapp.presentation.FloatingComponentsGraph
 import com.example.besonapp.presentation.common_components.CustomFloatingActionButton
@@ -53,7 +54,9 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun MainContent(){
+fun MainContent(
+    mainViewModel: MainViewModel = hiltViewModel()
+){
 
     val scaffoldState = rememberScaffoldState()
 
@@ -66,9 +69,8 @@ fun MainContent(){
     val fabState = rememberSaveable {(mutableStateOf(false))}
     var isFabClicked by remember { mutableStateOf(false)}
 
-    //Navigation Control and Navigation Visibility
+    //Navigation Control, Navigation Visibility
     val bottomSheetNavigator = rememberBottomSheetNavigator()
-
     val navController = rememberAnimatedNavController(bottomSheetNavigator)
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -79,6 +81,9 @@ fun MainContent(){
     //Notify loading screen
     var isLoading by remember { mutableStateOf(false)}
 
+    //Notify tutorial graph
+    var tutorialEnabled by remember { mutableStateOf(false)}
+
     //Main Theme
     BesonAppTheme {
 
@@ -88,8 +93,15 @@ fun MainContent(){
             //Loading Screen
             LoadingScreen(isLoading = isLoading) {
 
-                //Tutorial Screens
-                TutorialGraph(currentRoute = currentRoute){
+                //Tutorial Screens -> BURAYI BİR KERE ÇALIŞACAK ŞEKİLDE AYARLA
+                TutorialGraph(
+                    currentRoute = currentRoute,
+                    enabled = tutorialEnabled,
+                    profileScreenTutorialFinish = {
+                        mainViewModel.setUserPassTutorialOnceFlagTrue()
+                        tutorialEnabled = false
+                    }
+                ){
 
                     //Bottom Sheet (Over the scaffold because should above the navigation bar)
                     ModalBottomSheetLayout(
@@ -165,7 +177,7 @@ fun MainContent(){
                         ) {
 
                             //I didn't need it.
-                            println(it)
+                            it
 
                             //Surface for background to prevent unwanted glitches.
                             Surface(
@@ -192,6 +204,9 @@ fun MainContent(){
                                             isSignUpScreenLogoClick = isSignUpScreenLogoClick,
                                             isLoading = { isLoadingFromScreens ->
                                                 isLoading = isLoadingFromScreens
+                                            },
+                                            runTutorial = {
+                                                tutorialEnabled = true
                                             }
                                         )
                                     }

@@ -1,11 +1,8 @@
 package com.example.besonapp.presentation.screens
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
@@ -14,19 +11,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.besonapp.presentation.common_components.CustomLazyColumnForPrices
 import com.example.besonapp.presentation.common_components.ProfileHeader
 import com.example.besonapp.presentation.common_components.ProfileScreenItemRow
 import com.example.besonapp.presentation.model.ConstructionPriceItem
 import com.example.besonapp.presentation.navigation.NavigationItem
-import com.google.accompanist.insets.LocalWindowInsets
-import com.google.accompanist.insets.rememberInsetsPaddingValues
+import com.example.besonapp.presentation.screens.profile.ProfileViewModel
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
@@ -35,7 +31,20 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ProfileScreen(
-    navController: NavController){
+    navController: NavController,
+    profileViewModel: ProfileViewModel = hiltViewModel(),
+    runTutorial:() -> Unit
+){
+
+    val isUserOpenAppOnce = profileViewModel.isUserPassTutorialOnce.value
+    LaunchedEffect(isUserOpenAppOnce) {
+        if(isUserOpenAppOnce != null){
+            if(!isUserOpenAppOnce){
+                println("run")
+                runTutorial()
+            }
+        }
+    }
 
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState()
