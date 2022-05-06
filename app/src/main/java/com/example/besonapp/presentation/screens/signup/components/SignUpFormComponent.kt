@@ -14,13 +14,13 @@ import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_EMAIL_HINT_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_FORM_TITLE_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_PASSWORD_AGAIN_HINT_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_PASSWORD_HINT_TEXT
-import com.example.besonapp.util.SignUpAndLogInFormErrorHandle
+import com.example.besonapp.util.SignUpAndLogInInfoValidation
 
 @Composable
 fun SignUpFormComponent(
     buttonText: String,
     paddingFromBottom: Dp = 0.dp,
-    signUpAndLogInFormErrorHandle: SignUpAndLogInFormErrorHandle,
+    signUpAndLogInInfoValidation: SignUpAndLogInInfoValidation?,
     onButtonClick:(UserSignUpInfo) -> Unit,
 ){
 
@@ -44,8 +44,8 @@ fun SignUpFormComponent(
         CustomTextFieldComponent(
             entry = email,
             hint = SIGNUP_SCREEN_EMAIL_HINT_TEXT,
-            textFieldError = signUpAndLogInFormErrorHandle.emailError,
-            textFieldErrorMessage = signUpAndLogInFormErrorHandle.emailErrorMessage,
+            textFieldError = signUpAndLogInInfoValidation?.emailError ?: false,
+            textFieldErrorMessage = signUpAndLogInInfoValidation?.emailErrorMessage ?: "",
             keyboardType = KeyboardType.Email){
             email = it
         }
@@ -53,8 +53,8 @@ fun SignUpFormComponent(
         CustomTextFieldComponent(
             entry = password,
             hint =  SIGNUP_SCREEN_PASSWORD_HINT_TEXT,
-            textFieldError = signUpAndLogInFormErrorHandle.passwordError,
-            textFieldErrorMessage = signUpAndLogInFormErrorHandle.passwordErrorMessage,
+            textFieldError = signUpAndLogInInfoValidation?.passwordError ?: false,
+            textFieldErrorMessage = signUpAndLogInInfoValidation?.passwordErrorMessage ?: "",
             keyboardType = KeyboardType.Password){
             password = it
         }
@@ -62,8 +62,8 @@ fun SignUpFormComponent(
         CustomTextFieldComponent(
             entry = passwordAgain,
             hint =  SIGNUP_SCREEN_PASSWORD_AGAIN_HINT_TEXT,
-            textFieldError = signUpAndLogInFormErrorHandle.passwordError,
-            textFieldErrorMessage = signUpAndLogInFormErrorHandle.passwordErrorMessage,
+            textFieldError = signUpAndLogInInfoValidation?.passwordError ?: false,
+            textFieldErrorMessage = signUpAndLogInInfoValidation?.passwordErrorMessage ?: "",
             keyboardType = KeyboardType.Password){
             passwordAgain = it
         }

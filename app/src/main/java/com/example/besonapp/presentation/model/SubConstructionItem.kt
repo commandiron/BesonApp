@@ -3,16 +3,18 @@ package com.example.besonapp.presentation.model
 import com.example.besonapp.R
 
 class SubConstructionItem(
+    id: Int,
     title: String,
     imageResource: Int? = null,
     val priceCategories: List<ConstructionPriceItem>? = null
-) : ConstructionItem(title, imageResource){
+) : ConstructionItem(id, title, imageResource){
     
     companion object{
 
         //Kazi İşleri
 
         val iksaIsleri = SubConstructionItem(
+            id = 0,
             title = "İksa İşleri",
             imageResource = R.drawable.construction_item_iksa,
             priceCategories = listOf(
@@ -21,6 +23,7 @@ class SubConstructionItem(
             )
         )
         val hafriyatIsleri = SubConstructionItem(
+            id = 1,
             title = "Hafriyat İşleri",
             imageResource = R.drawable.construction_item_hafriyat,
             priceCategories = listOf(
@@ -31,6 +34,7 @@ class SubConstructionItem(
         // Kaba Yapı İşleri
 
         val beton = SubConstructionItem(
+            id = 2,
             title = "Beton",
             imageResource = R.drawable.construction_item_beton,
             priceCategories = listOf(
@@ -38,6 +42,7 @@ class SubConstructionItem(
             )
         )
         val demir = SubConstructionItem(
+            id = 3,
             title = "Demir",
             imageResource = R.drawable.construction_item_demir,
             priceCategories = listOf(
@@ -45,6 +50,7 @@ class SubConstructionItem(
             )
         )
         val kalip = SubConstructionItem(
+            id = 4,
             title = "Kalıp",
             imageResource = R.drawable.construction_item_kalip,
             priceCategories = listOf(
@@ -52,6 +58,7 @@ class SubConstructionItem(
             )
         )
         val betonDemirKalip = SubConstructionItem(
+            id = 5,
             title = "Beton, Demir, Kalıp İşçilik",
             imageResource = R.drawable.construction_item_beton_demir_kalip_islicik,
             priceCategories = listOf(
@@ -59,6 +66,7 @@ class SubConstructionItem(
             )
         )
         val duvar = SubConstructionItem(
+            id = 6,
             title = "Duvar",
             imageResource = R.drawable.construction_item_duvar,
             priceCategories = listOf(
@@ -66,6 +74,7 @@ class SubConstructionItem(
             )
         )
         val izolasyon = SubConstructionItem(
+            id = 7,
             title = "İzolasyon",
             imageResource = R.drawable.construction_item_izolasyon,
             priceCategories = listOf(
@@ -74,6 +83,7 @@ class SubConstructionItem(
             )
         )
         val digerKabaInsaatMalzeme = SubConstructionItem(
+            id = 8,
             title = "Kaba İnşaat Malzemeleri",
             imageResource = R.drawable.construction_item_diger_kaba_insaat_malzeme,
             priceCategories = listOf(
@@ -81,6 +91,7 @@ class SubConstructionItem(
             )
         )
         val betonKesmeDelme = SubConstructionItem(
+            id = 9,
             title = "Beton Kesme ve Delme (Karot)",
             imageResource = R.drawable.construction_item_karot,
             priceCategories = listOf(
@@ -91,6 +102,7 @@ class SubConstructionItem(
         // Çatı İşleri
 
         val kompleCati = SubConstructionItem(
+            id = 10,
             title = "Komple Çatı İmalatı",
             imageResource = R.drawable.construction_item_komple_cati_imalati,
             priceCategories = listOf(
@@ -99,6 +111,7 @@ class SubConstructionItem(
         )
 
         val baca = SubConstructionItem(
+            id = 11,
             title = "Baca",
             imageResource = R.drawable.construction_item_baca,
             priceCategories = listOf(
@@ -109,6 +122,7 @@ class SubConstructionItem(
         // Cephe İşleri
 
         val cepheKaplamaSistemi = SubConstructionItem(
+            id = 12,
             title = "Cephe Kaplama",
             imageResource = R.drawable.construction_item_cephe_kaplama,
             priceCategories = listOf(
@@ -117,6 +131,7 @@ class SubConstructionItem(
             )
         )
         val cepheIskele = SubConstructionItem(
+            id = 13,
             title = "Cephe İskele",
             imageResource = R.drawable.construction_item_iskele,
             priceCategories = listOf(
@@ -127,6 +142,7 @@ class SubConstructionItem(
         // Mekanik Tesisat İşleri
 
         val sihhiTesisatIsleri = SubConstructionItem(
+            id = 14,
             title = "Sıhhi Tesisat İşleri",
             imageResource = R.drawable.construction_item_sihhi_tesisat_isleri,
             priceCategories = listOf(
@@ -134,6 +150,7 @@ class SubConstructionItem(
             )
         )
         val sogutmaKlimaSistemi = SubConstructionItem(
+            id = 15,
             title = "Soğutma ve Klima Sistemi",
             imageResource = R.drawable.construction_item_sogutma_klima_sistemi,
             priceCategories = listOf(
@@ -141,6 +158,7 @@ class SubConstructionItem(
             )
         )
         val havalandirmaSistemi = SubConstructionItem(
+            id = 16,
             title = "Havalandırma Sistemi",
             imageResource = R.drawable.construction_item_havalandirma_sistemi,
             priceCategories = listOf(
@@ -148,6 +166,7 @@ class SubConstructionItem(
             )
         )
         val mekanikMontaj = SubConstructionItem(
+            id = 17,
             title = "Montaj",
             imageResource = R.drawable.construction_item_montaj,
             priceCategories = listOf(
@@ -157,6 +176,7 @@ class SubConstructionItem(
             )
         )
         val asansor = SubConstructionItem(
+            id = 18,
             title = "Asansör",
             imageResource = R.drawable.construction_item_asansor,
             priceCategories = listOf(
@@ -167,6 +187,7 @@ class SubConstructionItem(
         //Elektrik Tesisat İşleri
 
         val gucDagitimSistemi = SubConstructionItem(
+            id = 19,
             title = "Güç Dagitim Sistemi",
             imageResource = R.drawable.construction_item_guc_dagitim_sistemi,
             priceCategories = listOf(
@@ -174,6 +195,7 @@ class SubConstructionItem(
             )
         )
         val aydinlatmaIsiklandirmaSistemi = SubConstructionItem(
+            id = 20,
             title = "Aydınlatma Işıklandırma Sistemi",
             imageResource = R.drawable.construction_item_aydinlatma_ve_isiklandirma_sistemi,
             priceCategories = listOf(
@@ -181,6 +203,7 @@ class SubConstructionItem(
             )
         )
         val iletisimSistemi = SubConstructionItem(
+            id = 21,
             title = "İletişim Sistemi",
             imageResource = R.drawable.construction_item_iletisim_sistemi,
             priceCategories = listOf(
@@ -188,6 +211,7 @@ class SubConstructionItem(
             )
         )
         val guvenlikSistemi = SubConstructionItem(
+            id = 22,
             title = "Güvenlik Sistemi",
             imageResource = R.drawable.construction_item_guvenlik_sistemi,
             priceCategories = listOf(
@@ -195,6 +219,7 @@ class SubConstructionItem(
             )
         )
         val yedekGucSistemi = SubConstructionItem(
+            id = 23,
             title = "Yedek Güç Sistemi",
             imageResource = R.drawable.construction_item_yedek_guc_sistemi,
             priceCategories = listOf(
@@ -205,6 +230,7 @@ class SubConstructionItem(
         //İç İmalatlar
 
         val siva = SubConstructionItem(
+            id = 24,
             title = "Siva",
             imageResource = R.drawable.construction_item_siva,
             priceCategories = listOf(
@@ -212,6 +238,7 @@ class SubConstructionItem(
             )
         )
         val boyaBadana = SubConstructionItem(
+            id = 25,
             title = "Boya ve Badana",
             imageResource = R.drawable.construction_item_boya_badana,
             priceCategories = listOf(
@@ -219,6 +246,7 @@ class SubConstructionItem(
             )
         )
         val icMekanIzolasyon = SubConstructionItem(
+            id = 26,
             title = "İç Mekan İzolasyon",
             imageResource = R.drawable.construction_item_ic_mekan_izolasyon,
             priceCategories = listOf(
@@ -226,6 +254,7 @@ class SubConstructionItem(
             )
         )
         val alcipanKartonpiyer = SubConstructionItem(
+            id = 27,
             title = "Alcipan ve Kartonpiyer",
             imageResource = R.drawable.construction_item_alcipan_kartonpiyer,
             priceCategories = listOf(
@@ -234,6 +263,7 @@ class SubConstructionItem(
             )
         )
         val sap = SubConstructionItem(
+            id = 28,
             title = "Şap",
             imageResource = R.drawable.construction_item_sap,
             priceCategories = listOf(
@@ -241,6 +271,7 @@ class SubConstructionItem(
             )
         )
         val metalKorkuluk = SubConstructionItem(
+            id = 29,
             title = "Metal Korkuluk",
             imageResource = R.drawable.construction_item_metal_korkuluk,
             priceCategories = listOf(
@@ -249,6 +280,7 @@ class SubConstructionItem(
             )
         )
         val mermer = SubConstructionItem(
+            id = 30,
             title = "Mermer",
             imageResource = R.drawable.construction_item_mermer,
             priceCategories = listOf(
@@ -256,6 +288,7 @@ class SubConstructionItem(
             )
         )
         val seramik = SubConstructionItem(
+            id = 31,
             title = "Seramik",
             imageResource = R.drawable.construction_item_seramik,
             priceCategories = listOf(
@@ -263,6 +296,7 @@ class SubConstructionItem(
             )
         )
         val parke = SubConstructionItem(
+            id = 32,
             title = "Parke",
             imageResource = R.drawable.construction_item_parke,
             priceCategories = listOf(
@@ -270,6 +304,7 @@ class SubConstructionItem(
             )
         )
         val kapiPencereBalkon = SubConstructionItem(
+            id = 33,
             title = "Kapı, Pencere ve Balkon",
             imageResource = R.drawable.construction_item_kapi_pencere_balkon,
             priceCategories = listOf(
@@ -278,6 +313,7 @@ class SubConstructionItem(
             )
         )
         val mutfak = SubConstructionItem(
+            id = 34,
             title = "Mutfak",
             imageResource = R.drawable.construction_item_mutfak,
             priceCategories = listOf(
@@ -288,6 +324,7 @@ class SubConstructionItem(
         //Peysaj
 
         val bahce = SubConstructionItem(
+            id = 35,
             title = "Bahce İşleri",
             imageResource = R.drawable.construction_item_bahce,
             priceCategories = listOf(

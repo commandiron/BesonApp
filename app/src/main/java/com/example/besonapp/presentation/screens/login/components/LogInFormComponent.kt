@@ -13,12 +13,12 @@ import com.example.besonapp.presentation.common_components.CustomTextFieldCompon
 import com.example.besonapp.presentation.theme.LOWER_VISIBILITY_ALPHA
 import com.example.besonapp.util.UserLogInInfo
 import com.example.besonapp.util.AppStaticTexts
-import com.example.besonapp.util.SignUpAndLogInFormErrorHandle
+import com.example.besonapp.util.SignUpAndLogInInfoValidation
 
 @Composable
 fun LogInFormComponent(
     modifier: Modifier,
-    signUpAndLogInFormErrorHandle: SignUpAndLogInFormErrorHandle,
+    signUpAndLogInInfoValidation: SignUpAndLogInInfoValidation,
     onSignUpButtonClick:() -> Unit,
     onLogInButtonClick:(UserLogInInfo) -> Unit,
 
@@ -43,8 +43,8 @@ fun LogInFormComponent(
         CustomTextFieldComponent(
             entry = email,
             hint = AppStaticTexts.SIGNUP_SCREEN_EMAIL_HINT_TEXT,
-            textFieldError = signUpAndLogInFormErrorHandle.emailError,
-            textFieldErrorMessage = signUpAndLogInFormErrorHandle.emailErrorMessage,
+            textFieldError = signUpAndLogInInfoValidation.emailError,
+            textFieldErrorMessage = signUpAndLogInInfoValidation.emailErrorMessage,
             keyboardType = KeyboardType.Email){
             email = it
         }
@@ -52,8 +52,8 @@ fun LogInFormComponent(
         CustomTextFieldComponent(
             entry = password,
             hint =  AppStaticTexts.SIGNUP_SCREEN_PASSWORD_HINT_TEXT,
-            textFieldError = signUpAndLogInFormErrorHandle.passwordError,
-            textFieldErrorMessage = signUpAndLogInFormErrorHandle.passwordErrorMessage,
+            textFieldError = signUpAndLogInInfoValidation.passwordError,
+            textFieldErrorMessage = signUpAndLogInInfoValidation.passwordErrorMessage,
             keyboardType = KeyboardType.Password){
             password = it
         }

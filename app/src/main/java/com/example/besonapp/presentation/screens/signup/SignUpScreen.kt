@@ -7,11 +7,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.besonapp.presentation.CustomerOrCompanyComponent
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.common_components.SignUpFormComponent
 import com.example.besonapp.presentation.floating_components.LogInButtonComponent
+import com.example.besonapp.presentation.model.UserType
+import com.example.besonapp.presentation.screens.signup.SignUpViewModel
 import com.example.besonapp.presentation.theme.backgroundColorVariantSignUpCustomer
 import com.example.besonapp.presentation.theme.backgroundColorVariantSignUpCompany
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_IMAGE_URL
@@ -25,13 +28,24 @@ import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_SIGNUP_BU
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_TEXT_BUTTON_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_TEXT_DETAILS
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_TEXT_TITLE
-import com.example.besonapp.util.SignUpAndLogInFormErrorHandle
 
 @Composable
 fun SignUpScreen(
     navController: NavController,
-//    signUpViewModel: SignUpViewModel = hiltViewModel(),
+    signUpViewModel: SignUpViewModel = hiltViewModel(),
     isSignUpScreenLogoClick: Boolean) {
+
+    val isUserSignUp = signUpViewModel.isUserSignUp.value
+
+    LaunchedEffect(key1 = isUserSignUp){
+        if(isUserSignUp != null){
+            if(isUserSignUp == UserType.CUSTOMER){
+                navController.navigate(NavigationItem.SignUpStepsAsCustomer.screen_route)
+            }else if(isUserSignUp == UserType.COMPANY){
+                navController.navigate(NavigationItem.SignUpStepsAsCompany.screen_route)
+            }
+        }
+    }
 
     var customerWindowIsClosed by remember { mutableStateOf(true)}
     var companyWindowIsClosed by remember { mutableStateOf(true)}
@@ -53,9 +67,7 @@ fun SignUpScreen(
 
         Column{
 
-            var signUpAndLogInFormErrorHandle by remember { mutableStateOf(
-                SignUpAndLogInFormErrorHandle()
-            )}
+            val signUpAndLogInInfoValidationState by signUpViewModel.signUpValidationState
 
             Box(
                 modifier = Modifier
@@ -68,12 +80,9 @@ fun SignUpScreen(
                     if(customerSignUpComponentIsVisible){
                         SignUpFormComponent(
                             buttonText = SIGNUP_SCREEN_CUSTOMER_SIGNUP_BUTTON_TEXT,
-                            signUpAndLogInFormErrorHandle = signUpAndLogInFormErrorHandle){
+                            signUpAndLogInInfoValidation = signUpAndLogInInfoValidationState){
 
-                            signUpAndLogInFormErrorHandle = SignUpAndLogInFormErrorHandle().invokeForSignUp(it) //Bu kısım viewModel'de halledilmeli
-
-                            //Bu navigasyonda, bilgiler önce server'a gönderilecek ordan olumlu cevap gelirse navigate edilecek.
-                            navController.navigate(NavigationItem.SignUpStepsAsCustomer.screen_route)
+                            signUpViewModel.signUp(it,UserType.CUSTOMER)
                         }
                     }
 
@@ -107,12 +116,9 @@ fun SignUpScreen(
                         SignUpFormComponent(
                             buttonText = SIGNUP_SCREEN_COMPANY_SIGNUP_BUTTON_TEXT,
                             paddingFromBottom = 56.dp,
-                            signUpAndLogInFormErrorHandle = signUpAndLogInFormErrorHandle){
+                            signUpAndLogInInfoValidation = signUpAndLogInInfoValidationState){
 
-                            signUpAndLogInFormErrorHandle = SignUpAndLogInFormErrorHandle().invokeForSignUp(it) //Bu kısım viewModel'de halledilmeli
-
-                            //Bu navigasyonda, bilgiler önce server'a gönderilecek ordan olumlu cevap gelirse navigate edilecek.
-                            navController.navigate(NavigationItem.SignUpStepsAsCompany.screen_route)
+                            signUpViewModel.signUp(it, UserType.COMPANY)
                         }
                     }
 

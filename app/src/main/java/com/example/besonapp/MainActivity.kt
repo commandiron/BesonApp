@@ -93,7 +93,7 @@ fun MainContent(
             //Loading Screen
             LoadingScreen(isLoading = isLoading) {
 
-                //Tutorial Screens -> BURAYI BİR KERE ÇALIŞACAK ŞEKİLDE AYARLA
+                //Tutorial Screens
                 TutorialGraph(
                     currentRoute = currentRoute,
                     enabled = tutorialEnabled,

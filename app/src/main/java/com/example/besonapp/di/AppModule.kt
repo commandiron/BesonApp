@@ -8,6 +8,8 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import com.example.besonapp.data.repository.AppRepositoryImpl
 import com.example.besonapp.domain.repository.AppRepository
 import com.example.besonapp.domain.use_case.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,6 +21,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    @Provides
+    fun provideFirebaseAuthInstance() = FirebaseAuth.getInstance()
+
+    @Provides
+    fun provideFirebaseDatabaseInstance() =
+        FirebaseDatabase
+            .getInstance("https://besonapp-default-rtdb.europe-west1.firebasedatabase.app/")
+
     @Singleton
     @Provides
     fun provideDataStore(@ApplicationContext appContext: Context): DataStore<Preferences> {
@@ -28,13 +38,18 @@ object AppModule {
 
     @Provides
     fun provideRepository(
-        dataStore: DataStore<Preferences>
-    ): AppRepository = AppRepositoryImpl(dataStore)
+        auth: FirebaseAuth,
+        dataStore: DataStore<Preferences>,
+        databaseFirebase: FirebaseDatabase
+    ): AppRepository = AppRepositoryImpl(auth, dataStore, databaseFirebase)
 
     @Provides
     fun provideUseCases(repository: AppRepository) = UseCases(
         setUserOpenAppOnceFlagForShowSplashAndIntroScreens = SetUserOpenAppOnceFlagForShowSplashAndIntroScreens(repository),
         getUserOpenAppOnceFlag = GetUserOpenAppOnceFlag(repository),
+        signUpInfoValidation = SignUpInfoValidation(),
+        signUp = SignUp(repository),
+        createUserProfileToFirebaseDb = CreateUserProfileToFirebaseDb(repository),
         setUserPassTutorialOnceFlag = SetUserPassTutorialOnceFlag(repository),
         getUserPassTutorialOnceFlag = GetUserPassTutorialOnceFlag(repository)
     )

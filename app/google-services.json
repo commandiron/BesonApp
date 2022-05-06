@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "123437715447",
+    "project_id": "besonapp",
+    "storage_bucket": "besonapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123437715447:android:8f77bb04f990d8284528f2",
+        "android_client_info": {
+          "package_name": "com.example.besonapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123437715447-cu50hjfmv9ct9ksf4586p3g7gnu3j1bd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlpfGoQs7rsiUkBdr2FX-s-l5k5GzdRTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123437715447-cu50hjfmv9ct9ksf4586p3g7gnu3j1bd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

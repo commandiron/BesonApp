@@ -2,15 +2,15 @@ package com.example.besonapp.util
 
 import java.util.regex.Pattern
 
-class SignUpAndLogInFormErrorHandle(
+data class SignUpAndLogInInfoValidation(
     var emailError: Boolean = false,
     var emailErrorMessage: String = "",
     var passwordError: Boolean = false,
     var passwordErrorMessage: String = "",
 ) {
-    fun invokeForSignUp(userSignUpInfo: UserSignUpInfo): SignUpAndLogInFormErrorHandle {
+    fun invokeForSignUp(userSignUpInfo: UserSignUpInfo): SignUpAndLogInInfoValidation {
 
-        val signUpError = SignUpAndLogInFormErrorHandle()
+        val signUpError = SignUpAndLogInInfoValidation()
 
         val emailAddressRegexPattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"
 
@@ -35,7 +35,7 @@ class SignUpAndLogInFormErrorHandle(
             signUpError.passwordErrorMessage =
                 ErrorTexts.NOT_SAME_PASSWORD_ERROR_MESSAGE
         }else{
-            if(userSignUpInfo.password.length < 8){
+            if(userSignUpInfo.password.length < 6){
                 signUpError.passwordError = true
                 signUpError.passwordErrorMessage =
                     ErrorTexts.LEAST_EIGHT_CHAR_EMAIL_ERROR_MESSAGE
@@ -47,9 +47,9 @@ class SignUpAndLogInFormErrorHandle(
         return signUpError
     }
 
-    fun invokeForLogIn(userLogInInfo: UserLogInInfo): SignUpAndLogInFormErrorHandle {
+    fun invokeForLogIn(userLogInInfo: UserLogInInfo): SignUpAndLogInInfoValidation {
 
-        val logInError = SignUpAndLogInFormErrorHandle()
+        val logInError = SignUpAndLogInInfoValidation()
 
         val emailAddressRegexPattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"
 
@@ -70,7 +70,7 @@ class SignUpAndLogInFormErrorHandle(
             logInError.passwordErrorMessage =
                 ErrorTexts.EMPTY_TEXT_FIELD_ERROR_MESSAGE
         }else{
-            if(userLogInInfo.password.length < 8){
+            if(userLogInInfo.password.length < 6){
                 logInError.passwordError = true
                 logInError.passwordErrorMessage =
                     ErrorTexts.LEAST_EIGHT_CHAR_EMAIL_ERROR_MESSAGE
@@ -87,6 +87,6 @@ object ErrorTexts {
 
     const val EMPTY_TEXT_FIELD_ERROR_MESSAGE = "Boş bıraktınız."
     const val WRONG_EMAIL_REGEX_ERROR_MESSAGE = "Doğru bir Eposta adresi giriniz."
-    const val LEAST_EIGHT_CHAR_EMAIL_ERROR_MESSAGE = "En az 8 karakter giriniz."
+    const val LEAST_EIGHT_CHAR_EMAIL_ERROR_MESSAGE = "En az 6 karakter giriniz."
     const val NOT_SAME_PASSWORD_ERROR_MESSAGE = "Aynı değil."
 }

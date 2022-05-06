@@ -11,21 +11,21 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.besonapp.presentation.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.login.components.LogInFormComponent
-import com.example.besonapp.util.SignUpAndLogInFormErrorHandle
+import com.example.besonapp.util.SignUpAndLogInInfoValidation
 
 @Composable
 fun LogInScreen(navController: NavController){
 
-    var signUpAndLogInFormErrorHandle by remember { mutableStateOf(SignUpAndLogInFormErrorHandle()) }
+    var signUpAndLogInFormErrorHandle by remember { mutableStateOf(SignUpAndLogInInfoValidation()) }
 
     LogInFormComponent(
         modifier = Modifier.fillMaxSize().padding(top = 150.dp),
-        signUpAndLogInFormErrorHandle = signUpAndLogInFormErrorHandle,
+        signUpAndLogInInfoValidation = signUpAndLogInFormErrorHandle,
         onSignUpButtonClick = {
           navController.navigate(NavigationItem.SignUp.screen_route)
         },
         onLogInButtonClick = {
-            signUpAndLogInFormErrorHandle = SignUpAndLogInFormErrorHandle().invokeForLogIn(it) //Bu kısım viewModel'de halledilmeli
+            signUpAndLogInFormErrorHandle = SignUpAndLogInInfoValidation().invokeForLogIn(it) //Bu kısım viewModel'de halledilmeli
         }
     )
 }
