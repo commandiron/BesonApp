@@ -6,9 +6,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.besonapp.presentation.navigation.NavigationItem
+import com.example.besonapp.presentation.ui.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.splash.SplashViewModel
-import com.example.besonapp.presentation.theme.logoBackGround
+import com.example.besonapp.presentation.ui.theme.logoBackGround
 import com.example.besonapp.util.AnimationConstants.SPLASH_SCREEN_DELAY
 import kotlinx.coroutines.delay
 

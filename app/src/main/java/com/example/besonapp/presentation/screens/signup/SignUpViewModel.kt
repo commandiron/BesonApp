@@ -5,16 +5,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.besonapp.domain.use_case.UseCases
-import com.example.besonapp.presentation.model.Response
+import com.example.besonapp.util.Response
 import com.example.besonapp.presentation.model.UserType
 import com.example.besonapp.util.SignUpAndLogInInfoValidation
-import com.example.besonapp.util.UserSignUpInfo
+import com.example.besonapp.presentation.model.UserSignUpInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel@Inject constructor(
+class SignUpViewModel @Inject constructor(
     private val useCases: UseCases
 ): ViewModel()  {
 

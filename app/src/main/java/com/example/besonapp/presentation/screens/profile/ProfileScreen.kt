@@ -21,7 +21,7 @@ import com.example.besonapp.presentation.common_components.CustomLazyColumnForPr
 import com.example.besonapp.presentation.common_components.ProfileHeader
 import com.example.besonapp.presentation.common_components.ProfileScreenItemRow
 import com.example.besonapp.presentation.model.ConstructionPriceItem
-import com.example.besonapp.presentation.navigation.NavigationItem
+import com.example.besonapp.presentation.ui.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.profile.ProfileViewModel
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -40,7 +40,6 @@ fun ProfileScreen(
     LaunchedEffect(isUserOpenAppOnce) {
         if(isUserOpenAppOnce != null){
             if(!isUserOpenAppOnce){
-                println("run")
                 runTutorial()
             }
         }

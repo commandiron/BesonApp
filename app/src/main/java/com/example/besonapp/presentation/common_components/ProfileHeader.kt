@@ -2,10 +2,7 @@ package com.example.besonapp.presentation.common_components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
-import androidx.compose.foundation.indication
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -28,7 +25,7 @@ import androidx.constraintlayout.compose.MotionLayout
 import androidx.constraintlayout.compose.MotionScene
 import coil.compose.rememberImagePainter
 import com.example.besonapp.R
-import com.example.besonapp.presentation.theme.NoRippleTheme
+import com.example.besonapp.presentation.ui.theme.NoRippleTheme
 
 @Composable
 fun ProfileHeader(

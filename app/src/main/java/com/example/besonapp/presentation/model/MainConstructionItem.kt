@@ -10,7 +10,7 @@ class MainConstructionItem(
 ) : ConstructionItem(id, title, imageResource) {
     
     companion object {
-        val kazi = MainConstructionItem(
+        private val kazi = MainConstructionItem(
             id = 0,
             title = "Kazi İşleri",
             imageResource = R.drawable.construction_item_kazi,
@@ -19,7 +19,7 @@ class MainConstructionItem(
                 SubConstructionItem.hafriyatIsleri
             )
         )
-        val kabaYapi = MainConstructionItem(
+        private val kabaYapi = MainConstructionItem(
             id = 1,
             title = "Kaba Yapi İşleri",
             imageResource = R.drawable.construction_item_kaba_yapi,
@@ -34,7 +34,7 @@ class MainConstructionItem(
                 SubConstructionItem.betonKesmeDelme
             )
         )
-        val cati = MainConstructionItem(
+        private val cati = MainConstructionItem(
             id = 2,
             title = "Çatı İşleri",
             imageResource = R.drawable.construction_item_cati,
@@ -43,7 +43,7 @@ class MainConstructionItem(
                 SubConstructionItem.baca
             )
         )
-        val cephe = MainConstructionItem(
+        private val cephe = MainConstructionItem(
             id = 3,
             title = "Cephe İşleri",
             imageResource = R.drawable.construction_item_cephe,
@@ -52,7 +52,7 @@ class MainConstructionItem(
                 SubConstructionItem.cepheIskele
             )
         )
-        val mekanikTesisat = MainConstructionItem(
+        private val mekanikTesisat = MainConstructionItem(
             id = 4,
             title = "Mekanik Tesisat İşleri",
             imageResource = R.drawable.construction_item_mekanik_tesisat,
@@ -64,7 +64,7 @@ class MainConstructionItem(
                 SubConstructionItem.asansor
             )
         )
-        val elektrikTesisat = MainConstructionItem(
+        private val elektrikTesisat = MainConstructionItem(
             id = 5,
             title = "Elektrik Tesisat İşleri",
             imageResource = R.drawable.construction_item_elektrik_tesisat,
@@ -76,7 +76,7 @@ class MainConstructionItem(
                 SubConstructionItem.yedekGucSistemi
             )
         )
-        val icImalatlar = MainConstructionItem(
+        private val icImalatlar = MainConstructionItem(
             id = 6,
             title = "İç İmalatlar",
             imageResource = R.drawable.construction_item_ic_imalatlar,
@@ -94,7 +94,7 @@ class MainConstructionItem(
                 SubConstructionItem.mutfak
             )
         )
-        val peysajVeCevre = MainConstructionItem(
+        private val peysajVeCevre = MainConstructionItem(
             id = 7,
             title = "Peysaj ve Çevre Düzenlemesi İşleri",
             imageResource = R.drawable.construction_item_peysaj_ve_cevre,

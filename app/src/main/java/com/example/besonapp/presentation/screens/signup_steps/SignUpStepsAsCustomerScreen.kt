@@ -14,9 +14,16 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.besonapp.presentation.navigation.NavigationItem
+import com.example.besonapp.presentation.ui.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsClickableToGalleryImagePage
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsTextFieldPage
+import com.example.besonapp.util.AppStaticTexts.COMPLETE_REGISTRATION_TEXT
+import com.example.besonapp.util.AppStaticTexts.CREATE_PROFILE_TEXT
+import com.example.besonapp.util.AppStaticTexts.ENTER_YOUR_NAME_TEXT
+import com.example.besonapp.util.AppStaticTexts.ENTER_YOUR_PHONE_NUMBER_TEXT
+import com.example.besonapp.util.AppStaticTexts.SELECT_PROFILE_PICTURE_TEXT
+import com.example.besonapp.util.AppStaticTexts.YOUR_NAME_TEXT
+import com.example.besonapp.util.AppStaticTexts.YOUR_PHONE_NUMBER_TEXT
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
@@ -43,7 +50,7 @@ fun SignUpStepsAsCustomerScreen(
     ) {
 
         Text(
-            text = "Profil Oluştur",
+            text = CREATE_PROFILE_TEXT,
             color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h2
@@ -75,8 +82,8 @@ fun SignUpStepsAsCustomerScreen(
                     SignUpStepsTextFieldPage(
                         modifier = Modifier,
                         entry = name,
-                        title = "Adınızı giriniz.",
-                        hint = "Adınız"
+                        title = ENTER_YOUR_NAME_TEXT,
+                        hint = YOUR_NAME_TEXT
                     ){
                         name = it
                         coroutineScope.launch {
@@ -89,8 +96,8 @@ fun SignUpStepsAsCustomerScreen(
                     SignUpStepsTextFieldPage(
                         modifier = Modifier,
                         entry = phoneNumber,
-                        title = "Telefon numaranızı giriniz.",
-                        hint = "Telefon no:",
+                        title = ENTER_YOUR_PHONE_NUMBER_TEXT,
+                        hint = YOUR_PHONE_NUMBER_TEXT,
                         keyboardType = KeyboardType.Phone
                     ){
                         phoneNumber = it
@@ -103,7 +110,8 @@ fun SignUpStepsAsCustomerScreen(
                 2 -> {
                     SignUpStepsClickableToGalleryImagePage(
                         modifier = Modifier,
-                        buttonText = "Kaydı Tamamla"
+                        title = SELECT_PROFILE_PICTURE_TEXT,
+                        buttonText = COMPLETE_REGISTRATION_TEXT
                     ){
                         profilePictureUri = it.toString()
 

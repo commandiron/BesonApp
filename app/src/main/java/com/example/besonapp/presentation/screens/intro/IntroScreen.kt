@@ -17,12 +17,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.besonapp.util.IntroScreenElement
-import com.example.besonapp.presentation.navigation.NavigationItem
-import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
-import com.example.besonapp.presentation.theme.primaryColorNoTheme
-import com.example.besonapp.presentation.theme.primaryVariantColorNoTheme
-import com.example.besonapp.util.AppStaticTexts.INTRO_SCREEN_BOTTOM_TEXT
-import com.example.besonapp.util.AppStaticTexts.INTRO_SCREEN_BOTTOM_TEXT_LAST_PAGE
+import com.example.besonapp.presentation.ui.navigation.NavigationItem
+import com.example.besonapp.presentation.ui.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.primaryVariantColorNoTheme
+import com.example.besonapp.util.AppStaticTexts.START_NOW_TEXT
+import com.example.besonapp.util.AppStaticTexts.START_TEXT
 import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.pager.HorizontalPager
@@ -91,7 +91,7 @@ fun IntroScreen(
             Text(
                 modifier = Modifier.padding(top = 18.dp),
                 textAlign = TextAlign.Center,
-                text = if(lastPageFlag) INTRO_SCREEN_BOTTOM_TEXT_LAST_PAGE else INTRO_SCREEN_BOTTOM_TEXT,
+                text = if(lastPageFlag) START_TEXT else START_NOW_TEXT,
                 color = onPrimaryColorNoTheme,
                 style = MaterialTheme.typography.h3)
         }

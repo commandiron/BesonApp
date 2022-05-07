@@ -1,5 +1,7 @@
 package com.example.besonapp.util
 
+import com.example.besonapp.presentation.model.UserLogInInfo
+import com.example.besonapp.presentation.model.UserSignUpInfo
 import java.util.regex.Pattern
 
 data class SignUpAndLogInInfoValidation(

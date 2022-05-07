@@ -10,14 +10,18 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.besonapp.presentation.common_components.CustomButton
 import com.example.besonapp.presentation.common_components.CustomTextFieldComponent
-import com.example.besonapp.presentation.theme.LOWER_VISIBILITY_ALPHA
-import com.example.besonapp.util.UserLogInInfo
-import com.example.besonapp.util.AppStaticTexts
+import com.example.besonapp.presentation.ui.theme.LOWER_VISIBILITY_ALPHA
+import com.example.besonapp.presentation.model.UserLogInInfo
+import com.example.besonapp.util.AppStaticTexts.EMAIL_TEXT
+import com.example.besonapp.util.AppStaticTexts.LOGIN_BESON_TEXT
+import com.example.besonapp.util.AppStaticTexts.LOGIN_TEXT_2
+import com.example.besonapp.util.AppStaticTexts.OR_TEXT
+import com.example.besonapp.util.AppStaticTexts.PASSWORD_TEXT
+import com.example.besonapp.util.AppStaticTexts.SIGNUP_TEXT
 import com.example.besonapp.util.SignUpAndLogInInfoValidation
 
 @Composable
 fun LogInFormComponent(
-    modifier: Modifier,
     signUpAndLogInInfoValidation: SignUpAndLogInInfoValidation,
     onSignUpButtonClick:() -> Unit,
     onLogInButtonClick:(UserLogInInfo) -> Unit,
@@ -28,13 +32,13 @@ fun LogInFormComponent(
     var password by remember { mutableStateOf("") }
 
     Column(
-        modifier = modifier,
+        modifier =  Modifier.fillMaxSize().padding(top = 150.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
-            text = "Beşon'a Giriş Yapın",
+            text = LOGIN_BESON_TEXT,
             color = MaterialTheme.colors.onBackground,
             style = MaterialTheme.typography.h2)
 
@@ -42,7 +46,7 @@ fun LogInFormComponent(
 
         CustomTextFieldComponent(
             entry = email,
-            hint = AppStaticTexts.SIGNUP_SCREEN_EMAIL_HINT_TEXT,
+            hint = EMAIL_TEXT,
             textFieldError = signUpAndLogInInfoValidation.emailError,
             textFieldErrorMessage = signUpAndLogInInfoValidation.emailErrorMessage,
             keyboardType = KeyboardType.Email){
@@ -51,7 +55,7 @@ fun LogInFormComponent(
 
         CustomTextFieldComponent(
             entry = password,
-            hint =  AppStaticTexts.SIGNUP_SCREEN_PASSWORD_HINT_TEXT,
+            hint =  PASSWORD_TEXT,
             textFieldError = signUpAndLogInInfoValidation.passwordError,
             textFieldErrorMessage = signUpAndLogInInfoValidation.passwordErrorMessage,
             keyboardType = KeyboardType.Password){
@@ -70,13 +74,13 @@ fun LogInFormComponent(
                     onLogInButtonClick(UserLogInInfo(email, password))
                 }
             ) {
-                Text(text = "Giriş")
+                Text(text = LOGIN_TEXT_2)
             }
 
             Spacer(modifier = Modifier.height(40.dp))
             
             Text(
-                text = "ya da",
+                text = OR_TEXT,
                 color = MaterialTheme.colors.onBackground.copy(LOWER_VISIBILITY_ALPHA),
                 style = MaterialTheme.typography.body1)
 
@@ -88,7 +92,7 @@ fun LogInFormComponent(
                     onSignUpButtonClick()
                 }
             ) {
-                Text(text = "Kayıt Ol")
+                Text(text = SIGNUP_TEXT)
             }
         }
     }

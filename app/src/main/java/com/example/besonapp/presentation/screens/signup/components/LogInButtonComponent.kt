@@ -14,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.presentation.theme.logoBackGround
-import com.example.besonapp.presentation.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.logoBackGround
+import com.example.besonapp.presentation.ui.theme.primaryColorNoTheme
 
 @Composable
 fun LogInButtonComponent(

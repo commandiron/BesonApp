@@ -23,11 +23,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
-import com.example.besonapp.presentation.theme.buttonBorder
-import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
-import com.example.besonapp.presentation.theme.primaryColorNoTheme
-import com.example.besonapp.presentation.theme.textFieldBackgroundColor
-import com.example.besonapp.ui.theme.*
+import com.example.besonapp.presentation.ui.theme.buttonBorder
+import com.example.besonapp.presentation.ui.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.textFieldBackgroundColor
 
 @Composable
 fun CustomerOrCompanyComponent(

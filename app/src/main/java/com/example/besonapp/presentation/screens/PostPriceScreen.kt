@@ -26,9 +26,9 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import com.example.besonapp.presentation.model.ConstructionPriceItem
 import com.example.besonapp.presentation.model.MainConstructionItem
-import com.example.besonapp.presentation.theme.insertPriceButtonColor
-import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
-import com.example.besonapp.presentation.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.insertPriceButtonColor
+import com.example.besonapp.presentation.ui.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.primaryColorNoTheme
 import com.example.besonapp.util.ThousandSeparatorVisualTransformationWithAddedSymbol
 
 @Composable

@@ -9,11 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.besonapp.util.UserSignUpInfo
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_EMAIL_HINT_TEXT
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_FORM_TITLE_TEXT
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_PASSWORD_AGAIN_HINT_TEXT
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_PASSWORD_HINT_TEXT
+import com.example.besonapp.presentation.model.UserSignUpInfo
+import com.example.besonapp.util.AppStaticTexts.EMAIL_TEXT
+import com.example.besonapp.util.AppStaticTexts.PASSWORD_AGAIN_TEXT
+import com.example.besonapp.util.AppStaticTexts.PASSWORD_TEXT
+import com.example.besonapp.util.AppStaticTexts.SIGNUP_TEXT
 import com.example.besonapp.util.SignUpAndLogInInfoValidation
 
 @Composable
@@ -37,13 +37,13 @@ fun SignUpFormComponent(
     ) {
 
         Text(
-            text = SIGNUP_SCREEN_FORM_TITLE_TEXT,
+            text = SIGNUP_TEXT,
             color = MaterialTheme.colors.onBackground,
             style = MaterialTheme.typography.h2)
 
         CustomTextFieldComponent(
             entry = email,
-            hint = SIGNUP_SCREEN_EMAIL_HINT_TEXT,
+            hint = EMAIL_TEXT,
             textFieldError = signUpAndLogInInfoValidation?.emailError ?: false,
             textFieldErrorMessage = signUpAndLogInInfoValidation?.emailErrorMessage ?: "",
             keyboardType = KeyboardType.Email){
@@ -52,7 +52,7 @@ fun SignUpFormComponent(
 
         CustomTextFieldComponent(
             entry = password,
-            hint =  SIGNUP_SCREEN_PASSWORD_HINT_TEXT,
+            hint =  PASSWORD_TEXT,
             textFieldError = signUpAndLogInInfoValidation?.passwordError ?: false,
             textFieldErrorMessage = signUpAndLogInInfoValidation?.passwordErrorMessage ?: "",
             keyboardType = KeyboardType.Password){
@@ -61,7 +61,7 @@ fun SignUpFormComponent(
 
         CustomTextFieldComponent(
             entry = passwordAgain,
-            hint =  SIGNUP_SCREEN_PASSWORD_AGAIN_HINT_TEXT,
+            hint =  PASSWORD_AGAIN_TEXT,
             textFieldError = signUpAndLogInInfoValidation?.passwordError ?: false,
             textFieldErrorMessage = signUpAndLogInInfoValidation?.passwordErrorMessage ?: "",
             keyboardType = KeyboardType.Password){

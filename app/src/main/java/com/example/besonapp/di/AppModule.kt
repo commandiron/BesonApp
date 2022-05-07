@@ -48,8 +48,10 @@ object AppModule {
         setUserOpenAppOnceFlagForShowSplashAndIntroScreens = SetUserOpenAppOnceFlagForShowSplashAndIntroScreens(repository),
         getUserOpenAppOnceFlag = GetUserOpenAppOnceFlag(repository),
         signUpInfoValidation = SignUpInfoValidation(),
+        logInInfoValidation = LogInInfoValidation(),
         signUp = SignUp(repository),
         createUserProfileToFirebaseDb = CreateUserProfileToFirebaseDb(repository),
+        logIn = LogIn(repository),
         setUserPassTutorialOnceFlag = SetUserPassTutorialOnceFlag(repository),
         getUserPassTutorialOnceFlag = GetUserPassTutorialOnceFlag(repository)
     )

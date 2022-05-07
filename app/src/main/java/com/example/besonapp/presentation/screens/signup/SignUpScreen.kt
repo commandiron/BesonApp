@@ -10,24 +10,23 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.besonapp.presentation.CustomerOrCompanyComponent
-import com.example.besonapp.presentation.navigation.NavigationItem
+import com.example.besonapp.presentation.ui.navigation.NavigationItem
 import com.example.besonapp.presentation.common_components.SignUpFormComponent
 import com.example.besonapp.presentation.floating_components.LogInButtonComponent
 import com.example.besonapp.presentation.model.UserType
 import com.example.besonapp.presentation.screens.signup.SignUpViewModel
-import com.example.besonapp.presentation.theme.backgroundColorVariantSignUpCustomer
-import com.example.besonapp.presentation.theme.backgroundColorVariantSignUpCompany
+import com.example.besonapp.presentation.ui.theme.backgroundColorVariantSignUpCustomer
+import com.example.besonapp.presentation.ui.theme.backgroundColorVariantSignUpCompany
+import com.example.besonapp.util.AppStaticTexts.COMPANY_STATEMENT_TEXT
+import com.example.besonapp.util.AppStaticTexts.CUSTOMER_STATEMENT_TEXT
+import com.example.besonapp.util.AppStaticTexts.I_AM_COMPANY_TEXT
+import com.example.besonapp.util.AppStaticTexts.I_AM_CUSTOMER_TEXT
+import com.example.besonapp.util.AppStaticTexts.LOGIN_TEXT
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_IMAGE_URL
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_LOGIN_BUTTON_TEXT
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_SIGNUP_BUTTON_TEXT
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_TEXT_BUTTON_TEXT
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_TEXT_DETAILS
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_COMPANY_TEXT_TITLE
 import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_IMAGE_URL
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_SIGNUP_BUTTON_TEXT
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_TEXT_BUTTON_TEXT
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_TEXT_DETAILS
-import com.example.besonapp.util.AppStaticTexts.SIGNUP_SCREEN_CUSTOMER_TEXT_TITLE
+import com.example.besonapp.util.AppStaticTexts.SIGNUP_UPPERCASE_TEXT
+import com.example.besonapp.util.AppStaticTexts.SIGN_UP_AS_COMPANY_TEXT
+import com.example.besonapp.util.AppStaticTexts.SIGN_UP_AS_CUSTOMER_TEXT
 
 @Composable
 fun SignUpScreen(
@@ -67,7 +66,7 @@ fun SignUpScreen(
 
         Column{
 
-            val signUpAndLogInInfoValidationState by signUpViewModel.signUpValidationState
+            val signUpValidationState by signUpViewModel.signUpValidationState
 
             Box(
                 modifier = Modifier
@@ -79,17 +78,17 @@ fun SignUpScreen(
 
                     if(customerSignUpComponentIsVisible){
                         SignUpFormComponent(
-                            buttonText = SIGNUP_SCREEN_CUSTOMER_SIGNUP_BUTTON_TEXT,
-                            signUpAndLogInInfoValidation = signUpAndLogInInfoValidationState){
+                            buttonText = SIGN_UP_AS_CUSTOMER_TEXT,
+                            signUpAndLogInInfoValidation = signUpValidationState){
 
                             signUpViewModel.signUp(it,UserType.CUSTOMER)
                         }
                     }
 
                     CustomerOrCompanyComponent(
-                        title = SIGNUP_SCREEN_CUSTOMER_TEXT_TITLE,
-                        details = SIGNUP_SCREEN_CUSTOMER_TEXT_DETAILS,
-                        buttonText = SIGNUP_SCREEN_CUSTOMER_TEXT_BUTTON_TEXT,
+                        title =  I_AM_CUSTOMER_TEXT,
+                        details = CUSTOMER_STATEMENT_TEXT,
+                        buttonText = SIGNUP_UPPERCASE_TEXT,
                         imageUrl = SIGNUP_SCREEN_CUSTOMER_IMAGE_URL,
                         surfaceColor = backgroundColorVariantSignUpCustomer,
                         targetOffsetValue = -constraints.maxHeight/4.toFloat() + 130f,
@@ -114,18 +113,18 @@ fun SignUpScreen(
                     if(companySignUpComponentIsVisible){
 
                         SignUpFormComponent(
-                            buttonText = SIGNUP_SCREEN_COMPANY_SIGNUP_BUTTON_TEXT,
+                            buttonText = SIGN_UP_AS_COMPANY_TEXT,
                             paddingFromBottom = 56.dp,
-                            signUpAndLogInInfoValidation = signUpAndLogInInfoValidationState){
+                            signUpAndLogInInfoValidation = signUpValidationState){
 
                             signUpViewModel.signUp(it, UserType.COMPANY)
                         }
                     }
 
                     CustomerOrCompanyComponent(
-                        title = SIGNUP_SCREEN_COMPANY_TEXT_TITLE,
-                        details = SIGNUP_SCREEN_COMPANY_TEXT_DETAILS,
-                        buttonText = SIGNUP_SCREEN_COMPANY_TEXT_BUTTON_TEXT,
+                        title = I_AM_COMPANY_TEXT,
+                        details = COMPANY_STATEMENT_TEXT,
+                        buttonText = SIGNUP_UPPERCASE_TEXT,
                         imageUrl = SIGNUP_SCREEN_COMPANY_IMAGE_URL,
                         surfaceColor = backgroundColorVariantSignUpCompany,
                         targetOffsetValue = constraints.maxHeight/4.toFloat() -130f,
@@ -148,7 +147,7 @@ fun SignUpScreen(
 
             LogInButtonComponent(
                 modifier = Modifier.padding(end = 10.dp),
-                text = SIGNUP_SCREEN_COMPANY_LOGIN_BUTTON_TEXT
+                text = LOGIN_TEXT
             ){
                 customerSignUpComponentIsVisible = false
                 companySignUpComponentIsVisible = false

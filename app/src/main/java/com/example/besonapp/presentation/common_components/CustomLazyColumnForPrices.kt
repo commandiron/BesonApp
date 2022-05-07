@@ -1,27 +1,18 @@
 package com.example.besonapp.presentation.common_components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
-import coil.compose.rememberImagePainter
-import com.example.besonapp.R
 import com.example.besonapp.presentation.model.ConstructionPriceItem
-import com.example.besonapp.presentation.model.MainConstructionItem
-import com.example.besonapp.presentation.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.primaryColorNoTheme
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -25,8 +25,8 @@ import com.example.besonapp.presentation.common_components.CustomLazyColumnForPr
 import com.example.besonapp.presentation.common_components.CustomAlertDialogForShowProfile
 import com.example.besonapp.presentation.model.MainConstructionItem
 import com.example.besonapp.presentation.model.SubConstructionItem
-import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
-import com.example.besonapp.presentation.theme.primaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.primaryColorNoTheme
 
 @Composable
 fun PricesScreen(navController: NavController){
@@ -109,8 +109,12 @@ fun PricesScreen(navController: NavController){
 
                     mainCategorySelected = item == selectedMainConstructionItem
 
-                    var mainCategorySurfaceSelectedColor by remember { mutableStateOf(primaryColorNoTheme) }
-                    var mainCategorySurfaceContentColor by remember { mutableStateOf(onPrimaryColorNoTheme) }
+                    var mainCategorySurfaceSelectedColor by remember { mutableStateOf(
+                        primaryColorNoTheme
+                    ) }
+                    var mainCategorySurfaceContentColor by remember { mutableStateOf(
+                        onPrimaryColorNoTheme
+                    ) }
 
                     if(mainCategorySelected){
                         mainCategorySurfaceSelectedColor = primaryColorNoTheme
@@ -153,7 +157,8 @@ fun PricesScreen(navController: NavController){
                                     unSelectedBackground = primaryColorNoTheme,
                                     unselectedTint = onPrimaryColorNoTheme,
                                     selectedTint = primaryColorNoTheme,
-                                    selectedBackground = onPrimaryColorNoTheme)
+                                    selectedBackground = onPrimaryColorNoTheme
+                                )
                             }
                             Text(
                                 text = item.title,
@@ -182,8 +187,12 @@ fun PricesScreen(navController: NavController){
 
                     subCategorySelected = item == selectedSubConstructionItem
 
-                    var subCategorySurfaceSelectedColor by remember { mutableStateOf(primaryColorNoTheme) }
-                    var subCategorySurfaceContentColor by remember { mutableStateOf(onPrimaryColorNoTheme) }
+                    var subCategorySurfaceSelectedColor by remember { mutableStateOf(
+                        primaryColorNoTheme
+                    ) }
+                    var subCategorySurfaceContentColor by remember { mutableStateOf(
+                        onPrimaryColorNoTheme
+                    ) }
 
                     if(subCategorySelected){
                         subCategorySurfaceSelectedColor = primaryColorNoTheme
@@ -225,7 +234,8 @@ fun PricesScreen(navController: NavController){
                                     unSelectedBackground = primaryColorNoTheme,
                                     unselectedTint = onPrimaryColorNoTheme,
                                     selectedTint = primaryColorNoTheme,
-                                    selectedBackground = onPrimaryColorNoTheme)
+                                    selectedBackground = onPrimaryColorNoTheme
+                                )
                             }
                             Text(
                                 text = item.title,

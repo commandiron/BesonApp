@@ -19,7 +19,7 @@ import androidx.navigation.NavController
 import com.example.besonapp.presentation.common_components.ConstructionItemView
 import com.example.besonapp.presentation.common_components.CustomTextFieldComponent2
 import com.example.besonapp.presentation.model.MainConstructionItem
-import com.example.besonapp.presentation.navigation.NavigationItem
+import com.example.besonapp.presentation.ui.navigation.NavigationItem
 
 @Composable
 fun EditProfileScreen(

@@ -16,9 +16,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.besonapp.presentation.common_components.CustomButton
-import com.example.besonapp.presentation.theme.LOWER_VISIBILITY_ALPHA
-import com.example.besonapp.presentation.theme.textFieldBackgroundColor
-import com.example.besonapp.presentation.theme.onPrimaryColorNoTheme
+import com.example.besonapp.presentation.ui.theme.LOWER_VISIBILITY_ALPHA
+import com.example.besonapp.presentation.ui.theme.textFieldBackgroundColor
+import com.example.besonapp.presentation.ui.theme.onPrimaryColorNoTheme
 
 @Composable
 fun SignUpStepsTextFieldPage(

@@ -13,10 +13,21 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.besonapp.presentation.model.ConstructionItem
 import com.example.besonapp.presentation.model.MainConstructionItem
-import com.example.besonapp.presentation.navigation.NavigationItem
+import com.example.besonapp.presentation.ui.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.signup_steps.components.SignUpStepsCategorySelectionPage
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsClickableToGalleryImagePage
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsTextFieldPage
+import com.example.besonapp.util.AppStaticTexts.COMPLETE_REGISTRATION_TEXT
+import com.example.besonapp.util.AppStaticTexts.CREATE_PROFILE_TEXT
+import com.example.besonapp.util.AppStaticTexts.ENTER_YOUR_NAME_OR_COMPANY_TEXT
+import com.example.besonapp.util.AppStaticTexts.ENTER_YOUR_PHONE_NUMBER_TEXT
+import com.example.besonapp.util.AppStaticTexts.NEXT_TEXT
+import com.example.besonapp.util.AppStaticTexts.SELECT_MAIN_CONSTRUCTION_CATEGORY_TEXT
+import com.example.besonapp.util.AppStaticTexts.SELECT_PROFILE_PICTURE_TEXT
+import com.example.besonapp.util.AppStaticTexts.SELECT_SUB_CONSTRUCTION_CATEGORY_TEXT
+import com.example.besonapp.util.AppStaticTexts.YOUR_NAME_TEXT
+import com.example.besonapp.util.AppStaticTexts.YOUR_PHONE_NUMBER_TEXT
+import com.example.besonapp.util.AppStaticTexts.YOU_CAN_SELECT_MULTIPLE_CATEGORIES_TEXT
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
@@ -44,7 +55,7 @@ fun SignUpStepsAsCompanyScreen(
     ) {
 
         Text(
-            text = "Profil Oluştur",
+            text = CREATE_PROFILE_TEXT,
             color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h2
@@ -78,8 +89,8 @@ fun SignUpStepsAsCompanyScreen(
                 0 -> {
                     SignUpStepsTextFieldPage(
                         entry = nameOrCompanyName,
-                        title = "Adınızı ya da şirket adınızı giriniz.",
-                        hint = "Adınız"
+                        title = ENTER_YOUR_NAME_OR_COMPANY_TEXT,
+                        hint = YOUR_NAME_TEXT
                     ){
                         nameOrCompanyName = it
                         coroutineScope.launch {
@@ -92,8 +103,8 @@ fun SignUpStepsAsCompanyScreen(
 
                     SignUpStepsTextFieldPage(
                         entry = phoneNumber,
-                        title = "Telefon numaranızı giriniz.",
-                        hint = "Telefon no",
+                        title = ENTER_YOUR_PHONE_NUMBER_TEXT,
+                        hint = YOUR_PHONE_NUMBER_TEXT,
                         keyboardType = KeyboardType.Phone
                     ){
                         phoneNumber = it
@@ -106,7 +117,8 @@ fun SignUpStepsAsCompanyScreen(
                 2 -> {
 
                     SignUpStepsClickableToGalleryImagePage(
-                        buttonText = "İleri"
+                        title = SELECT_PROFILE_PICTURE_TEXT,
+                        buttonText = NEXT_TEXT
                     ){
                         profilePictureUri = it.toString()
 
@@ -122,9 +134,9 @@ fun SignUpStepsAsCompanyScreen(
                     val mainConstructionCatagories = MainConstructionItem.createMainCategories()
 
                     SignUpStepsCategorySelectionPage(
-                        title = "Ana Faaliyet Kategorinizi Seçiniz",
+                        title = SELECT_MAIN_CONSTRUCTION_CATEGORY_TEXT,
                         itemListMain = mainConstructionCatagories,
-                        buttonText = "İleri",
+                        buttonText = NEXT_TEXT,
                         multipleSelectionEnabled = false,
                         onNextButtonClickSingleSelection = { selectedItem ->
 
@@ -147,10 +159,10 @@ fun SignUpStepsAsCompanyScreen(
                 4 -> {
 
                     SignUpStepsCategorySelectionPage(
-                        title = "Uzmanlık Alan(lar)ınızı Seçiniz",
-                        underButtonHintText = "*Birden fazla kategori seçebilirsiniz ve daha sonra değiştirebilirsiniz.",
+                        title = SELECT_SUB_CONSTRUCTION_CATEGORY_TEXT,
+                        underButtonHintText = YOU_CAN_SELECT_MULTIPLE_CATEGORIES_TEXT,
                         itemListMain = selectedMainCategory?.subConstructionCategories ?: emptyList(),
-                        buttonText = "Kaydı Tamamla",
+                        buttonText = COMPLETE_REGISTRATION_TEXT,
                         multipleSelectionEnabled = true,
                         onNextButtonClickMultipleSelection = { selectedItemList ->
                             if(selectedItemList != null){

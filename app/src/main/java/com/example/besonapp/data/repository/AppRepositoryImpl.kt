@@ -5,7 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import com.example.besonapp.domain.repository.AppRepository
-import com.example.besonapp.presentation.model.Response
+import com.example.besonapp.util.Response
 import com.example.besonapp.presentation.model.UserType
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -14,7 +14,6 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -57,7 +56,7 @@ class AppRepositoryImpl @Inject constructor (
     override suspend fun signUp(email: String, password: String): Flow<Response<Boolean>> = callbackFlow {
         try {
             send(Response.Loading)
-            val a = auth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
+            auth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
                 if(it.user != null){
                     trySend(Response.Success(true))
                 }
@@ -68,7 +67,6 @@ class AppRepositoryImpl @Inject constructor (
                 channel.close()
                 cancel()
             }
-
         } catch (e: Exception) {
             trySend(Response.Error(e.message ?: "ERROR_MESSAGE"))
         }
@@ -97,6 +95,26 @@ class AppRepositoryImpl @Inject constructor (
             }
         }catch (e: Exception){
             send(Response.Error(e.message ?: "ERROR_MESSAGE"))
+        }
+    }
+
+    override suspend fun logIn(email: String, password: String): Flow<Response<Boolean>> = callbackFlow{
+
+        try {
+            send(Response.Loading)
+            auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
+                if(it.user != null){
+                    trySend(Response.Success(true))
+                }
+            }.addOnFailureListener {
+                trySend(Response.Error(it.message ?: "ERROR_MESSAGE"))
+            }
+            awaitClose {
+                channel.close()
+                cancel()
+            }
+        } catch (e: Exception) {
+            trySend(Response.Error(e.message ?: "ERROR_MESSAGE"))
         }
     }
 }
