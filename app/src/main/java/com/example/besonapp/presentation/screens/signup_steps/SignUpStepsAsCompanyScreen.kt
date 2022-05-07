@@ -170,6 +170,7 @@ fun SignUpStepsAsCompanyScreen(
 
                                 //KAYIT YAPILACAK
 
+                                //BURADA KALDIM CUSTOMER GİBİ BURAYIDA YAPPPPPPPPPPPPPPPPPPPPPP
                                 //Bu kasım kayıt olumlu olursa çalışacak.
                                 navController.popBackStack()
                                 navController.navigate(NavigationItem.Profile.screen_route)

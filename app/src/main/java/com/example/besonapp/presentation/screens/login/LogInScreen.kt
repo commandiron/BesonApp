@@ -22,7 +22,7 @@ fun LogInScreen(
         }
     }
 
-    val logInValidationState by logInViewModel.logInValidationState
+    val logInValidationState by logInViewModel.logInFormValidationState
 
     LogInFormComponent(
         signUpAndLogInInfoValidation = logInValidationState,

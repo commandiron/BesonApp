@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.besonapp.domain.use_case.UseCases
 import com.example.besonapp.presentation.model.UserLogInInfo
-import com.example.besonapp.presentation.model.UserSignUpInfo
-import com.example.besonapp.presentation.model.UserType
 import com.example.besonapp.util.Response
 import com.example.besonapp.util.SignUpAndLogInInfoValidation
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,17 +17,17 @@ class LogInViewModel @Inject constructor(
     private val useCases: UseCases
 ): ViewModel()  {
 
-    private val _logInValidationState = mutableStateOf(SignUpAndLogInInfoValidation())
-    val logInValidationState : State<SignUpAndLogInInfoValidation> = _logInValidationState
+    private val _logInFormValidationState = mutableStateOf(SignUpAndLogInInfoValidation())
+    val logInFormValidationState : State<SignUpAndLogInInfoValidation> = _logInFormValidationState
 
     private val _isUserLogIn = mutableStateOf(false)
     val isUserLogIn : State<Boolean> = _isUserLogIn
 
     fun logIn(userLogInInfo: UserLogInInfo) {
 
-        getLogInValidationState(userLogInInfo)
+        getLogInFormValidationState(userLogInInfo)
 
-        if(!_logInValidationState.value.emailError && !_logInValidationState.value.passwordError){
+        if(!_logInFormValidationState.value.emailError && !_logInFormValidationState.value.passwordError){
 
             viewModelScope.launch {
 
@@ -52,8 +50,8 @@ class LogInViewModel @Inject constructor(
         }
     }
 
-    private fun getLogInValidationState(userLogInInfo: UserLogInInfo){
-        _logInValidationState.value = useCases.logInInfoValidation.invoke(userLogInInfo)
+    private fun getLogInFormValidationState(userLogInInfo: UserLogInInfo){
+        _logInFormValidationState.value = useCases.logInInfoValidation.invoke(userLogInInfo)
     }
 
 }

@@ -66,7 +66,7 @@ fun SignUpScreen(
 
         Column{
 
-            val signUpValidationState by signUpViewModel.signUpValidationState
+            val signUpValidationState by signUpViewModel.signUpFormValidationState
 
             Box(
                 modifier = Modifier

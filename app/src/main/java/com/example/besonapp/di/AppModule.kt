@@ -10,6 +10,7 @@ import com.example.besonapp.domain.repository.AppRepository
 import com.example.besonapp.domain.use_case.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +30,9 @@ object AppModule {
         FirebaseDatabase
             .getInstance("https://besonapp-default-rtdb.europe-west1.firebasedatabase.app/")
 
+    @Provides
+    fun provideFirebaseStorageInstance() = FirebaseStorage.getInstance()
+
     @Singleton
     @Provides
     fun provideDataStore(@ApplicationContext appContext: Context): DataStore<Preferences> {
@@ -39,9 +43,10 @@ object AppModule {
     @Provides
     fun provideRepository(
         auth: FirebaseAuth,
+        databaseFirebase: FirebaseDatabase,
+        storage: FirebaseStorage,
         dataStore: DataStore<Preferences>,
-        databaseFirebase: FirebaseDatabase
-    ): AppRepository = AppRepositoryImpl(auth, dataStore, databaseFirebase)
+    ): AppRepository = AppRepositoryImpl(auth, databaseFirebase, storage, dataStore)
 
     @Provides
     fun provideUseCases(repository: AppRepository) = UseCases(
@@ -53,7 +58,9 @@ object AppModule {
         createUserProfileToFirebaseDb = CreateUserProfileToFirebaseDb(repository),
         logIn = LogIn(repository),
         setUserPassTutorialOnceFlag = SetUserPassTutorialOnceFlag(repository),
-        getUserPassTutorialOnceFlag = GetUserPassTutorialOnceFlag(repository)
+        getUserPassTutorialOnceFlag = GetUserPassTutorialOnceFlag(repository),
+        uploadProfilePictureToFirebaseStorage = UploadProfilePictureToFirebaseStorage(repository),
+        updateCustomerProfileToFirebaseDb = UpdateCustomerProfileToFirebaseDb(repository)
     )
 
 }

@@ -1,5 +1,6 @@
 package com.example.besonapp.presentation.screens.signup_steps_as_customer
 
+import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -13,10 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.besonapp.presentation.ui.navigation.NavigationItem
+import com.example.besonapp.domain.model.CustomerProfile
+import com.example.besonapp.presentation.screens.signup_steps.SignUpStepsViewModel
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsClickableToGalleryImagePage
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsTextFieldPage
+import com.example.besonapp.presentation.ui.navigation.NavigationItem
 import com.example.besonapp.util.AppStaticTexts.COMPLETE_REGISTRATION_TEXT
 import com.example.besonapp.util.AppStaticTexts.CREATE_PROFILE_TEXT
 import com.example.besonapp.util.AppStaticTexts.ENTER_YOUR_NAME_TEXT
@@ -30,12 +34,21 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpStepsAsCustomerScreen(
-    navController: NavController
+    navController: NavController,
+    signUpStepsViewModel: SignUpStepsViewModel = hiltViewModel()
 ) {
+
+    val isProfileUpdated by signUpStepsViewModel.isProfileUpdated
+
+    LaunchedEffect(key1 = isProfileUpdated){
+        if(isProfileUpdated){
+            navController.navigate(NavigationItem.Profile.screen_route)
+        }
+    }
 
     var name by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("")}
-    var profilePictureUri by remember { mutableStateOf("")}
+    var profilePictureUri by remember { mutableStateOf<Uri?>(null)}
 
     Column(
         modifier = Modifier
@@ -113,15 +126,12 @@ fun SignUpStepsAsCustomerScreen(
                         title = SELECT_PROFILE_PICTURE_TEXT,
                         buttonText = COMPLETE_REGISTRATION_TEXT
                     ){
-                        profilePictureUri = it.toString()
+                        profilePictureUri = it
 
-                        //KAYIT YAPILACAK
-
-                        //Burada userRegister kaydı yapılacak ve profil sayfasına gidilecek.
-
-                        //Bu kasım kayıt olumlu olursa çalışacak.
-                        navController.popBackStack()
-                        navController.navigate(NavigationItem.Profile.screen_route)
+                        signUpStepsViewModel.createProfile(
+                            name = name,
+                            phoneNumber = phoneNumber,
+                            profilePictureUri = profilePictureUri)
                     }
                 }
             }

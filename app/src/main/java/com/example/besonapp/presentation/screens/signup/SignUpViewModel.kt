@@ -18,17 +18,17 @@ class SignUpViewModel @Inject constructor(
     private val useCases: UseCases
 ): ViewModel()  {
 
-    private val _signUpValidationState = mutableStateOf(SignUpAndLogInInfoValidation())
-    val signUpValidationState : State<SignUpAndLogInInfoValidation> = _signUpValidationState
+    private val _signUpFormValidationState = mutableStateOf(SignUpAndLogInInfoValidation())
+    val signUpFormValidationState : State<SignUpAndLogInInfoValidation> = _signUpFormValidationState
 
     private val _isUserSignUp = mutableStateOf<UserType?>(null)
     val isUserSignUp : State<UserType?> = _isUserSignUp
 
     fun signUp(userSignUpInfo: UserSignUpInfo, userType: UserType) {
 
-        getSignUpValidationState(userSignUpInfo)
+        getSignUpFormValidationState(userSignUpInfo)
 
-        if(!_signUpValidationState.value.emailError && !_signUpValidationState.value.passwordError){
+        if(!_signUpFormValidationState.value.emailError && !_signUpFormValidationState.value.passwordError){
 
             viewModelScope.launch {
 
@@ -52,8 +52,8 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
-    private fun getSignUpValidationState(userSignUpInfo: UserSignUpInfo){
-        _signUpValidationState.value = useCases.signUpInfoValidation.invoke(userSignUpInfo)
+    private fun getSignUpFormValidationState(userSignUpInfo: UserSignUpInfo){
+        _signUpFormValidationState.value = useCases.signUpInfoValidation.invoke(userSignUpInfo)
     }
 
     private fun createUserProfileToFirebaseDb(userType: UserType){
