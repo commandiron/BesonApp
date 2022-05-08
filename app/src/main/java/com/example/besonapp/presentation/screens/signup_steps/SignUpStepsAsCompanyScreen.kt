@@ -1,5 +1,6 @@
 package com.example.besonapp.presentation.screens.signup_steps_as_company
 
+import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -10,9 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.besonapp.presentation.model.ConstructionItem
 import com.example.besonapp.presentation.model.MainConstructionItem
+import com.example.besonapp.presentation.screens.signup_steps.SignUpStepsViewModel
 import com.example.besonapp.presentation.ui.navigation.NavigationItem
 import com.example.besonapp.presentation.screens.signup_steps.components.SignUpStepsCategorySelectionPage
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsClickableToGalleryImagePage
@@ -34,13 +36,23 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpStepsAsCompanyScreen(
-    navController: NavController
+    navController: NavController,
+    signUpStepsViewModel: SignUpStepsViewModel = hiltViewModel()
 ) {
+
+    val isProfileUpdated by signUpStepsViewModel.isCompanyProfileUpdated
+
+    LaunchedEffect(key1 = isProfileUpdated){
+        if(isProfileUpdated){
+            navController.navigate(NavigationItem.Profile.screen_route)
+        }
+    }
 
     var nameOrCompanyName by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
-    var profilePictureUri by remember { mutableStateOf("") }
-    var constructionItemList by remember { mutableStateOf<List<ConstructionItem>?>(null)}
+    var profilePictureUri by remember { mutableStateOf<Uri?>(null) }
+
+    val mainConstructionCategories by signUpStepsViewModel.mainConstructionCategoriesState
 
     Column(
         modifier = Modifier
@@ -67,12 +79,6 @@ fun SignUpStepsAsCompanyScreen(
         val pagerState = rememberPagerState()
         val coroutineScope = rememberCoroutineScope()
 
-        //For start with page 0
-        LaunchedEffect(key1 = Unit){
-            pagerState.scrollToPage(0)
-        }
-
-        //Page 3 variable, burası viewmodele taşınacak.
         var selectedMainCategory by remember { mutableStateOf<MainConstructionItem?>(null)}
 
         HorizontalPager(
@@ -120,7 +126,7 @@ fun SignUpStepsAsCompanyScreen(
                         title = SELECT_PROFILE_PICTURE_TEXT,
                         buttonText = NEXT_TEXT
                     ){
-                        profilePictureUri = it.toString()
+                        profilePictureUri = it
 
                         coroutineScope.launch {
                             pagerState.animateScrollToPage(page + 1)
@@ -130,20 +136,14 @@ fun SignUpStepsAsCompanyScreen(
 
                 3 -> {
 
-                    //Bu kısım viewmodel'den gelmeli
-                    val mainConstructionCatagories = MainConstructionItem.createMainCategories()
-
                     SignUpStepsCategorySelectionPage(
                         title = SELECT_MAIN_CONSTRUCTION_CATEGORY_TEXT,
-                        itemListMain = mainConstructionCatagories,
+                        itemListMain = mainConstructionCategories,
                         buttonText = NEXT_TEXT,
                         multipleSelectionEnabled = false,
                         onNextButtonClickSingleSelection = { selectedItem ->
-
                             if(selectedItem != null){
 
-                                //Bu kısım viewmodel'e gönderilmeli
-                                    //getSubConstructionCategory fonksiyonu ile çağırılacak.
                                 selectedMainCategory = selectedItem as MainConstructionItem
 
                                 coroutineScope.launch {
@@ -166,14 +166,14 @@ fun SignUpStepsAsCompanyScreen(
                         multipleSelectionEnabled = true,
                         onNextButtonClickMultipleSelection = { selectedItemList ->
                             if(selectedItemList != null){
-                                constructionItemList = selectedItemList
 
-                                //KAYIT YAPILACAK
-
-                                //BURADA KALDIM CUSTOMER GİBİ BURAYIDA YAPPPPPPPPPPPPPPPPPPPPPP
-                                //Bu kasım kayıt olumlu olursa çalışacak.
-                                navController.popBackStack()
-                                navController.navigate(NavigationItem.Profile.screen_route)
+                                signUpStepsViewModel.createCompanyProfile(
+                                    name = nameOrCompanyName,
+                                    phoneNumber = phoneNumber,
+                                    profilePictureUri = profilePictureUri,
+                                    mainConstructionItemId = selectedMainCategory!!.id,
+                                    subConstructionItemIdList = selectedItemList.map { it.id }
+                                )
                             }else{
                                 //SEÇİM YAPMADINIZ
                             }

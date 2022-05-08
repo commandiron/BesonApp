@@ -36,6 +36,9 @@ fun ProfileScreen(
     runTutorial:() -> Unit
 ){
 
+    //Profil sayfasında profilimizi göstereceğiz. Sadece fotoğraf ve isim
+    //BURDAN DEVAM ET.
+
     val isUserOpenAppOnce = profileViewModel.isUserPassTutorialOnce.value
     LaunchedEffect(isUserOpenAppOnce) {
         if(isUserOpenAppOnce != null){

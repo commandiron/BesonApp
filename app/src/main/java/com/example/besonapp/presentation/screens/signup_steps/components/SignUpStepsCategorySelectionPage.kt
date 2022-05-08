@@ -110,7 +110,16 @@ fun SignUpStepsCategorySelectionPage(
                                 .clickable {
                                     if (multipleSelectionEnabled) {
                                         isSelected = !isSelected
-                                        selectedItemList = listOf(item)
+                                        if(isSelected){
+                                            if(selectedItemList != null){
+                                                selectedItemList = selectedItemList!! + listOf(item)
+                                            }else{
+                                                selectedItemList = listOf(item)
+                                            }
+                                        }else{
+                                            selectedItemList = selectedItemList!! - listOf(item)
+                                        }
+
                                     } else {
                                         selectedItem = item
                                     }

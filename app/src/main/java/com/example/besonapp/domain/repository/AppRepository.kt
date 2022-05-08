@@ -1,6 +1,7 @@
 package com.example.besonapp.domain.repository
 
 import android.net.Uri
+import com.example.besonapp.domain.model.CompanyProfile
 import com.example.besonapp.domain.model.CustomerProfile
 import com.example.besonapp.util.Response
 import com.example.besonapp.presentation.model.UserType
@@ -20,4 +21,5 @@ interface AppRepository {
 
     suspend fun uploadProfilePictureToFirebaseStorage(uri: Uri): Flow<Response<String>>
     suspend fun updateCustomerProfileToFirebaseDb(customerProfile: CustomerProfile): Flow<Response<Boolean>>
+    suspend fun updateCompanyProfileToFirebaseDb(companyProfile: CompanyProfile): Flow<Response<Boolean>>
 }

@@ -23,7 +23,7 @@ fun NavigationGraph(
     runTutorial:() -> Unit
 ) {
 
-    AnimatedNavHost(navController, startDestination = NavigationItem.SignUp.screen_route) {
+    AnimatedNavHost(navController, startDestination = NavigationItem.Splash.screen_route) {
 
         //SPLASH SCREEN
         composable(

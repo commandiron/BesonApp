@@ -18,6 +18,9 @@ fun LogInScreen(
 
     LaunchedEffect(key1 = isUserLogIn){
         if(isUserLogIn){
+
+            //Burda hata var çünkü eğer kullanıcı daha detayları girmeden buraya gelirse
+                //direk profil ekranına değilde signup steps ekranına gelmeli.
             navController.navigate(NavigationItem.Profile.screen_route)
         }
     }

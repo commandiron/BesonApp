@@ -16,6 +16,9 @@ data class UseCases(
     val getUserPassTutorialOnceFlag: GetUserPassTutorialOnceFlag,
 
     val uploadProfilePictureToFirebaseStorage: UploadProfilePictureToFirebaseStorage,
-    val updateCustomerProfileToFirebaseDb: UpdateCustomerProfileToFirebaseDb
+    val updateCustomerProfileToFirebaseDb: UpdateCustomerProfileToFirebaseDb,
+    val updateCompanyProfileToFirebaseDb: UpdateCompanyProfileToFirebaseDb,
+
+    val createMainConstructionCategories: CreateMainConstructionCategories
 ) {
 }

@@ -26,6 +26,9 @@ fun EditProfileScreen(
     navController: NavController,
 ){
 
+    //Burda tüm profilimizi gösterip değiştirebileceğiz
+    //PROFİL SAYFASINI HALLETTİKTEN SONRA BURDAN DEVAM ET.
+
     var name by remember { mutableStateOf("")}
     val hintName by remember { mutableStateOf("İsim")}
 

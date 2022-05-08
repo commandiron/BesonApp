@@ -16,7 +16,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.besonapp.domain.model.CustomerProfile
 import com.example.besonapp.presentation.screens.signup_steps.SignUpStepsViewModel
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsClickableToGalleryImagePage
 import com.example.besonapp.presentation.screens.signup_steps_as_customer.components.SignUpStepsTextFieldPage
@@ -38,7 +37,7 @@ fun SignUpStepsAsCustomerScreen(
     signUpStepsViewModel: SignUpStepsViewModel = hiltViewModel()
 ) {
 
-    val isProfileUpdated by signUpStepsViewModel.isProfileUpdated
+    val isProfileUpdated by signUpStepsViewModel.isCustomerProfileUpdated
 
     LaunchedEffect(key1 = isProfileUpdated){
         if(isProfileUpdated){
@@ -128,7 +127,7 @@ fun SignUpStepsAsCustomerScreen(
                     ){
                         profilePictureUri = it
 
-                        signUpStepsViewModel.createProfile(
+                        signUpStepsViewModel.createCustomerProfile(
                             name = name,
                             phoneNumber = phoneNumber,
                             profilePictureUri = profilePictureUri)

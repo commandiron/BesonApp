@@ -60,7 +60,9 @@ object AppModule {
         setUserPassTutorialOnceFlag = SetUserPassTutorialOnceFlag(repository),
         getUserPassTutorialOnceFlag = GetUserPassTutorialOnceFlag(repository),
         uploadProfilePictureToFirebaseStorage = UploadProfilePictureToFirebaseStorage(repository),
-        updateCustomerProfileToFirebaseDb = UpdateCustomerProfileToFirebaseDb(repository)
+        updateCustomerProfileToFirebaseDb = UpdateCustomerProfileToFirebaseDb(repository),
+        updateCompanyProfileToFirebaseDb = UpdateCompanyProfileToFirebaseDb(repository),
+        createMainConstructionCategories = CreateMainConstructionCategories()
     )
 
 }

@@ -23,7 +23,6 @@ class ProfileViewModel@Inject constructor(
     fun getUserPassTutorialOnceFlag(){
         viewModelScope.launch {
             useCases.getUserPassTutorialOnceFlag.invoke().collect{
-                println("123" + it)
                 isUserPassTutorialOnce.value = it
             }
         }

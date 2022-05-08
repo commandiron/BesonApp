@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import com.example.besonapp.domain.model.CompanyProfile
 import com.example.besonapp.domain.model.CustomerProfile
 import com.example.besonapp.domain.repository.AppRepository
 import com.example.besonapp.util.Response
@@ -163,6 +164,37 @@ class AppRepositoryImpl @Inject constructor (
             childUpdates["/name/"] = customerProfile.name
             childUpdates["/phoneNumber/"] = customerProfile.phoneNumber
             childUpdates["/profilePictureUrl/"] = customerProfile.profilePictureUrl
+
+            databaseReference.updateChildren(childUpdates).addOnSuccessListener {
+                trySend(Response.Success(true))
+            }.addOnFailureListener {
+                trySend(Response.Error(it.message ?: "ERROR_MESSAGE"))
+            }
+            awaitClose {
+                channel.close()
+                cancel()
+            }
+        }catch (e: Exception){
+            send(Response.Error(e.message ?: "ERROR_MESSAGE"))
+        }
+    }
+
+    override suspend fun updateCompanyProfileToFirebaseDb(companyProfile: CompanyProfile): Flow<Response<Boolean>> = callbackFlow {
+        try {
+            send(Response.Loading)
+
+            val profileUid = auth.currentUser?.uid.toString()
+
+            val databaseReference = databaseFirebase.getReference("Profiles").child(UserType.COMPANY.toString()).child(profileUid)
+
+            val childUpdates = mutableMapOf<String,Any>()
+
+            childUpdates["/profileUid/"] = profileUid
+            childUpdates["/name/"] = companyProfile.name
+            childUpdates["/phoneNumber/"] = companyProfile.phoneNumber
+            childUpdates["/profilePictureUrl/"] = companyProfile.profilePictureUrl
+            childUpdates["/mainConstructionItemId/"] = companyProfile.mainConstructionItemId
+            childUpdates["/subConstructionItemIdList/"] = companyProfile.subConstructionItemIdList
 
             databaseReference.updateChildren(childUpdates).addOnSuccessListener {
                 trySend(Response.Success(true))
