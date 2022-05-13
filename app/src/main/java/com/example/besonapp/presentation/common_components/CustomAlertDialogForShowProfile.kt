@@ -26,8 +26,6 @@ fun CustomAlertDialogForShowProfile(
     subConstructionCategoryTitles: List<String>,
     onDismissRequest:() -> Unit
 ){
-
-
     Dialog(
         onDismissRequest = {
             onDismissRequest()
@@ -43,35 +41,32 @@ fun CustomAlertDialogForShowProfile(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-
                 Image(
                     painter = rememberImagePainter(data = R.drawable.ic_blank_profile_picture),
                     contentDescription = null,
                     modifier = Modifier
                         .size(100.dp)
                         .clip(CircleShape),
-                    contentScale = ContentScale.Crop)
-
+                    contentScale = ContentScale.Crop
+                )
                 Text(
                     text = "Demirli İnşaat San. Tic. Ltd. Şti.",
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.h3,
-                    color = MaterialTheme.colors.onBackground)
-
+                    color = MaterialTheme.colors.onBackground
+                )
                 Text(
                     text = "Tel: 0535 508 55 52",
                     style = MaterialTheme.typography.h4,
-                    color = MaterialTheme.colors.onBackground)
-
+                    color = MaterialTheme.colors.onBackground
+                )
                 Spacer(modifier = Modifier.height(10.dp))
-
                 Text(
                     text = "Ana Faaliyet Alanı:",
                     style = MaterialTheme.typography.h4,
-                    color = MaterialTheme.colors.onBackground)
-
+                    color = MaterialTheme.colors.onBackground
+                )
                 Divider(modifier = Modifier.padding(horizontal = 10.dp), color = MaterialTheme.colors.onPrimary, thickness = 1.dp)
-
                 LazyColumn(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
@@ -79,20 +74,17 @@ fun CustomAlertDialogForShowProfile(
                         Text(
                             text = item,
                             style = MaterialTheme.typography.h4,
-                            color = MaterialTheme.colors.onBackground)
-
+                            color = MaterialTheme.colors.onBackground
+                        )
                     }
                 }
-
                 Spacer(modifier = Modifier.height(10.dp))
-
                 Text(
                     text = "Uzmanlık Alanları",
                     style = MaterialTheme.typography.h4,
-                    color = MaterialTheme.colors.onBackground)
-
+                    color = MaterialTheme.colors.onBackground
+                )
                 Divider(modifier = Modifier.padding(horizontal = 10.dp), color = MaterialTheme.colors.onPrimary, thickness = 1.dp)
-
                 LazyColumn(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
@@ -100,12 +92,11 @@ fun CustomAlertDialogForShowProfile(
                         Text(
                             text = item,
                             style = MaterialTheme.typography.h4,
-                            color = MaterialTheme.colors.onBackground)
-
+                            color = MaterialTheme.colors.onBackground
+                        )
                     }
                 }
             }
-
         }
     }
 }

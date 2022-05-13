@@ -31,13 +31,11 @@ class AppRepositoryImpl @Inject constructor (
     private val storageFirebase: FirebaseStorage,
     private val dataStore: DataStore<Preferences>,
 ): AppRepository {
-
     override suspend fun setUserOpenAppOnceFlagForShowSplashAndIntroScreens() {
         dataStore.edit { user_preferences ->
             user_preferences[booleanPreferencesKey("isUserOpenAppOnce")] = true
         }
     }
-
     override suspend fun getUserOpenAppOnceFlag(): Flow<Boolean> {
         val key = booleanPreferencesKey("isUserOpenAppOnce")
         val data = dataStore.data.map{
@@ -45,13 +43,11 @@ class AppRepositoryImpl @Inject constructor (
         }
         return data
     }
-
     override suspend fun setUserPassTutorialOnceFlag() {
         dataStore.edit { user_preferences ->
             user_preferences[booleanPreferencesKey("isUserPassTutorialOnce")] = true
         }
     }
-
     override suspend fun getUserPassTutorialOnceFlag(): Flow<Boolean> {
         val key = booleanPreferencesKey("isUserPassTutorialOnce")
         val data = dataStore.data.map{
@@ -59,7 +55,6 @@ class AppRepositoryImpl @Inject constructor (
         }
         return data
     }
-
     override suspend fun signUp(email: String, password: String): Flow<Response<Boolean>> = callbackFlow {
         try {
             send(Response.Loading)
@@ -78,7 +73,6 @@ class AppRepositoryImpl @Inject constructor (
             trySend(Response.Error(e.message ?: "ERROR_MESSAGE"))
         }
     }
-
     override suspend fun createUserProfileToFirebaseDb(userType: UserType): Flow<Response<Boolean>> = callbackFlow {
         try {
             send(Response.Loading)
@@ -104,9 +98,7 @@ class AppRepositoryImpl @Inject constructor (
             send(Response.Error(e.message ?: "ERROR_MESSAGE"))
         }
     }
-
     override suspend fun logIn(email: String, password: String): Flow<Response<Boolean>> = callbackFlow{
-
         try {
             send(Response.Loading)
             auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
@@ -149,7 +141,6 @@ class AppRepositoryImpl @Inject constructor (
             trySend(Response.Error(e.message ?: "ERROR_MESSAGE"))
         }
     }
-
     override suspend fun updateCustomerProfileToFirebaseDb(customerProfile: CustomerProfile): Flow<Response<Boolean>> = callbackFlow {
         try {
             send(Response.Loading)
@@ -159,7 +150,6 @@ class AppRepositoryImpl @Inject constructor (
             val databaseReference = databaseFirebase.getReference("Profiles").child(UserType.CUSTOMER.toString()).child(profileUid)
 
             val childUpdates = mutableMapOf<String,Any>()
-
             childUpdates["/profileUid/"] = profileUid
             childUpdates["/name/"] = customerProfile.name
             childUpdates["/phoneNumber/"] = customerProfile.phoneNumber
@@ -178,7 +168,6 @@ class AppRepositoryImpl @Inject constructor (
             send(Response.Error(e.message ?: "ERROR_MESSAGE"))
         }
     }
-
     override suspend fun updateCompanyProfileToFirebaseDb(companyProfile: CompanyProfile): Flow<Response<Boolean>> = callbackFlow {
         try {
             send(Response.Loading)
@@ -188,7 +177,6 @@ class AppRepositoryImpl @Inject constructor (
             val databaseReference = databaseFirebase.getReference("Profiles").child(UserType.COMPANY.toString()).child(profileUid)
 
             val childUpdates = mutableMapOf<String,Any>()
-
             childUpdates["/profileUid/"] = profileUid
             childUpdates["/name/"] = companyProfile.name
             childUpdates["/phoneNumber/"] = companyProfile.phoneNumber

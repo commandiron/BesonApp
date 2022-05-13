@@ -25,15 +25,14 @@ fun CustomTextFieldComponent2(
     keyboardType: KeyboardType = KeyboardType.Text,
     onValueChange:(String) -> Unit
 ){
-
     var text by remember { mutableStateOf(input)}
 
     Surface(
         modifier = modifier
             .height(32.dp),
         shape = RoundedCornerShape(10.dp),
-        color = MaterialTheme.colors.surface) {
-
+        color = MaterialTheme.colors.surface
+    ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()

@@ -32,8 +32,8 @@ import com.example.besonapp.util.AppStaticTexts.SIGN_UP_AS_CUSTOMER_TEXT
 fun SignUpScreen(
     navController: NavController,
     signUpViewModel: SignUpViewModel = hiltViewModel(),
-    isSignUpScreenLogoClick: Boolean) {
-
+    isSignUpScreenLogoClick: Boolean
+) {
     val isUserSignUp = signUpViewModel.isUserSignUp.value
 
     LaunchedEffect(key1 = isUserSignUp){
@@ -60,22 +60,18 @@ fun SignUpScreen(
     BoxWithConstraints(
         modifier = Modifier
             .fillMaxSize(),
-        contentAlignment = Alignment.Center) {
-
+        contentAlignment = Alignment.Center
+    ) {
         val constraints = this.constraints
-
         Column{
-
             val signUpValidationState by signUpViewModel.signUpFormValidationState
-
             Box(
                 modifier = Modifier
-                    .weight(1f)) {
-
+                    .weight(1f)
+            ) {
                 Surface(
                     color = MaterialTheme.colors.background
                 ) {
-
                     if(customerSignUpComponentIsVisible){
                         SignUpFormComponent(
                             buttonText = SIGN_UP_AS_CUSTOMER_TEXT,
@@ -84,7 +80,6 @@ fun SignUpScreen(
                             signUpViewModel.signUp(it,UserType.CUSTOMER)
                         }
                     }
-
                     CustomerOrCompanyComponent(
                         title =  I_AM_CUSTOMER_TEXT,
                         details = CUSTOMER_STATEMENT_TEXT,
@@ -101,26 +96,22 @@ fun SignUpScreen(
                     }
                 }
             }
-
             Box(
                 modifier = Modifier
-                    .weight(1f)) {
-
+                    .weight(1f)
+            ) {
                 Surface(
                     color = MaterialTheme.colors.background
                 ) {
-
                     if(companySignUpComponentIsVisible){
-
                         SignUpFormComponent(
                             buttonText = SIGN_UP_AS_COMPANY_TEXT,
                             paddingFromBottom = 56.dp,
-                            signUpAndLogInInfoValidation = signUpValidationState){
-
+                            signUpAndLogInInfoValidation = signUpValidationState
+                        ){
                             signUpViewModel.signUp(it, UserType.COMPANY)
                         }
                     }
-
                     CustomerOrCompanyComponent(
                         title = I_AM_COMPANY_TEXT,
                         details = COMPANY_STATEMENT_TEXT,
@@ -138,13 +129,11 @@ fun SignUpScreen(
                 }
             }
         }
-
         Box(
             modifier = Modifier
                 .fillMaxSize(),
             contentAlignment = Alignment.CenterEnd
         ) {
-
             LogInButtonComponent(
                 modifier = Modifier.padding(end = 10.dp),
                 text = LOGIN_TEXT

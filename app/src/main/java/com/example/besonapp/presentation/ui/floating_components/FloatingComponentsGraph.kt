@@ -15,64 +15,41 @@ fun FloatingComponentsGraph(
     onSignUpScreenLogoClick:() -> Unit,
     content: @Composable () -> Unit
 ){
-
     content()
-
     when(currentRoute){
         NavigationItem.Splash.screen_route ->{
-
             SplashScreenLogoAnimation2()
-
         }
-
         NavigationItem.Intro.screen_route ->{
-
             //IntroScreenLogoAnimation() -> Daha sonra belki eklenebilir.
-
         }
-
         NavigationItem.SignUp.screen_route -> {
-
             SignUpScreenLogoAnimation(){
                 onSignUpScreenLogoClick()
             }
-
             FloatingAppExplainingStripComponent(
                 isAnimated = true
             )
         }
-
         NavigationItem.LogIn.screen_route -> {
-
             LogInScreenLogoAnimationOnStart()
-
             FloatingLogoWithAppName()
         }
-
         NavigationItem.SignUpStepsAsCustomer.screen_route -> {
-
             LogInScreenLogoAnimationOnStart()
-
             FloatingLogoWithAppName()
-
             BackToSignUpTextButton{
                 navController.navigate(NavigationItem.SignUp.screen_route)
             }
         }
-
         NavigationItem.SignUpStepsAsCompany.screen_route -> {
-
             LogInScreenLogoAnimationOnStart()
-
             FloatingLogoWithAppName()
-
             BackToSignUpTextButton{
                 navController.navigate(NavigationItem.SignUp.screen_route)
             }
         }
-
         NavigationItem.EditProfile.screen_route -> {
-
             FloatingLogoWithAppName()
         }
     }

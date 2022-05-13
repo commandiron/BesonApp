@@ -33,7 +33,6 @@ fun SystemUiColorsAndPaddingGraph(
                     darkIcons = false
                 )
             }
-
             NavigationItem.Intro.screen_route ->{
 
                 applyStatusBarPadding = false
@@ -49,7 +48,6 @@ fun SystemUiColorsAndPaddingGraph(
                     darkIcons = false
                 )
             }
-
             NavigationItem.SignUp.screen_route ->{
 
                 applyStatusBarPadding = false
@@ -60,7 +58,6 @@ fun SystemUiColorsAndPaddingGraph(
                     darkIcons = !darkTheme
                 )
             }
-
             NavigationItem.LogIn.screen_route ->{
 
                 applyStatusBarPadding = false
@@ -71,7 +68,6 @@ fun SystemUiColorsAndPaddingGraph(
                     darkIcons = !darkTheme
                 )
             }
-
             NavigationItem.SignUpStepsAsCustomer.screen_route ->{
 
                 applyStatusBarPadding = false
@@ -82,7 +78,6 @@ fun SystemUiColorsAndPaddingGraph(
                     darkIcons = !darkTheme
                 )
             }
-
             NavigationItem.Profile.screen_route ->{
 
                 applyStatusBarPadding = false
@@ -98,7 +93,6 @@ fun SystemUiColorsAndPaddingGraph(
                     darkIcons = false
                 )
             }
-
             NavigationItem.Prices.screen_route ->{
 
                 applyStatusBarPadding = false
@@ -114,7 +108,6 @@ fun SystemUiColorsAndPaddingGraph(
                     darkIcons = false
                 )
             }
-
             NavigationItem.PostPrice.screen_route ->{
 
                 applyStatusBarPadding = false
@@ -132,6 +125,5 @@ fun SystemUiColorsAndPaddingGraph(
             }
         }
     }
-
     content(applyStatusBarPadding, applyNavigationBarPadding)
 }

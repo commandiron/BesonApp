@@ -32,5 +32,6 @@ fun CustomCircleCheckbox(
         modifier = Modifier
             .size(14.dp)
             .background(background, shape = CircleShape),
-        contentDescription = "checkbox")
+        contentDescription = "checkbox"
+    )
 }

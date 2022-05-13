@@ -19,18 +19,16 @@ import com.example.besonapp.R
 @Composable
 fun ClickableToGalleryImage(
     modifier: Modifier = Modifier,
-    size: Dp = 100.dp){
-
+    size: Dp = 100.dp
+){
     var imageUri by remember {
         mutableStateOf<Uri?>(null)
     }
-
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         imageUri = uri
     }
-
     Image(
         painter = rememberImagePainter(
             data = if(imageUri!=null)imageUri else R.drawable.ic_blank_profile_picture),

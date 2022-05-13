@@ -20,7 +20,6 @@ import com.example.besonapp.presentation.model.ConstructionItem
 fun ConstructionItemView(
     data: ConstructionItem,
 ){
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -30,14 +29,13 @@ fun ConstructionItemView(
                 .size(80.dp),
             contentAlignment = Alignment.Center
         ){
-
             Icon(
                 modifier = Modifier.size(60.dp),
                 painter = rememberImagePainter(data = data.imageResource),
                 contentDescription = null,
-                tint = MaterialTheme.colors.onBackground)
+                tint = MaterialTheme.colors.onBackground
+            )
         }
-
         Box(
             modifier = Modifier
                 .size(80.dp, 20.dp),

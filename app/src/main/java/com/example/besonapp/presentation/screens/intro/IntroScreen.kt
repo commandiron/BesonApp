@@ -33,20 +33,17 @@ fun IntroScreen(
     navController: NavController,
     introViewModel: IntroViewModel = hiltViewModel()
 ){
-
     var lastPageFlag by remember { mutableStateOf(false)}
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .wrapContentSize(align = Alignment.BottomCenter),
-        horizontalAlignment = Alignment.CenterHorizontally) {
-
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         val pagerState = rememberPagerState()
-
         //Bu kısım daha sonra viewmodelden çekilip buraya gönderilecek.
         val listOfIntroElement by remember{ mutableStateOf(IntroScreenElement.staticIntroElementList)}
-
         HorizontalPager(
             count = listOfIntroElement.size,
             state = pagerState,
@@ -54,46 +51,37 @@ fun IntroScreen(
             modifier = Modifier
                 .fillMaxWidth(),
         ) { numberOfPage->
-
             PagerItem(
                 introScreenElementList = listOfIntroElement,
                 numberOfPage = numberOfPage
             )
-
             lastPageFlag = pagerState.currentPage == listOfIntroElement.size - 1
         }
-
         Spacer(modifier = Modifier.height(20.dp))
-
         HorizontalPagerIndicator(
             pagerState = pagerState,
             activeColor = if(lastPageFlag) primaryVariantColorNoTheme else primaryColorNoTheme,
             inactiveColor = if(lastPageFlag) primaryVariantColorNoTheme.copy(0.5f) else primaryColorNoTheme.copy(0.5f)
         )
-
         Spacer(modifier = Modifier.height(30.dp))
-
         val navigationBarHeight = rememberInsetsPaddingValues(insets = LocalWindowInsets.current.navigationBars).calculateBottomPadding()
-
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp + navigationBarHeight)
                 .clickable {
-
                     navController.navigate(NavigationItem.SignUp.screen_route)
-
                     introViewModel.setUserOpenAppOnceFlagTrue()
                 },
             color = if(lastPageFlag) primaryVariantColorNoTheme else primaryColorNoTheme
         ) {
-
             Text(
                 modifier = Modifier.padding(top = 18.dp),
                 textAlign = TextAlign.Center,
                 text = if(lastPageFlag) START_TEXT else START_NOW_TEXT,
                 color = onPrimaryColorNoTheme,
-                style = MaterialTheme.typography.h3)
+                style = MaterialTheme.typography.h3
+            )
         }
     }
 }
@@ -103,11 +91,10 @@ fun PagerItem(
     introScreenElementList: List<IntroScreenElement>,
     numberOfPage: Int,
 ) {
-
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Image(
             modifier = Modifier.size(260.dp,548.dp),
             painter = rememberImagePainter(
@@ -116,19 +103,18 @@ fun PagerItem(
             contentScale = ContentScale.Fit,
             contentDescription = null
         )
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
             contentAlignment = Alignment.Center
         ) {
-
             Text(
                 text = introScreenElementList[numberOfPage].explanationText,
                 color = MaterialTheme.colors.onBackground,
                 style = MaterialTheme.typography.body2,
-                textAlign = TextAlign.Center)
+                textAlign = TextAlign.Center
+            )
         }
     }
 }

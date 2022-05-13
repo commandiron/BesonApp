@@ -12,21 +12,18 @@ import com.example.besonapp.presentation.screens.login.components.LogInFormCompo
 @Composable
 fun LogInScreen(
     navController: NavController,
-    logInViewModel: LogInViewModel = hiltViewModel()){
-
+    logInViewModel: LogInViewModel = hiltViewModel()
+){
     val isUserLogIn = logInViewModel.isUserLogIn.value
 
     LaunchedEffect(key1 = isUserLogIn){
         if(isUserLogIn){
-
             //Burda hata var çünkü eğer kullanıcı daha detayları girmeden buraya gelirse
                 //direk profil ekranına değilde signup steps ekranına gelmeli.
             navController.navigate(NavigationItem.Profile.screen_route)
         }
     }
-
     val logInValidationState by logInViewModel.logInFormValidationState
-
     LogInFormComponent(
         signUpAndLogInInfoValidation = logInValidationState,
         onSignUpButtonClick = {

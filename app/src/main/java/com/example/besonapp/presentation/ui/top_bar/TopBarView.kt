@@ -17,7 +17,6 @@ import com.google.accompanist.insets.rememberInsetsPaddingValues
 fun TopBarView(
     title: String
 ) {
-
     val statusBarHeight = rememberInsetsPaddingValues(insets = LocalWindowInsets.current.statusBars).calculateTopPadding()
     val topBarHeight = statusBarHeight + 36.dp
 
@@ -29,16 +28,15 @@ fun TopBarView(
         contentColor = onPrimaryColorNoTheme,
         elevation = 6.dp
     ) {
-
         Box(
             modifier = Modifier
                 .padding(top = 14.dp),
             contentAlignment = Alignment.Center
         ) {
-
             Text(
                 text = title,
-                style = MaterialTheme.typography.h3)
+                style = MaterialTheme.typography.h3
+            )
         }
     }
 }

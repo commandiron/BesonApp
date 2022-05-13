@@ -7,8 +7,8 @@ data class PostPriceItem(
     val unit: String,
     val price: Double,
     val location: String,
-    var date: Long,
-    var userById: Int,
-    var userByName: String
+    val date: Long,
+    val userById: Int,
+    val userByName: String
 ) {
 }

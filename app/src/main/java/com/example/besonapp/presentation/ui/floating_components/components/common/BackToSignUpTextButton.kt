@@ -25,7 +25,6 @@ fun BackToSignUpTextButton(
                 horizontal = 10.dp),
         contentAlignment = contentAlignment
     ) {
-
         Text(
             modifier = Modifier.clickable {
                 onTextClick()
@@ -36,5 +35,4 @@ fun BackToSignUpTextButton(
             textAlign = TextAlign.Center,
         )
     }
-
 }

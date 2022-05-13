@@ -39,7 +39,6 @@ fun SignUpStepsAsCompanyScreen(
     navController: NavController,
     signUpStepsViewModel: SignUpStepsViewModel = hiltViewModel()
 ) {
-
     val isProfileUpdated by signUpStepsViewModel.isCompanyProfileUpdated
 
     LaunchedEffect(key1 = isProfileUpdated){
@@ -51,7 +50,6 @@ fun SignUpStepsAsCompanyScreen(
     var nameOrCompanyName by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
     var profilePictureUri by remember { mutableStateOf<Uri?>(null) }
-
     val mainConstructionCategories by signUpStepsViewModel.mainConstructionCategoriesState
 
     Column(
@@ -65,20 +63,17 @@ fun SignUpStepsAsCompanyScreen(
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(
             text = CREATE_PROFILE_TEXT,
             color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h2
         )
-        
         Spacer(modifier = Modifier.height(20.dp))
 
         // Remember a PagerState
         val pagerState = rememberPagerState()
         val coroutineScope = rememberCoroutineScope()
-
         var selectedMainCategory by remember { mutableStateOf<MainConstructionItem?>(null)}
 
         HorizontalPager(
@@ -89,9 +84,7 @@ fun SignUpStepsAsCompanyScreen(
             verticalAlignment = Alignment.Top,
             userScrollEnabled = false,
         ) { page ->
-
             when(page){
-
                 0 -> {
                     SignUpStepsTextFieldPage(
                         entry = nameOrCompanyName,
@@ -104,9 +97,7 @@ fun SignUpStepsAsCompanyScreen(
                         }
                     }
                 }
-
                 1 -> {
-
                     SignUpStepsTextFieldPage(
                         entry = phoneNumber,
                         title = ENTER_YOUR_PHONE_NUMBER_TEXT,
@@ -119,23 +110,18 @@ fun SignUpStepsAsCompanyScreen(
                         }
                     }
                 }
-
                 2 -> {
-
                     SignUpStepsClickableToGalleryImagePage(
                         title = SELECT_PROFILE_PICTURE_TEXT,
                         buttonText = NEXT_TEXT
                     ){
                         profilePictureUri = it
-
                         coroutineScope.launch {
                             pagerState.animateScrollToPage(page + 1)
                         }
                     }
                 }
-
                 3 -> {
-
                     SignUpStepsCategorySelectionPage(
                         title = SELECT_MAIN_CONSTRUCTION_CATEGORY_TEXT,
                         itemListMain = mainConstructionCategories,
@@ -143,9 +129,7 @@ fun SignUpStepsAsCompanyScreen(
                         multipleSelectionEnabled = false,
                         onNextButtonClickSingleSelection = { selectedItem ->
                             if(selectedItem != null){
-
                                 selectedMainCategory = selectedItem as MainConstructionItem
-
                                 coroutineScope.launch {
                                     pagerState.animateScrollToPage(page + 1)
                                 }
@@ -155,9 +139,7 @@ fun SignUpStepsAsCompanyScreen(
                         }
                     )
                 }
-
                 4 -> {
-
                     SignUpStepsCategorySelectionPage(
                         title = SELECT_SUB_CONSTRUCTION_CATEGORY_TEXT,
                         underButtonHintText = YOU_CAN_SELECT_MULTIPLE_CATEGORIES_TEXT,
@@ -166,7 +148,6 @@ fun SignUpStepsAsCompanyScreen(
                         multipleSelectionEnabled = true,
                         onNextButtonClickMultipleSelection = { selectedItemList ->
                             if(selectedItemList != null){
-
                                 signUpStepsViewModel.createCompanyProfile(
                                     name = nameOrCompanyName,
                                     phoneNumber = phoneNumber,
@@ -182,7 +163,6 @@ fun SignUpStepsAsCompanyScreen(
                 }
             }
         }
-
         BackHandler {
             coroutineScope.launch {
                 if(pagerState.currentPage > 0){

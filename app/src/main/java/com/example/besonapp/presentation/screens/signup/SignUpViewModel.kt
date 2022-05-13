@@ -25,13 +25,9 @@ class SignUpViewModel @Inject constructor(
     val isUserSignUp : State<UserType?> = _isUserSignUp
 
     fun signUp(userSignUpInfo: UserSignUpInfo, userType: UserType) {
-
         getSignUpFormValidationState(userSignUpInfo)
-
         if(!_signUpFormValidationState.value.emailError && !_signUpFormValidationState.value.passwordError){
-
             viewModelScope.launch {
-
                 useCases.signUp(userSignUpInfo.email, userSignUpInfo.password).collect { response ->
                     when(response){
                         is Response.Loading -> {
@@ -40,7 +36,6 @@ class SignUpViewModel @Inject constructor(
                         }
                         is Response.Success -> {
                             println("Success" + response.data) //Toast mesajı verebiliriz.
-
                             createUserProfileToFirebaseDb(userType)
                         }
                         is Response.Error -> {
@@ -57,9 +52,7 @@ class SignUpViewModel @Inject constructor(
     }
 
     private fun createUserProfileToFirebaseDb(userType: UserType){
-
         viewModelScope.launch {
-
             useCases.createUserProfileToFirebaseDb.invoke(userType).collect{ response ->
                 when(response){
                     is Response.Loading -> {

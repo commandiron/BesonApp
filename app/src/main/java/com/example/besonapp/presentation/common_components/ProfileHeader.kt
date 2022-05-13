@@ -31,8 +31,8 @@ import com.example.besonapp.presentation.ui.theme.NoRippleTheme
 fun ProfileHeader(
     name: String,
     onEditButtonClick:() -> Unit,
-    onVerticalDrag:(Constraints) -> Unit){
-
+    onVerticalDrag:(Constraints) -> Unit
+){
     val context = LocalContext.current
     val motionScene = remember {
         context.resources
@@ -40,31 +40,21 @@ fun ProfileHeader(
             .readBytes()
             .decodeToString()
     }
-
     var progressWithDrag by remember { mutableStateOf(0f)} //Between 0.0 and 1.0 72px to 182px
 
     MotionLayout(
         motionScene = MotionScene(content = motionScene),
         progress = progressWithDrag,
-        modifier = Modifier.fillMaxWidth()) {
-
+        modifier = Modifier.fillMaxWidth()
+    ) {
         BoxWithConstraints(
             modifier = Modifier
                 .background(MaterialTheme.colors.background)
                 .layoutId("box")
                 .pointerInput(Unit) {
                     detectVerticalDragGestures(
-                        onDragStart = {
-
-                        },
-
-                        onDragEnd = {
-
-                        },
                         onVerticalDrag = { _, dragAmount ->
-
                             val newValue = dragAmount.coerceIn(-50.dp.toPx(), 50.dp.toPx())
-
                             if (newValue > 0) {
                                 if (progressWithDrag < 1.0) {
 
@@ -74,7 +64,7 @@ fun ProfileHeader(
                                         progressWithDrag = 1.0f
                                     }
                                 }
-                            } else if (newValue < 0) {
+                            }else if (newValue < 0) {
                                 if (progressWithDrag > 0) {
 
                                     progressWithDrag += newValue / 364
@@ -90,22 +80,21 @@ fun ProfileHeader(
             contentAlignment = Alignment.TopEnd
         ){
             onVerticalDrag(this.constraints)
-
             CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme){
                 IconButton(
                     modifier = Modifier
                         .padding(top = 26.dp, bottom = 16.dp, end = 36.dp)
                         .size(20.dp),
                     onClick = { onEditButtonClick() }
-                ) {
+                ){
                     Icon(
                         imageVector = Icons.Default.Edit,
                         tint = MaterialTheme.colors.onBackground,
-                        contentDescription = null)
+                        contentDescription = null
+                    )
                 }
             }
         }
-
         Image(
             painter = rememberImagePainter(data = R.drawable.ic_blank_profile_picture),
             contentDescription = null,
@@ -113,13 +102,13 @@ fun ProfileHeader(
                 .layoutId("profile_pic")
                 .size(100.dp)
                 .clip(CircleShape),
-            contentScale = ContentScale.Crop)
-        
+            contentScale = ContentScale.Crop
+        )
         Text(
             text = name,
             style = MaterialTheme.typography.h3,
             color = MaterialTheme.colors.onBackground,
-            modifier = Modifier
-                .layoutId("username"))
+            modifier = Modifier.layoutId("username")
+        )
     }
 }

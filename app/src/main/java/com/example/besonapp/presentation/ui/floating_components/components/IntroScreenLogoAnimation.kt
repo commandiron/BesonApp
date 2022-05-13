@@ -31,8 +31,8 @@ import com.example.besonapp.util.AnimationConstants.INTRO_SCREEN_LOGO_ANIMATION_
 import com.example.besonapp.util.AppStaticTexts
 
 @Composable
-fun IntroScreenLogoAnimation(){
-
+fun IntroScreenLogoAnimation(
+){
     val rotateAnim= remember { Animatable(0f) }
     LaunchedEffect(rotateAnim) {
         for(i in 0 until 10000){
@@ -76,7 +76,6 @@ fun IntroScreenLogoAnimation(){
             )
         }
     }
-
     val sizeAnim = remember { Animatable(100f) }
     val paddingBottomAnim = remember { Animatable(0f) }
     val paddingEndAnim = remember { Animatable(0f) }
@@ -117,17 +116,15 @@ fun IntroScreenLogoAnimation(){
             )
         )
     }
-
-
-
-
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(bottom = Dp(paddingBottomAnim.value), end = Dp(paddingEndAnim.value)),
+            .padding(
+                bottom = Dp(paddingBottomAnim.value),
+                end = Dp(paddingEndAnim.value)
+            ),
         contentAlignment = Alignment.Center
     ) {
-
         AppLogoIconView(
             modifier = Modifier.padding(20.dp),
             tint = MaterialTheme.colors.onBackground,
@@ -139,6 +136,7 @@ fun IntroScreenLogoAnimation(){
         text = AppStaticTexts.APP_NAME,
         color = MaterialTheme.colors.onBackground,
         style = MaterialTheme.typography.h2,
-        modifier = Modifier.alpha(alpha = textAlphaAnim.value).padding(horizontal = 80.dp, vertical = 86.dp)
+        modifier = Modifier.alpha(alpha = textAlphaAnim.value)
+            .padding(horizontal = 80.dp, vertical = 86.dp)
     )
 }

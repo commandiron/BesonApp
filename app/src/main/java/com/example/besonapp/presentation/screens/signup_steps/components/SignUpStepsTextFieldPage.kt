@@ -29,7 +29,6 @@ fun SignUpStepsTextFieldPage(
     keyboardType: KeyboardType = KeyboardType.Text,
     onClick:(String) -> Unit
 ){
-
     var name by remember { mutableStateOf(entry) }
 
     Column(
@@ -37,13 +36,11 @@ fun SignUpStepsTextFieldPage(
         verticalArrangement = Arrangement.spacedBy(30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(
             text = title,
             color = MaterialTheme.colors.onBackground.copy(LOWER_VISIBILITY_ALPHA),
             style = MaterialTheme.typography.body1
         )
-
         SignUpStepsCustomTextField(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             entry = name,
@@ -53,14 +50,12 @@ fun SignUpStepsTextFieldPage(
                 name = it
             },
         )
-
         CustomButton(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             onClick = {
-
-            onClick(name)
-
-        }) {
+                onClick(name)
+            }
+        ) {
             Text(text = "İleri")
         }
     }
@@ -76,7 +71,6 @@ fun SignUpStepsCustomTextField(
     maxChar: Int = 20,
     keyboardType: KeyboardType = KeyboardType.Text
 ) {
-
     var text by remember{ mutableStateOf("") }
     text = entry
 

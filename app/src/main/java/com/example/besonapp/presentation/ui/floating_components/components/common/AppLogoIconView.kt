@@ -20,8 +20,8 @@ fun AppLogoIconView(
     paddingBottomAnimValue: Float = 0f,
     sizeAnimValue:Dp = 100.dp,
     alphaAnimValue:Float = 1f,
-    rotateAnimValue:Float = 0f){
-
+    rotateAnimValue:Float = 0f
+){
     Icon(
         modifier = modifier
             .padding(bottom = Dp(paddingBottomAnimValue))

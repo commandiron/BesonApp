@@ -63,13 +63,9 @@ fun NavigationTutorialProfileScreen(
     val alphaAnimIteration by remember { mutableStateOf(4)}
 
     if(tutorialEnabled){
-
         when(nextClicked){
-
             0 -> {
-
                 LaunchedEffect(key1 = screenSize){
-
                     infoRectangleSize = Size(
                         width = screenSize.width * 0.40f,
                         height = screenSize.height * 0.09f)
@@ -92,16 +88,13 @@ fun NavigationTutorialProfileScreen(
                     )
                 }
             }
-
             1 -> {
-
                 showIcon = true
 
                 highlightCircleSize = Size(
                     width = screenSize.height / 14,
                     height = screenSize.height / 14
                 )
-
                 LaunchedEffect(key1 = screenSize){
 
                     infoRectangleSize = Size(
@@ -128,14 +121,11 @@ fun NavigationTutorialProfileScreen(
                     )
                 }
             }
-
             2 ->{
-
                 highlightCircleSize = Size(
                     width = screenSize.height / 10,
                     height = screenSize.height / 10
                 )
-
                 LaunchedEffect(key1 = Unit){
 
                     infoRectangleSize = Size(
@@ -164,12 +154,10 @@ fun NavigationTutorialProfileScreen(
                 }
             }
             3 -> {
-
                 highlightCircleSize = Size(
                     width = screenSize.height / 14,
                     height = screenSize.height / 14
                 )
-
                 LaunchedEffect(key1 = Unit){
 
                     infoRectangleSize = Size(
@@ -202,13 +190,10 @@ fun NavigationTutorialProfileScreen(
                 profileScreenTutorialFinish()
             }
         }
-
-
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.TopCenter
         ) {
-
             Column(
                 modifier = Modifier
                     .offset(
@@ -237,9 +222,7 @@ fun NavigationTutorialProfileScreen(
                 }
             }
         }
-
         val interactionSource = remember { MutableInteractionSource() }
-
         Surface(
             modifier = Modifier
                 .fillMaxSize()
@@ -250,11 +233,8 @@ fun NavigationTutorialProfileScreen(
                     nextClicked++
                 }
                 .drawWithContent {
-
                     val path = Path().apply {
-
                         screenSize = Size(width = size.width, height = size.height - (statusBarHeightPx + navigationHeightPx))
-
                         addOval(
                             Rect(
                                 offset =
@@ -271,7 +251,6 @@ fun NavigationTutorialProfileScreen(
                                 size = highlightCircleSize
                             )
                         )
-
                         addRoundRect(
                             RoundRect(
                                 rect =  Rect(
@@ -292,7 +271,6 @@ fun NavigationTutorialProfileScreen(
                             )
                         )
                     }
-
                     clipPath(path, clipOp = ClipOp.Difference) {
 
                         //Burada backgroundDark rengi gelirse daha güzel olabilir, şimdilik rahat görmek

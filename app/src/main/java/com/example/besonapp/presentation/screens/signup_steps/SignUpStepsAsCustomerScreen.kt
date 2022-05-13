@@ -36,9 +36,7 @@ fun SignUpStepsAsCustomerScreen(
     navController: NavController,
     signUpStepsViewModel: SignUpStepsViewModel = hiltViewModel()
 ) {
-
     val isProfileUpdated by signUpStepsViewModel.isCustomerProfileUpdated
-
     LaunchedEffect(key1 = isProfileUpdated){
         if(isProfileUpdated){
             navController.navigate(NavigationItem.Profile.screen_route)
@@ -60,25 +58,20 @@ fun SignUpStepsAsCustomerScreen(
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(
             text = CREATE_PROFILE_TEXT,
             color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h2
         )
-
         Spacer(modifier = Modifier.height(20.dp))
-
         // Remember a PagerState
         val pagerState = rememberPagerState()
         val coroutineScope = rememberCoroutineScope()
-
         //For start with page 0
         LaunchedEffect(key1 = Unit){
             pagerState.scrollToPage(0)
         }
-
         HorizontalPager(
             count = 3,
             state = pagerState,
@@ -87,9 +80,7 @@ fun SignUpStepsAsCustomerScreen(
             verticalAlignment = Alignment.Top,
             userScrollEnabled = false
         ) { page ->
-
             when(page){
-
                 0 -> {
                     SignUpStepsTextFieldPage(
                         modifier = Modifier,
@@ -103,7 +94,6 @@ fun SignUpStepsAsCustomerScreen(
                         }
                     }
                 }
-
                 1 -> {
                     SignUpStepsTextFieldPage(
                         modifier = Modifier,
@@ -118,7 +108,6 @@ fun SignUpStepsAsCustomerScreen(
                         }
                     }
                 }
-
                 2 -> {
                     SignUpStepsClickableToGalleryImagePage(
                         modifier = Modifier,
@@ -130,12 +119,12 @@ fun SignUpStepsAsCustomerScreen(
                         signUpStepsViewModel.createCustomerProfile(
                             name = name,
                             phoneNumber = phoneNumber,
-                            profilePictureUri = profilePictureUri)
+                            profilePictureUri = profilePictureUri
+                        )
                     }
                 }
             }
         }
-
         BackHandler {
             coroutineScope.launch {
                 if(pagerState.currentPage > 0){

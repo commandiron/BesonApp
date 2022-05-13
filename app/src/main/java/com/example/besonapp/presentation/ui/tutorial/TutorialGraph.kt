@@ -11,7 +11,6 @@ fun TutorialGraph(
     content: @Composable () -> Unit
 ){
     content()
-
     if(enabled){
         when(currentRoute){
             NavigationItem.Profile.screen_route -> {

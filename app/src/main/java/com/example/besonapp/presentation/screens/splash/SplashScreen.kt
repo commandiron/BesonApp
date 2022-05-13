@@ -18,18 +18,14 @@ fun SplashScreen(
     navController: NavController,
     splashViewModel: SplashViewModel = hiltViewModel()
 ) {
-
     val isUserOpenAppOnce = splashViewModel.isUserOpenAppOnce.value
 
     LaunchedEffect(isUserOpenAppOnce) {
-
         if(isUserOpenAppOnce){
             navController.popBackStack()
             navController.navigate(NavigationItem.SignUp.screen_route)
         }else{
-
             delay(SPLASH_SCREEN_DELAY.toLong())
-
             navController.popBackStack()
             navController.navigate(NavigationItem.Intro.screen_route)
         }
@@ -45,7 +41,5 @@ fun SplashScreen(
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = logoBackGround
-    ) {
-
-    }
+    ) {}
 }

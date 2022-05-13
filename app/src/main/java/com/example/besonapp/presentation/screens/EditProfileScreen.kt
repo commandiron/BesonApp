@@ -42,7 +42,6 @@ fun EditProfileScreen(
             .padding(vertical = 52.dp, horizontal = 20.dp),
         contentAlignment = Alignment.TopCenter
     ) {
-        
         Column(
             verticalArrangement = Arrangement.spacedBy(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -84,31 +83,28 @@ fun EditProfileScreen(
                     )
                 }
             }
-
             Spacer(modifier = Modifier.height(10.dp))
-
             CustomTextFieldComponent2(
                 modifier = Modifier.fillMaxWidth(),
                 input = name,
-                hint = hintName){
+                hint = hintName
+            ){
                 name = it
             }
-
             CustomTextFieldComponent2(
                 modifier = Modifier.fillMaxWidth(),
                 input = phoneNumber,
                 hint = hintPhoneNumber,
-                keyboardType = KeyboardType.Phone){
+                keyboardType = KeyboardType.Phone
+            ){
                 name = it
             }
-
             Spacer(modifier = Modifier.height(10.dp))
-            
             Text(
                 text = "Ana Faaliyet Alanı",
                 color = MaterialTheme.colors.onSurface,
-                style = MaterialTheme.typography.body1)
-
+                style = MaterialTheme.typography.body1
+            )
             Divider(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -116,23 +112,17 @@ fun EditProfileScreen(
                 color = MaterialTheme.colors.onPrimary,
                 thickness = 1.dp
             )
-
             //Bu kısım viewmodelden kullanıcı profili olarak gelecek.
             val data = MainConstructionItem.createMainCategories()[6]
-
-            Box(
-            ) {
+            Box{
                 ConstructionItemView(data = data)
             }
-
-
             Spacer(modifier = Modifier.height(10.dp))
-
             Text(
                 text = "Uzmanlık Alan(lar)ı",
                 color = MaterialTheme.colors.onSurface,
-                style = MaterialTheme.typography.body1)
-
+                style = MaterialTheme.typography.body1
+            )
             Divider(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -140,15 +130,13 @@ fun EditProfileScreen(
                 color = MaterialTheme.colors.onPrimary,
                 thickness = 1.dp
             )
-
             //Bu kısım viewmodelden kullanıcı profili olarak gelecek.
             val dataList = data.subConstructionCategories ?: emptyList()
-
             LazyVerticalGrid(
                 modifier = Modifier.heightIn(max = 100.dp),
                 columns = GridCells.Fixed(4),
-                horizontalArrangement = Arrangement.Center){
-
+                horizontalArrangement = Arrangement.Center
+            ){
                 items(dataList){ item ->
 
                     ConstructionItemView(data = item)

@@ -17,17 +17,13 @@ fun LoadingScreen(
     isLoading: Boolean = false,
     content: @Composable () -> Unit
 ){
-
     content()
-
     if(isLoading){
         Box(
             modifier = Modifier.background(MaterialTheme.colors.background),
             contentAlignment = Alignment.Center
         ) {
-
             FloatingLogoWithAppName()
-
             CircularProgressIndicator(
                 modifier = Modifier.size(30.dp),
                 color = primaryColorNoTheme,

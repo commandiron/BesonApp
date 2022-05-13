@@ -36,7 +36,6 @@ fun SignUpStepsCategorySelectionPage(
     onNextButtonClickSingleSelection: ((ConstructionItem?) -> Unit)? = null,
     onNextButtonClickMultipleSelection: ((List<ConstructionItem>?) -> Unit)? = null
 ){
-
     var selectedItemList by remember { mutableStateOf<List<ConstructionItem>?>(null) }
     var selectedItem by remember { mutableStateOf<ConstructionItem?>(null) }
 
@@ -48,21 +47,18 @@ fun SignUpStepsCategorySelectionPage(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(
             modifier = Modifier.height(20.dp),
             text = title,
             color = MaterialTheme.colors.onBackground.copy(LOWER_VISIBILITY_ALPHA),
             style = MaterialTheme.typography.body1
         )
-
         Spacer(modifier = Modifier.height(20.dp))
 
         var gridIconSize by remember { mutableStateOf(80.dp)}
         var gridBoxBorder by remember { mutableStateOf(1.dp)}
 
         //BURADA BİR PROBLEM VAR PATLIYOR BAKILACAK.
-
         LazyVerticalGrid(
             state = lazyGridState,
             modifier = Modifier
@@ -73,16 +69,13 @@ fun SignUpStepsCategorySelectionPage(
             userScrollEnabled = true,
             columns = GridCells.Fixed(3),
             content = {
-
                 items(itemListMain){ item ->
-
                     var isSelected by remember { mutableStateOf(false)}
                     var borderColor by remember { mutableStateOf<Color?>(null)}
 
                     if(!multipleSelectionEnabled){
                         isSelected = item == selectedItem
                     }
-
                     if(isSelected){
                         gridIconSize = 60.dp
                         gridBoxBorder = 2.dp
@@ -94,7 +87,6 @@ fun SignUpStepsCategorySelectionPage(
 
                         borderColor = MaterialTheme.colors.onBackground
                     }
-
                     Column(
                         modifier = Modifier
                             .border(
@@ -119,22 +111,20 @@ fun SignUpStepsCategorySelectionPage(
                                         }else{
                                             selectedItemList = selectedItemList!! - listOf(item)
                                         }
-
                                     } else {
                                         selectedItem = item
                                     }
                                 },
                             contentAlignment = Alignment.Center
                         ){
-
                             Icon(
                                 modifier = Modifier
                                     .size(gridIconSize),
                                 painter = rememberImagePainter(data = item.imageResource),
                                 contentDescription = null,
-                                tint = borderColor!!)
+                                tint = borderColor!!
+                            )
                         }
-
                         Box(
                             modifier = Modifier
                                 .size(80.dp, 20.dp),
@@ -150,7 +140,6 @@ fun SignUpStepsCategorySelectionPage(
                             )
                         }
                     }
-
                     Box(
                         modifier = Modifier
                             .size(80.dp)
@@ -162,9 +151,7 @@ fun SignUpStepsCategorySelectionPage(
                 }
             }
         )
-
         Spacer(modifier = Modifier.height(20.dp))
-
         CustomButton(
             onClick = {
                 if(multipleSelectionEnabled){
@@ -172,41 +159,33 @@ fun SignUpStepsCategorySelectionPage(
                 }else{
                     onNextButtonClickSingleSelection!!.invoke(selectedItem)
                 }
-            }) {
+            }
+        ) {
             Text(text = buttonText)
         }
-
         Spacer(modifier = Modifier.height(10.dp))
-
         Text(
             text = underButtonHintText,
             color = MaterialTheme.colors.onBackground.copy(LOWER_VISIBILITY_ALPHA),
             style = MaterialTheme.typography.body2
         )
     }
-
     //Scroll bar
     if(itemListMain.size > 9){
-
         val minPercentage: Double
-
         if(itemListMain.size < 9){
             minPercentage = 0.9
         }else{
             val invisibleItemCount = itemListMain.size - 9
             val invisibleLineCount = Math.ceil(invisibleItemCount / 3.0)
-
             minPercentage = 0.9 - invisibleLineCount/10
         }
-
         Box(
             modifier = Modifier
                 .fillMaxSize(),
             contentAlignment = Alignment.TopEnd
         ) {
-
             val lazyListState = rememberLazyListState()
-
             Carousel(
                 state = lazyListState,
                 totalLength = 276,
@@ -218,7 +197,8 @@ fun SignUpStepsCategorySelectionPage(
                 colors = CarouselDefaults.colors(
                     scrollingThumbColor = primaryColorNoTheme,
                     scrollingBackgroundColor = MaterialTheme.colors.onBackground),
-                scrolled = {lazyGridState.firstVisibleItemScrollOffset})
+                scrolled = {lazyGridState.firstVisibleItemScrollOffset}
+            )
         }
     }else{
         Box(
@@ -226,7 +206,6 @@ fun SignUpStepsCategorySelectionPage(
                 .fillMaxSize(),
             contentAlignment = Alignment.TopEnd
         ) {
-
             Divider(
                 modifier = Modifier
                     .size(2.dp, 330.dp)

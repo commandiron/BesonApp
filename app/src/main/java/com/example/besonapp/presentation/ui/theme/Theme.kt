@@ -60,7 +60,6 @@ fun BesonAppTheme(
             LocalRippleTheme provides BesonRippleTheme,
             content = content
         )
-
         val customTextSelectionColors = TextSelectionColors(
             handleColor = if(darkTheme) onPrimaryDark else Color.Gray,
             backgroundColor = if(darkTheme) onPrimaryDark.copy(0.4f) else Color.Gray.copy(0.4f),

@@ -34,7 +34,6 @@ fun SplashScreenLogoAnimation2(){
     val introTextAlphaAnim = remember { Animatable(0f) }
 
     LaunchedEffect(key1 = Unit){
-
         scope.launch {
             logoRotateAnim.animateTo(
                 targetValue = 360f,
@@ -94,18 +93,15 @@ fun SplashScreenLogoAnimation2(){
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-
         AppLogoIconView(
             rotateAnimValue = logoRotateAnim.value,
             paddingBottomAnimValue = logoBottomPaddingAnim.value)
     }
-
     Box(
         modifier = Modifier
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-
         Text(
             text = AppStaticTexts.APP_NAME,
             color = logoColor,
@@ -113,18 +109,15 @@ fun SplashScreenLogoAnimation2(){
             modifier = Modifier
                 .alpha(alpha = textAlphaAnim.value)
                 .padding(top =  Dp(textPaddingAnim.value))
-                .graphicsLayer { rotationX = textRotationXAnim.value }
-
+                .graphicsLayer { rotationX = textRotationXAnim.value}
         )
     }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(bottom = 80.dp),
         contentAlignment = Alignment.BottomCenter
     ) {
-
         Text(
             text = AppStaticTexts.APP_STATEMENT,
             color = logoColor,
@@ -133,6 +126,4 @@ fun SplashScreenLogoAnimation2(){
                 .alpha(alpha = introTextAlphaAnim.value)
         )
     }
-
-
 }

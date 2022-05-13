@@ -28,7 +28,9 @@ object AppModule {
     @Provides
     fun provideFirebaseDatabaseInstance() =
         FirebaseDatabase
-            .getInstance("https://besonapp-default-rtdb.europe-west1.firebasedatabase.app/")
+            .getInstance(
+                "https://besonapp-default-rtdb.europe-west1.firebasedatabase.app/"
+            )
 
     @Provides
     fun provideFirebaseStorageInstance() = FirebaseStorage.getInstance()

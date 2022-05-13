@@ -13,28 +13,21 @@ fun TopBarGraph(
     currentRoute: String?,
     content: @Composable () -> Unit
 ) {
-
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.TopCenter) {
-
+        contentAlignment = Alignment.TopCenter
+    ) {
         content()
-
         when(currentRoute){
-
             NavigationItem.Profile.screen_route ->{
                 TopBarView(title = NavigationItem.Profile.title)
             }
-
             NavigationItem.Prices.screen_route ->{
                 TopBarView(title = NavigationItem.Prices.title)
             }
-
             NavigationItem.PostPrice.screen_route ->{
                 TopBarView(title = "")
             }
-
-
         }
     }
 }

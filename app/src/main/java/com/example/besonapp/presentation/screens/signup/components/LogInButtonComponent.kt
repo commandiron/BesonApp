@@ -34,16 +34,15 @@ fun LogInButtonComponent(
         Box(
             contentAlignment = Alignment.Center
         ) {
-
             val interactionSource = remember { MutableInteractionSource() }
-
             Text(
                 modifier = Modifier
                     .clickable(interactionSource,null) {
                     onFloatingLogInButtonClick()
                 },
                 text = text,
-                style = MaterialTheme.typography.h4)
+                style = MaterialTheme.typography.h4
+            )
         }
     }
 }

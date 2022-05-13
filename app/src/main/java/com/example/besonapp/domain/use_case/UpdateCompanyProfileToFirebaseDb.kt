@@ -7,5 +7,5 @@ class UpdateCompanyProfileToFirebaseDb(
     private val repository: AppRepository
 ) {
     suspend operator fun invoke(companyProfile: CompanyProfile)
-            = repository.updateCompanyProfileToFirebaseDb(companyProfile)
+        = repository.updateCompanyProfileToFirebaseDb(companyProfile)
 }

@@ -35,7 +35,6 @@ fun ProfileScreen(
     profileViewModel: ProfileViewModel = hiltViewModel(),
     runTutorial:() -> Unit
 ){
-
     //Profil sayfasında profilimizi göstereceğiz. Sadece fotoğraf ve isim
     //BURDAN DEVAM ET.
 
@@ -61,14 +60,11 @@ fun ProfileScreen(
         verticalAlignment = Alignment.Top,
         userScrollEnabled = false
     ) { page->
-
         when(page){
-
             0 -> {ProfileScreenMainPage(navController, coroutineScope, pagerState)}
             1 -> {ProfileScreenMyPriceUpdatesPage(coroutineScope, pagerState)}
         }
     }
-
     BackHandler {
         coroutineScope.launch {
             when (pagerState.currentPage) {
@@ -87,7 +83,6 @@ fun ProfileScreenMainPage(
     pagerState: PagerState
 ){
     var profileHeaderBoxHeight by remember { mutableStateOf(0)}
-
     val name by remember { mutableStateOf("İsim Soyad")}
 
     Column(
@@ -103,13 +98,11 @@ fun ProfileScreenMainPage(
             }
         )
     }
-
     Column(
         modifier = Modifier.offset(y = with(LocalDensity.current){profileHeaderBoxHeight.toDp()}),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-
         ProfileScreenItemRow(
             title = "Fiyat Güncellemelerim"
         ){
@@ -117,7 +110,6 @@ fun ProfileScreenMainPage(
                 pagerState.animateScrollToPage(page = 1)
             }
         }
-
         Divider(
             modifier = Modifier
                 .fillMaxWidth()
@@ -126,7 +118,6 @@ fun ProfileScreenMainPage(
             thickness = 1.dp
         )
     }
-
 }
 
 @Composable
@@ -142,7 +133,6 @@ fun ProfileScreenMyPriceUpdatesPage(
         verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Box(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.CenterStart
@@ -150,7 +140,9 @@ fun ProfileScreenMyPriceUpdatesPage(
             Text(
                 modifier = Modifier.clickable {
                     coroutineScope.launch {
-                        pagerState.animateScrollToPage(page = pagerState.currentPage - 1)
+                        pagerState.animateScrollToPage(
+                            page = pagerState.currentPage - 1
+                        )
                     }
                 },
                 text = "Geri",
@@ -159,7 +151,6 @@ fun ProfileScreenMyPriceUpdatesPage(
                 textAlign = TextAlign.Center
             )
         }
-
         CustomLazyColumnForPrices(
             listOfConstructionPriceItem =
             listOf(

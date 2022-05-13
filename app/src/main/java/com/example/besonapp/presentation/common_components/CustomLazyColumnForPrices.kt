@@ -21,15 +21,13 @@ fun CustomLazyColumnForPrices(
     listOfConstructionPriceItem: List<ConstructionPriceItem>,
     onUsernameClick:() -> Unit
 ) {
-
     val sdf = remember { SimpleDateFormat( "dd/MM/yyyy", Locale.ROOT) }
 
     LazyColumn(
         modifier = Modifier
-            .fillMaxSize()){
-
+            .fillMaxSize()
+    ){
         items(listOfConstructionPriceItem){ item ->
-
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -37,18 +35,18 @@ fun CustomLazyColumnForPrices(
                     .padding(horizontal = 16.dp, vertical = 10.dp),
                 shape = RoundedCornerShape(30.dp)
             ) {
-
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(horizontal = 24.dp),
-                    verticalArrangement = Arrangement.Center) {
-
+                    verticalArrangement = Arrangement.Center
+                ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Column(modifier = Modifier
-                            .weight(1f)) {
+                            .weight(1f)
+                        ) {
                             Text(
                                 text = item.title,
                                 style = MaterialTheme.typography.h4
@@ -61,7 +59,8 @@ fun CustomLazyColumnForPrices(
                         Box(
                             modifier = Modifier
                                 .weight(1f),
-                            contentAlignment = Alignment.CenterEnd) {
+                            contentAlignment = Alignment.CenterEnd
+                        ) {
                             Text(
                                 text = item.price.toString() + " TL/" + item.unit,
                                 style = MaterialTheme.typography.h3
@@ -69,17 +68,14 @@ fun CustomLazyColumnForPrices(
                         }
                     }
                 }
-
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(horizontal = 24.dp, vertical = 10.dp),
-                    contentAlignment = Alignment.BottomEnd) {
-
-                    Row() {
-
+                    contentAlignment = Alignment.BottomEnd
+                ) {
+                    Row {
                         val interactionSource = remember { MutableInteractionSource() }
-
                         Text(
                             text = "Gönderen: ",
                             style = MaterialTheme.typography.caption)

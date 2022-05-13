@@ -27,7 +27,6 @@ fun CustomButton(
     ),
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     content: @Composable RowScope.() -> Unit
-
 ){
     Button(
         onClick = onClick,

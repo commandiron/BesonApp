@@ -22,9 +22,7 @@ import com.example.besonapp.util.AppStaticTexts
 
 @Composable
 fun SplashScreenLogoAnimation(
-
 ){
-
     val alphaAnim = remember { Animatable(0f) }
     val rotateAnim = remember { Animatable(0f) }
     LaunchedEffect(key1 = Unit){
@@ -50,14 +48,11 @@ fun SplashScreenLogoAnimation(
             )
         )
     }
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-
         AppLogoIconView(alphaAnimValue = alphaAnim.value, rotateAnimValue = rotateAnim.value)
-
         Text(
             text = AppStaticTexts.APP_NAME,
             color = logoColor,

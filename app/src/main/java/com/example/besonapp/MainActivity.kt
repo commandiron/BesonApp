@@ -52,47 +52,37 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
 fun MainContent(
     mainViewModel: MainViewModel = hiltViewModel()
 ){
-
+    //For Scaffold
     val scaffoldState = rememberScaffoldState()
-
     //KeyboardController for hide keyboard when touch outside
     val keyboardController = LocalSoftwareKeyboardController.current
     //For hide scaffold click ripple effect.
     val interactionSource = remember { MutableInteractionSource() }
-
     //Fab
     val fabState = rememberSaveable {(mutableStateOf(false))}
     var isFabClicked by remember { mutableStateOf(false)}
-
     //Navigation Control, Navigation Visibility
     val bottomSheetNavigator = rememberBottomSheetNavigator()
     val navController = rememberAnimatedNavController(bottomSheetNavigator)
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-
     //Notify floating components clicks
     var isSignUpScreenLogoClick by remember { mutableStateOf(false)}
-
     //Notify loading screen
     var isLoading by remember { mutableStateOf(false)}
-
     //Notify tutorial graph
     var tutorialEnabled by remember { mutableStateOf(false)}
 
     //Main Theme
     BesonAppTheme {
-
         //Padding System Color and Padding
         SystemUiColorsAndPaddingGraph(currentRoute){ applyPaddingStatusBar, applyPaddingNavigationBar ->
-
             //Loading Screen
             LoadingScreen(isLoading = isLoading) {
-
                 //Tutorial Screens
                 TutorialGraph(
                     currentRoute = currentRoute,
@@ -102,7 +92,6 @@ fun MainContent(
                         tutorialEnabled = false
                     }
                 ){
-
                     //Bottom Sheet (Over the scaffold because should above the navigation bar)
                     ModalBottomSheetLayout(
                         modifier = Modifier
@@ -120,7 +109,6 @@ fun MainContent(
                             topEnd = 40.dp),
                         scrimColor = Color.Black.copy(0.5f)
                     ) {
-
                         //Layout For All App
                         Scaffold(
                             modifier = Modifier
@@ -138,16 +126,12 @@ fun MainContent(
                                 ) {
                                     keyboardController?.hide()
                                 },
-
                             scaffoldState = scaffoldState,
-
                             floatingActionButton = {
-
                                 fabState.value =
                                     currentRoute == NavigationItem.Profile.screen_route ||
                                             currentRoute == NavigationItem.Prices.screen_route ||
                                                 currentRoute == NavigationItem.PostPrice.screen_route
-
                                 CustomFloatingActionButton(
                                     fabState = fabState.value,
                                     onClick = {
@@ -155,8 +139,8 @@ fun MainContent(
 
                                         navController.navigate(NavigationItem.PostPrice.screen_route)
                                     },
-                                    backgroundColor = primaryVariantColorNoTheme) {
-
+                                    backgroundColor = primaryVariantColorNoTheme
+                                ) {
                                     Icon(
                                         imageVector = Icons.Filled.Add,
                                         tint = onPrimaryColorNoTheme,
@@ -166,38 +150,31 @@ fun MainContent(
                             },
                             isFloatingActionButtonDocked = true,
                             floatingActionButtonPosition = FabPosition.Center,
-
                             bottomBar = {
-
                                 BottomNavigationView(
                                     navController = navController,
-                                    currentRoute = currentRoute)
+                                    currentRoute = currentRoute
+                                )
                             }
-
                         ) {
-
                             //I didn't need it.
                             it
-
                             //Surface for background to prevent unwanted glitches.
                             Surface(
                                 modifier = Modifier
                                     .fillMaxSize(),
                                 color = MaterialTheme.colors.background,
                             ){
-
                                 //Floating Components Logo, explaining strip etc.
                                 FloatingComponentsGraph(
                                     navController = navController,
                                     currentRoute = currentRoute,
                                     onSignUpScreenLogoClick = {isSignUpScreenLogoClick = !isSignUpScreenLogoClick}
                                 ){
-
                                     //TopBar not in scaffold to prevent animation glitches.
                                     TopBarGraph(
                                         currentRoute = currentRoute
                                     ) {
-
                                         //Navigation graph for navigate between screens.
                                         NavigationGraph(
                                             navController = navController,

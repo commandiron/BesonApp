@@ -42,7 +42,6 @@ fun CustomTextFieldComponent(
     onFocusChange:(Boolean) -> Unit = {},
     onChange:(String) -> Unit = {}
 ) {
-
     val localFocusManager = LocalFocusManager.current
 
     var isNameChange by remember { mutableStateOf(false) }
@@ -101,7 +100,6 @@ fun CustomTextFieldComponent(
                                 )
                             innerTextField()
                     }
-
                     if(keyboardType == KeyboardType.Password){
                         val image = if (passwordVisibility)
                             Icons.Filled.Visibility
@@ -124,27 +122,27 @@ fun CustomTextFieldComponent(
             },
             visualTransformation = if(keyboardType == KeyboardType.Password) if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation() else VisualTransformation.None,
         )
-
         if(textFieldError){
             Row(
                 modifier = Modifier
                     .padding(start = 330.dp)
                     .size(60.dp, 40.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-
+                horizontalArrangement = Arrangement.spacedBy(2.dp)
+            ) {
                 Icon(
                     modifier = Modifier.size(12.dp),
                     imageVector = Icons.Default.ErrorOutline,
                     tint = MaterialTheme.colors.error,
-                    contentDescription = null)
+                    contentDescription = null
+                )
                 Text(
                     modifier = Modifier.weight(2f),
                     text = textFieldErrorMessage,
                     style = MaterialTheme.typography.caption,
-                    color = MaterialTheme.colors.error)
+                    color = MaterialTheme.colors.error
+                )
             }
-
         }
     }
 }

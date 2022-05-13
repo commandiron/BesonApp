@@ -72,5 +72,4 @@ val Typography = Typography(
         fontSize = 16.sp
     )
 )
-
 const val LOWER_VISIBILITY_ALPHA = 0.8f

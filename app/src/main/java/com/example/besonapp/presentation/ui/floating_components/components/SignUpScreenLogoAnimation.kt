@@ -20,7 +20,6 @@ import com.example.besonapp.presentation.ui.theme.logoBackGround
 fun SignUpScreenLogoAnimation(
     onSignUpScreenLogoClick:() -> Unit
 ){
-
     val sizeAnim = remember { Animatable(100f) }
     LaunchedEffect(key1 = Unit){
         sizeAnim.animateTo(
@@ -30,8 +29,6 @@ fun SignUpScreenLogoAnimation(
             )
         )
     }
-
-
     val rotateAnim= remember { Animatable(0f) }
     LaunchedEffect(rotateAnim) {
         for(i in 0 until 10000){
@@ -67,7 +64,6 @@ fun SignUpScreenLogoAnimation(
             )
         }
     }
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center

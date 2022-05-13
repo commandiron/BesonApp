@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LogInViewModel @Inject constructor(
     private val useCases: UseCases
-): ViewModel()  {
+): ViewModel() {
 
     private val _logInFormValidationState = mutableStateOf(SignUpAndLogInInfoValidation())
     val logInFormValidationState : State<SignUpAndLogInInfoValidation> = _logInFormValidationState
@@ -24,13 +24,9 @@ class LogInViewModel @Inject constructor(
     val isUserLogIn : State<Boolean> = _isUserLogIn
 
     fun logIn(userLogInInfo: UserLogInInfo) {
-
         getLogInFormValidationState(userLogInInfo)
-
         if(!_logInFormValidationState.value.emailError && !_logInFormValidationState.value.passwordError){
-
             viewModelScope.launch {
-
                 useCases.logIn(userLogInInfo.email, userLogInInfo.password).collect { response ->
                     when(response){
                         is Response.Loading -> {
@@ -53,5 +49,4 @@ class LogInViewModel @Inject constructor(
     private fun getLogInFormValidationState(userLogInInfo: UserLogInInfo){
         _logInFormValidationState.value = useCases.logInInfoValidation.invoke(userLogInInfo)
     }
-
 }

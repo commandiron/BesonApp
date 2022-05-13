@@ -25,9 +25,7 @@ fun LogInFormComponent(
     signUpAndLogInInfoValidation: SignUpAndLogInInfoValidation,
     onSignUpButtonClick:() -> Unit,
     onLogInButtonClick:(UserLogInInfo) -> Unit,
-
-    ){
-
+){
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -36,14 +34,12 @@ fun LogInFormComponent(
         verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(
             text = LOGIN_BESON_TEXT,
             color = MaterialTheme.colors.onBackground,
-            style = MaterialTheme.typography.h2)
-
+            style = MaterialTheme.typography.h2
+        )
         Spacer(modifier = Modifier.height(28.dp))
-
         CustomTextFieldComponent(
             entry = email,
             hint = EMAIL_TEXT,
@@ -52,7 +48,6 @@ fun LogInFormComponent(
             keyboardType = KeyboardType.Email){
             email = it
         }
-
         CustomTextFieldComponent(
             entry = password,
             hint =  PASSWORD_TEXT,
@@ -61,13 +56,10 @@ fun LogInFormComponent(
             keyboardType = KeyboardType.Password){
             password = it
         }
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             Spacer(modifier = Modifier.height(28.dp))
-
             CustomButton(
                 modifier = Modifier.width(100.dp),
                 onClick = {
@@ -76,16 +68,13 @@ fun LogInFormComponent(
             ) {
                 Text(text = LOGIN_TEXT_2)
             }
-
             Spacer(modifier = Modifier.height(40.dp))
-            
             Text(
                 text = OR_TEXT,
                 color = MaterialTheme.colors.onBackground.copy(LOWER_VISIBILITY_ALPHA),
-                style = MaterialTheme.typography.body1)
-
+                style = MaterialTheme.typography.body1
+            )
             Spacer(modifier = Modifier.height(40.dp))
-
             CustomButton(
                 modifier = Modifier.width(100.dp),
                 onClick = {

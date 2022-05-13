@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val useCases: UseCases
-): ViewModel()  {
+): ViewModel() {
 
     fun setUserPassTutorialOnceFlagTrue(){
         viewModelScope.launch {

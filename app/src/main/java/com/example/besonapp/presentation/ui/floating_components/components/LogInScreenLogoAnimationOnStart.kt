@@ -26,7 +26,6 @@ fun LogInScreenLogoAnimationOnStart(){
             )
         )
     }
-
     val sizeAnim = remember { Animatable(50f) }
     LaunchedEffect(key1 = Unit){
         sizeAnim.animateTo(
@@ -36,16 +35,14 @@ fun LogInScreenLogoAnimationOnStart(){
             )
         )
     }
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-
-            AppLogoIconView(
-                modifier = Modifier.padding(20.dp),
-                sizeAnimValue = Dp(sizeAnim.value),
-                alphaAnimValue = alphaAnim.value
-            )
+        AppLogoIconView(
+            modifier = Modifier.padding(20.dp),
+            sizeAnimValue = Dp(sizeAnim.value),
+            alphaAnimValue = alphaAnim.value
+        )
     }
 }

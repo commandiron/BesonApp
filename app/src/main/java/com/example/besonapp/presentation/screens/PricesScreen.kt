@@ -32,14 +32,10 @@ import com.example.besonapp.presentation.ui.theme.primaryColorNoTheme
 fun PricesScreen(navController: NavController){
 
     var filterCheckBoxEnable by remember { mutableStateOf(false)}
-
     var searchBoxText by remember { mutableStateOf("")}
-
     //Bu kısım viewmodelden kullanıcı profili olarak gelecek.
     val mainConstructionItems = MainConstructionItem.createMainCategories()
-
     var selectedMainConstructionItem by remember { mutableStateOf<MainConstructionItem?>(null) }
-
     var subConstructionItems by remember { mutableStateOf<List<SubConstructionItem>?>(null) }
 
     LaunchedEffect(key1 = selectedMainConstructionItem){
@@ -49,7 +45,6 @@ fun PricesScreen(navController: NavController){
     }
 
     var selectedSubConstructionItem by remember { mutableStateOf<SubConstructionItem?>(null) }
-
     val interactionSource = remember { MutableInteractionSource() }
 
     Column(
@@ -58,20 +53,18 @@ fun PricesScreen(navController: NavController){
             .statusBarsPadding()
             .padding(top = 64.dp, bottom = 86.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)) {
-
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
         Row(modifier = Modifier
             .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             CustomTextFieldComponent2(
                 modifier = Modifier.weight(3f),
                 input = searchBoxText,
                 hint = "Ara",
                 onValueChange = {searchBoxText = it}
             )
-            
             Row(
                 modifier = Modifier
                     .weight(1f)
@@ -80,42 +73,33 @@ fun PricesScreen(navController: NavController){
                         indication = null,
                         onClick = { filterCheckBoxEnable = !filterCheckBoxEnable }),
                 horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically) {
-
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 var iconVector by remember { mutableStateOf(Icons.Default.KeyboardArrowRight)}
-
                 iconVector = if(filterCheckBoxEnable){
                     Icons.Default.KeyboardArrowDown
                 }else{
                     Icons.Default.KeyboardArrowRight
                 }
-
                 Text(
                     text = if(filterCheckBoxEnable) "Kapat" else "Filitrele",
                     textAlign = TextAlign.Center)
                 Icon(
-                    imageVector = iconVector, contentDescription = null)
+                    imageVector = iconVector, contentDescription = null
+                )
             }
         }
-
-
         if(filterCheckBoxEnable){
-
-            LazyRow(
-            ){
+            LazyRow{
                 items(mainConstructionItems){ item ->
-
                     var mainCategorySelected by remember { mutableStateOf(false) }
-
                     mainCategorySelected = item == selectedMainConstructionItem
-
                     var mainCategorySurfaceSelectedColor by remember { mutableStateOf(
                         primaryColorNoTheme
                     ) }
                     var mainCategorySurfaceContentColor by remember { mutableStateOf(
                         onPrimaryColorNoTheme
                     ) }
-
                     if(mainCategorySelected){
                         mainCategorySurfaceSelectedColor = primaryColorNoTheme
                         mainCategorySurfaceContentColor = onPrimaryColorNoTheme
@@ -146,7 +130,8 @@ fun PricesScreen(navController: NavController){
                                     mainCategorySelected = !mainCategorySelected
                                 },
                             horizontalArrangement = Arrangement.Start,
-                            verticalAlignment = Alignment.CenterVertically) {
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             Box(
                                 modifier = Modifier
                                     .padding(4.dp),
@@ -163,37 +148,31 @@ fun PricesScreen(navController: NavController){
                             Text(
                                 text = item.title,
                                 style = MaterialTheme.typography.body2,
-                                textAlign = TextAlign.Center)
+                                textAlign = TextAlign.Center
+                            )
                         }
                     }
-
-
                 }
             }
         }
-
         if(filterCheckBoxEnable && subConstructionItems != null){
-
-            Divider(modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 32.dp), thickness = 1.dp, color = MaterialTheme.colors.onPrimary)
-
+            Divider(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(horizontal = 32.dp),
+                thickness = 1.dp,
+                color = MaterialTheme.colors.onPrimary
+            )
             LazyRow(
             ){
-
                 items(subConstructionItems!!){ item ->
-
                     var subCategorySelected by remember { mutableStateOf(false) }
-
                     subCategorySelected = item == selectedSubConstructionItem
-
                     var subCategorySurfaceSelectedColor by remember { mutableStateOf(
                         primaryColorNoTheme
                     ) }
                     var subCategorySurfaceContentColor by remember { mutableStateOf(
                         onPrimaryColorNoTheme
                     ) }
-
                     if(subCategorySelected){
                         subCategorySurfaceSelectedColor = primaryColorNoTheme
                         subCategorySurfaceContentColor = onPrimaryColorNoTheme
@@ -201,7 +180,6 @@ fun PricesScreen(navController: NavController){
                         subCategorySurfaceSelectedColor = primaryColorNoTheme
                         subCategorySurfaceContentColor =  onPrimaryColorNoTheme
                     }
-
                     Surface(
                         modifier = Modifier
                             .padding(horizontal = 4.dp)
@@ -223,7 +201,8 @@ fun PricesScreen(navController: NavController){
                                     selectedSubConstructionItem = item
                                 },
                             horizontalArrangement = Arrangement.Start,
-                            verticalAlignment = Alignment.CenterVertically) {
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             Box(
                                 modifier = Modifier
                                     .padding(4.dp),
@@ -240,15 +219,14 @@ fun PricesScreen(navController: NavController){
                             Text(
                                 text = item.title,
                                 style = MaterialTheme.typography.body2,
-                                textAlign = TextAlign.Center)
+                                textAlign = TextAlign.Center
+                            )
                         }
                     }
                 }
             }
         }
-
         var enableAlertDialog by remember { mutableStateOf(false) }
-
         CustomLazyColumnForPrices(
             listOfConstructionPriceItem =
             listOf(
@@ -264,12 +242,9 @@ fun PricesScreen(navController: NavController){
             )
         ){
             enableAlertDialog = !enableAlertDialog
-
             //Burda alert dialog ile gönderenin profilini göster.
         }
-
         val mainConstructionItem = MainConstructionItem.createMainCategories()[4]
-
         if(enableAlertDialog){
             CustomAlertDialogForShowProfile(
                 //Bu kısım viewmodelden gelecek.

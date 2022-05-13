@@ -24,7 +24,6 @@ fun ProfileScreenItemRow(
     title: String,
     onRowClick:() -> Unit
 ){
-
     Divider(
         modifier = Modifier
             .fillMaxWidth()
@@ -32,17 +31,15 @@ fun ProfileScreenItemRow(
         color = MaterialTheme.colors.onPrimary,
         thickness = 1.dp
     )
-
     val interactionSource = remember { MutableInteractionSource() }
-
     Row(
         modifier = Modifier
             .padding(horizontal = 40.dp)
             .clickable(interactionSource = interactionSource, indication = null) {
                 onRowClick()
             },
-        verticalAlignment = Alignment.CenterVertically) {
-
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Box(
             modifier = Modifier.weight(2f),
             contentAlignment = Alignment.CenterStart
@@ -51,7 +48,8 @@ fun ProfileScreenItemRow(
                 text = title,
                 style = MaterialTheme.typography.h4,
                 color = MaterialTheme.colors.onBackground,
-                textAlign = TextAlign.Center)
+                textAlign = TextAlign.Center
+            )
         }
         Box(
             modifier = Modifier.weight(1f),
@@ -60,7 +58,8 @@ fun ProfileScreenItemRow(
             Icon(
                 imageVector = Icons.Default.ArrowRight,
                 tint = MaterialTheme.colors.onBackground,
-                contentDescription = null)
+                contentDescription = null
+            )
         }
     }
 }

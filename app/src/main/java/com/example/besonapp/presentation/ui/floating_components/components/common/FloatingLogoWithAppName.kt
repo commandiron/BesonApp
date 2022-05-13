@@ -17,7 +17,6 @@ import com.example.besonapp.util.AppStaticTexts
 fun FloatingLogoWithAppName(
     contentAlignment: Alignment = Alignment.BottomCenter
 ){
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -34,7 +33,6 @@ fun FloatingLogoWithAppName(
                 sizeAnimValue = 30.dp,
                 tint = primaryColorNoTheme,
             )
-
             Text(
                 text = AppStaticTexts.APP_NAME,
                 color = primaryColorNoTheme,

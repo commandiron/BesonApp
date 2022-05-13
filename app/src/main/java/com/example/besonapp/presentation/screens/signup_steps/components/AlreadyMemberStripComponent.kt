@@ -26,17 +26,20 @@ fun AlreadyMemberStripComponent(
         Divider(
             modifier = Modifier.width(60.dp),
             color = color,
-            thickness = 1.dp)
+            thickness = 1.dp
+        )
         Text(
             modifier = Modifier.clickable {
                     onTextClick()
             },
             textAlign = TextAlign.Center,
             text = "Zaten Üyeyim",
-            style = MaterialTheme.typography.body2.copy(color = color))
+            style = MaterialTheme.typography.body2.copy(color = color)
+        )
         Divider(
             modifier = Modifier.width(60.dp),
             color = color,
-            thickness = 1.dp)
+            thickness = 1.dp
+        )
     }
 }

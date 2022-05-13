@@ -34,12 +34,11 @@ fun CustomFloatingActionButton(
 ) {
     rememberRipple()
     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme){
-
         AnimatedVisibility(
             visible = fabState,
             enter = scaleIn(tween(durationMillis = 250)),
-            exit = scaleOut(tween(durationMillis = 250))) {
-
+            exit = scaleOut(tween(durationMillis = 250))
+        ) {
             Surface(
                 onClick = onClick,
                 shape = shape,
@@ -48,11 +47,8 @@ fun CustomFloatingActionButton(
                 elevation = elevation.elevation(interactionSource).value,
                 interactionSource = interactionSource
             ) {
-
                 CompositionLocalProvider(LocalContentAlpha provides contentColor.alpha) {
-
                     ProvideTextStyle(MaterialTheme.typography.button) {
-
                         Box(
                             modifier = Modifier
                                 .defaultMinSize(

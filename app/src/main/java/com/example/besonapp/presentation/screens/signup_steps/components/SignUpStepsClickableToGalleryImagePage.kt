@@ -29,8 +29,8 @@ fun SignUpStepsClickableToGalleryImagePage(
     title: String,
     buttonText: String,
     size: Dp = 100.dp,
-    onClick:(Uri?) -> Unit = {}){
-
+    onClick:(Uri?) -> Unit = {}
+){
     var imageUri by remember {
         mutableStateOf<Uri?>(null)
     }
@@ -46,13 +46,11 @@ fun SignUpStepsClickableToGalleryImagePage(
         verticalArrangement = Arrangement.spacedBy(30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(
             text = title,
             color = MaterialTheme.colors.onBackground.copy(LOWER_VISIBILITY_ALPHA),
             style = MaterialTheme.typography.body1
         )
-
         Image(
             painter = rememberImagePainter(
                 data = if(imageUri!=null)imageUri else R.drawable.ic_blank_profile_picture),
@@ -62,12 +60,13 @@ fun SignUpStepsClickableToGalleryImagePage(
                 .size(size)
                 .clip(CircleShape)
                 .border(2.dp, Color.Gray, CircleShape),
-            contentScale = ContentScale.Crop)
-
-        CustomButton(onClick = {
-            onClick(imageUri)
-
-        }) {
+            contentScale = ContentScale.Crop
+        )
+        CustomButton(
+            onClick = {
+                onClick(imageUri)
+            }
+        ) {
             Text(text = buttonText)
         }
     }

@@ -33,7 +33,6 @@ class SignUpStepsViewModel @Inject constructor(
     }
 
     fun createCustomerProfile(name: String, phoneNumber: String, profilePictureUri: Uri?) {
-
         if(profilePictureUri != null){
             uploadCustomerProfilePictureToFirebaseStorage(name, phoneNumber, profilePictureUri)
         }else{
@@ -43,12 +42,9 @@ class SignUpStepsViewModel @Inject constructor(
 
     private fun uploadCustomerProfilePictureToFirebaseStorage(name: String, phoneNumber: String, profilePictureUri: Uri){
         viewModelScope.launch {
-
             useCases.uploadProfilePictureToFirebaseStorage.invoke(profilePictureUri).collect { response ->
-
                 when(response){
                     is Response.Loading -> {
-
                     }
                     is Response.Success -> {
                         updateCustomerProfileToFirebaseDb(CustomerProfile(name, phoneNumber, response.data))
@@ -66,13 +62,11 @@ class SignUpStepsViewModel @Inject constructor(
             useCases.updateCustomerProfileToFirebaseDb.invoke(customerProfile).collect{ response ->
                 when(response) {
                     is Response.Loading -> {
-
                     }
                     is Response.Success -> {
                         _isCustomerProfileUpdated.value = response.data
                     }
                     is Response.Error -> {
-
                     }
                 }
             }
@@ -80,7 +74,6 @@ class SignUpStepsViewModel @Inject constructor(
     }
 
     fun createCompanyProfile(name: String, phoneNumber: String, profilePictureUri: Uri?, mainConstructionItemId: Int, subConstructionItemIdList: List<Int>) {
-
         if(profilePictureUri != null){
             uploadCompanyProfilePictureToFirebaseStorage(name, phoneNumber, profilePictureUri, mainConstructionItemId, subConstructionItemIdList)
         }else{
@@ -90,9 +83,7 @@ class SignUpStepsViewModel @Inject constructor(
 
     private fun uploadCompanyProfilePictureToFirebaseStorage(name: String, phoneNumber: String, profilePictureUri: Uri, mainConstructionItemId: Int, subConstructionItemIdList: List<Int>){
         viewModelScope.launch {
-
             useCases.uploadProfilePictureToFirebaseStorage.invoke(profilePictureUri).collect { response ->
-
                 when(response){
                     is Response.Loading -> {
 

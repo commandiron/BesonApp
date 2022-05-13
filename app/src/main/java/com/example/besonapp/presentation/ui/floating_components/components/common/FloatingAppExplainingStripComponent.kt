@@ -29,7 +29,6 @@ import com.google.accompanist.insets.rememberInsetsPaddingValues
 fun FloatingAppExplainingStripComponent(
     isAnimated: Boolean = false
 ){
-
     val bottomNavigationBarPaddingValues = rememberInsetsPaddingValues(insets = LocalWindowInsets.current.navigationBars).calculateBottomPadding()
 
     val offsetAnimInitialValue = if(isAnimated) -400f else 0f
@@ -49,7 +48,6 @@ fun FloatingAppExplainingStripComponent(
             )
         }
     }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -66,7 +64,6 @@ fun FloatingAppExplainingStripComponent(
                 horizontalArrangement = Arrangement.spacedBy(6.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
                 Icon(
                     modifier = Modifier,
                     imageVector = Icons.Default.DocumentScanner,
@@ -76,7 +73,8 @@ fun FloatingAppExplainingStripComponent(
                 Text(
                     text = AppStaticTexts.APP_STATEMENT,
                     color = onPrimaryColorNoTheme,
-                    style = MaterialTheme.typography.body2)
+                    style = MaterialTheme.typography.body2
+                )
             }
         }
     }

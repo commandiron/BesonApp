@@ -17,17 +17,15 @@ import com.example.besonapp.presentation.ui.navigation.NavigationItem
 @Composable
 fun BottomNavigationView(
     navController: NavController,
-    currentRoute: String?) {
-
+    currentRoute: String?
+) {
     val inBottomNavigationAndVisibleItems = listOf(
         NavigationItem.Profile,
         NavigationItem.Prices
     )
-
     val notInBottomNavigationAndVisible = listOf(
         NavigationItem.PostPrice
     )
-
     val bottomBarMTS = remember {MutableTransitionState(false)}
 
     LaunchedEffect(key1 = currentRoute){
@@ -49,9 +47,7 @@ fun BottomNavigationView(
                 backgroundColor = MaterialTheme.colors.background,
                 elevation = 0.dp
             ) {
-
                 inBottomNavigationAndVisibleItems.forEach { item ->
-
                     CustomBottomNavigationItem(
                         icon = {
                             Icon(

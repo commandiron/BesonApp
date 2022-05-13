@@ -39,11 +39,9 @@ fun CustomerOrCompanyComponent(
     componentIsClosed: Boolean,
     onClick:() -> Unit,
 ){
-
     val offsetAnim = remember { Animatable(0f) }
 
     LaunchedEffect(key1 = componentIsClosed){
-
         if(componentIsClosed){
             offsetAnim.animateTo(
                 targetValue = 0f,
@@ -60,7 +58,6 @@ fun CustomerOrCompanyComponent(
             )
         }
     }
-
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -96,15 +93,12 @@ fun CustomerOrCompanyComponent(
                     style = MaterialTheme.typography.h1,
                     color = primaryColorNoTheme
                 )
-
                 Text(
                     text = details,
                     style = MaterialTheme.typography.body1,
                     color = primaryColorNoTheme
                 )
-
                 val interactionSource = remember { MutableInteractionSource() }
-
                 Surface(
                     modifier = Modifier
                         .width(200.dp)
@@ -124,7 +118,8 @@ fun CustomerOrCompanyComponent(
                                 .padding(6.dp),
                             color = onPrimaryColorNoTheme,
                             text = buttonText,
-                            style = MaterialTheme.typography.button)
+                            style = MaterialTheme.typography.button
+                        )
                     }
                 }
             }

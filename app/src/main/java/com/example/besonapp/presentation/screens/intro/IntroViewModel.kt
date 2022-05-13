@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class IntroViewModel @Inject constructor(
     private val useCases: UseCases
-): ViewModel()  {
+): ViewModel() {
 
     fun setUserOpenAppOnceFlagTrue(){
         viewModelScope.launch {

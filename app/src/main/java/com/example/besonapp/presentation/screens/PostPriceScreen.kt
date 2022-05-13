@@ -33,10 +33,9 @@ import com.example.besonapp.util.ThousandSeparatorVisualTransformationWithAddedS
 
 @Composable
 fun PostPriceScreen(
-    navController: NavController) {
-
+    navController: NavController
+) {
     var price by remember { mutableStateOf("") }
-
     //Bu kısım viewmodelden kullanıcı profili olarak gelecek.
     val mainConstructionItems = MainConstructionItem.createMainCategories()[6]
     //Bu kısım viewmodelden kullanıcı profili olarak gelecek.
@@ -60,23 +59,18 @@ fun PostPriceScreen(
         color = primaryColorNoTheme,
         contentColor = onPrimaryColorNoTheme
     ) {
-
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(40.dp),
             contentAlignment = Alignment.TopCenter
         ) {
-
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-
                 Text(text = "Kategori Seç")
-
                 val interactionSource = remember { MutableInteractionSource() }
-
                 Surface(
                     modifier = Modifier
                         .clickable(
@@ -96,7 +90,6 @@ fun PostPriceScreen(
                             .padding(10.dp),
                         contentAlignment = Alignment.Center
                     ) {
-
                         Row(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -123,20 +116,19 @@ fun PostPriceScreen(
                                 .requiredSizeIn(maxHeight = 160.dp, maxWidth = 128.dp)
                                 .background(onPrimaryColorNoTheme)
                         ) {
-
                             subConstructionCategories.forEachIndexed { index, s ->
-
                                 Column(
                                     verticalArrangement = Arrangement.Center
                                 ) {
-                                    DropdownMenuItem(onClick = {
-                                        priceCategories =
-                                            subConstructionCategories[index].priceCategories
-                                                ?: emptyList()
-                                        firstDropDownMenuSelectedIndex = index
-                                        firstDropDownMenuIsExpanded = false
-                                    }) {
-
+                                    DropdownMenuItem(
+                                        onClick = {
+                                            priceCategories =
+                                                subConstructionCategories[index].priceCategories
+                                                    ?: emptyList()
+                                            firstDropDownMenuSelectedIndex = index
+                                            firstDropDownMenuIsExpanded = false
+                                        }
+                                    ) {
                                         if (index == firstDropDownMenuSelectedIndex) {
                                             Text(
                                                 text = s.title,
@@ -158,9 +150,7 @@ fun PostPriceScreen(
                         }
                     }
                 }
-
                 Text(text = "Girilecek Fiyatı Seç")
-
                 Surface(
                     modifier = Modifier
                         .clickable(
@@ -180,7 +170,6 @@ fun PostPriceScreen(
                             .padding(10.dp),
                         contentAlignment = Alignment.Center
                     ) {
-
                         Row(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -198,7 +187,6 @@ fun PostPriceScreen(
                             }
                         }
                     }
-
                     Box(
                         modifier = Modifier
                             .offset(x = 0.dp, y = 40.dp)
@@ -210,17 +198,16 @@ fun PostPriceScreen(
                                 .requiredSizeIn(maxHeight = 160.dp, maxWidth = 128.dp)
                                 .background(onPrimaryColorNoTheme)
                         ) {
-
                             priceCategories.forEachIndexed { index, constructionPriceItem ->
-
                                 Column(
                                     verticalArrangement = Arrangement.Center
                                 ) {
-                                    DropdownMenuItem(onClick = {
-                                        secondDropDownMenuSelectedIndex = index
-                                        secondDropDownMenuIsExpanded = false
-                                    }) {
-
+                                    DropdownMenuItem(
+                                        onClick = {
+                                            secondDropDownMenuSelectedIndex = index
+                                            secondDropDownMenuIsExpanded = false
+                                        }
+                                    ) {
                                         if (index == secondDropDownMenuSelectedIndex) {
                                             Text(
                                                 text = constructionPriceItem.title,
@@ -242,10 +229,7 @@ fun PostPriceScreen(
                         }
                     }
                 }
-
-
                 Text(text = "Fiyat Gir")
-
                 Surface(
                     modifier = Modifier.size(224.dp, 64.dp),
                     color = onPrimaryColorNoTheme,
@@ -255,7 +239,6 @@ fun PostPriceScreen(
                         modifier = Modifier.fillMaxWidth(),
                         contentAlignment = Alignment.Center
                     ) {
-
                         if (priceCategories != listOf<ConstructionPriceItem>()) {
                             BasicTextField(
                                 value = price,
@@ -270,17 +253,15 @@ fun PostPriceScreen(
                                 singleLine = true,
                                 textStyle = MaterialTheme.typography.h2.copy(color = primaryColorNoTheme),
                                 cursorBrush = SolidColor(primaryColorNoTheme),
-                                visualTransformation =
-                                ThousandSeparatorVisualTransformationWithAddedSymbol(
+                                visualTransformation = ThousandSeparatorVisualTransformationWithAddedSymbol(
                                     maxFractionDigits = 2,
-                                    addedSymbol = " TL/" + priceCategories[secondDropDownMenuSelectedIndex].unit)
+                                    addedSymbol = " TL/" + priceCategories[secondDropDownMenuSelectedIndex].unit
+                                )
                             )
                         }
                     }
                 }
-
                 Spacer(modifier = Modifier.height(10.dp))
-
                 Button(
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = insertPriceButtonColor,
@@ -288,14 +269,10 @@ fun PostPriceScreen(
                     ),
                     shape = RoundedCornerShape(10.dp),
                     onClick = {
-
                         //Burda alert dialog çalışacak
-
                         enableAlertDialog = !enableAlertDialog
-
                     }
                 ) {
-
                     Text(text = "FİYATI GÖNDER")
                 }
             }
@@ -305,7 +282,6 @@ fun PostPriceScreen(
         AlertDialog(
             modifier = Modifier.size(300.dp, 100.dp),
             onDismissRequest = {
-
                 keyboardController?.hide()
                 enableAlertDialog = !enableAlertDialog
             },
@@ -320,13 +296,15 @@ fun PostPriceScreen(
                     Button(
                         onClick = {
                             //Fiyatı gönder
-                        }) {
+                        }
+                    ) {
                         Text(text = "Evet")
                     }
                     Button(
                         onClick = {
                             enableAlertDialog = !enableAlertDialog
-                        }) {
+                        }
+                    ) {
                         Text(text = "Hayır")
                     }
                 }
@@ -338,7 +316,6 @@ fun PostPriceScreen(
             backgroundColor = Color.White,
             contentColor = Color.Black,
             properties = DialogProperties()
-
         )
     }
 }

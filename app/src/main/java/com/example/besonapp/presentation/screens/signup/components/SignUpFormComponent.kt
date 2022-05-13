@@ -23,7 +23,6 @@ fun SignUpFormComponent(
     signUpAndLogInInfoValidation: SignUpAndLogInInfoValidation?,
     onButtonClick:(UserSignUpInfo) -> Unit,
 ){
-
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordAgain by remember { mutableStateOf("") }
@@ -35,12 +34,11 @@ fun SignUpFormComponent(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(
             text = SIGNUP_TEXT,
             color = MaterialTheme.colors.onBackground,
-            style = MaterialTheme.typography.h2)
-
+            style = MaterialTheme.typography.h2
+        )
         CustomTextFieldComponent(
             entry = email,
             hint = EMAIL_TEXT,
@@ -49,7 +47,6 @@ fun SignUpFormComponent(
             keyboardType = KeyboardType.Email){
             email = it
         }
-
         CustomTextFieldComponent(
             entry = password,
             hint =  PASSWORD_TEXT,
@@ -58,7 +55,6 @@ fun SignUpFormComponent(
             keyboardType = KeyboardType.Password){
             password = it
         }
-
         CustomTextFieldComponent(
             entry = passwordAgain,
             hint =  PASSWORD_AGAIN_TEXT,
@@ -67,10 +63,8 @@ fun SignUpFormComponent(
             keyboardType = KeyboardType.Password){
             passwordAgain = it
         }
-
         CustomButton(
             onClick = {
-
                 onButtonClick(UserSignUpInfo(email, password, passwordAgain))
             }
         ) {
